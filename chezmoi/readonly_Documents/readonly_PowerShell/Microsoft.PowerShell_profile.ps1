@@ -167,9 +167,9 @@ function touch { New-Item -ItemType File @Args }
 if (Get-Command grep.exe -ErrorAction SilentlyContinue) {
   function grep {
     if ($MyInvocation.ExpectingInput) {
-      $input | grep -E --color @Args
+      $input | grep.exe -E --color @Args
     } else {
-      grep -E --color @Args
+      grep.exe -E --color @Args
     }
   }
 }
@@ -177,9 +177,9 @@ if (Get-Command grep.exe -ErrorAction SilentlyContinue) {
 if (Get-Command sed.exe -ErrorAction SilentlyContinue) {
   function sed {
     if ($MyInvocation.ExpectingInput) {
-      $input | sed -E @Args
+      $input | sed.exe -E @Args
     } else {
-      sed -E @Args
+      sed.exe -E @Args
     }
   }
 }
