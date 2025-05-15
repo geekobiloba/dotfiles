@@ -1,0 +1,10 @@
+$include /etc/inputrc
+
+# Case-insensitive completion
+set completion-ignore-case on
+
+# Ctrl+Backspace
+"\C-h": backward-kill-word
+
+# Ctrl+Delete
+"\e[3;5~": kill-word

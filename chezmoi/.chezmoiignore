@@ -2,6 +2,7 @@ README.md
 {{ if eq .chezmoi.os "windows" }}
 .zshrc
 .p10k.zsh
+.inputrc
 bin/
 {{ end }}
 {{ if ne .chezmoi.os "windows" }}
