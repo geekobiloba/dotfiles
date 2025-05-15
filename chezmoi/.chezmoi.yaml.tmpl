@@ -1,0 +1,6 @@
+edit:
+  command: "nvim"
+{{ if eq .chezmoi.os "windows" -}}
+cd:
+  command: "pwsh"
+{{- end }}
