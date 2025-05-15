@@ -1,0 +1,5 @@
+[wsl2]
+networkingMode    = mirrored
+kernelCommandLine = cgroup_no_v1=all
+guiApplications   = false
+

@@ -4,3 +4,6 @@ README.md
 .p10k.zsh
 bin/
 {{ end }}
+{{ if ne .chezmoi.os "windows" }}
+.wslconfig
+{{ end }}
