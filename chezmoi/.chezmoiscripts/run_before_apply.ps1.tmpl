@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "linux" -}}
+{{- template "run_linux.tmpl" . -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{- template "run_windows.tmpl" . -}}
+{{- end -}}
