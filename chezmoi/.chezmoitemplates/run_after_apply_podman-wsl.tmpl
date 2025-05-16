@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Fix podman compose on WSL
+#
+
+STOW_PACKAGE="podman-wsl"
+
+echo -e "$STOW_BANNER $STOW_PACKAGE"
+
+sudo -E stow -v 3 -t /etc/containers/ $STOW_PACKAGE
+
+# vim: ft=bash:

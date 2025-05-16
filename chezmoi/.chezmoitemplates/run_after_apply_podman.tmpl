@@ -1,9 +1,8 @@
 #!/bin/sh
+#
+# Silence "docker" warning on podman
+#
 
-STOW_PACKAGE="podman"
-
-echo -e "$STOW_BANNER $STOW_PACKAGE"
-
-sudo -E stow -v 3 -t /etc/containers/ $STOW_PACKAGE
+sudo -E touch /etc/containers/nodocker
 
 # vim: ft=bash:

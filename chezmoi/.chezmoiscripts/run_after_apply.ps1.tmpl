@@ -2,10 +2,13 @@
 {{    template "run_after_apply_linux.tmpl" . }}
 {{- if output "sh" "-c" "which podman 2>/dev/null || true" -}}
 {{    template "run_after_apply_podman.tmpl" . }}
-{{- end  }}
+{{- end }}
 {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 {{    template "run_after_apply_wsl.tmpl" . }}
-{{- end  }}
+{{-   if output "sh" "-c" "which podman 2>/dev/null || true" -}}
+{{      template "run_after_apply_podman-wsl.tmpl" . }}
+{{-   end }}
+{{- end }}
 {{- else if eq .chezmoi.os "windows" -}}
 {{    template "run_after_apply_windows.tmpl" . }}
-{{- end  }}
+{{- end }}
