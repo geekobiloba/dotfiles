@@ -6,6 +6,8 @@ README.md
 .p10k.zsh
 .inputrc
 bin/
+.ansible.cfg
+.mitogen
 {{- end }}
 
 # Not Windows
