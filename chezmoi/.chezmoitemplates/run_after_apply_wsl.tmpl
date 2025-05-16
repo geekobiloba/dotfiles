@@ -5,7 +5,8 @@
 
 STOW_PACKAGE="wsl"
 
-echo -e "$STOW_BANNER $STOW_PACKAGE"
+echo
+echo -e ">>> Applying stow package: $STOW_PACKAGE"
 
 sudo -E stow -v 3 --adopt -t /etc/ $STOW_PACKAGE
 

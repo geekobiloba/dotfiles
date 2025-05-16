@@ -3,7 +3,6 @@ edit:
 
 scriptEnv:
   STOW_DIR: {{ joinPath .chezmoi.workingTree "stow" }}
-  STOW_BANNER: "\n>>> Calling stow package:"
 
 {{ if eq .chezmoi.os "windows" -}}
 cd:

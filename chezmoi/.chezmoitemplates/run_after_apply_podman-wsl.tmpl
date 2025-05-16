@@ -3,10 +3,18 @@
 # Fix podman compose on WSL
 #
 
-STOW_PACKAGE="podman-wsl"
+printf '\n%s' ">>> Fixing podman compose on WSL ... "
 
-echo -e "$STOW_BANNER $STOW_PACKAGE"
+sudo touch /etc/containers/containers.conf
 
-sudo -E stow -v 3 -t /etc/containers/ $STOW_PACKAGE
+sudo augtool -r /etc/containers/ -bAt 'Toml.lns incl /containers.conf' <<'EOF'
+defvar conf /files/containers.conf
+set $conf/table["network"] "network"
+set $conf/table["network"]/entry["firewall_driver"]        "firewall_driver"
+set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
+save
+EOF
+
+echo done
 
 # vim: ft=bash:
