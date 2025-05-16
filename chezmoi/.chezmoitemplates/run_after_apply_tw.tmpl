@@ -1,0 +1,9 @@
+#!/bin/sh
+
+STOW_PACKAGE="podman"
+
+echo $STOW_BANNER $STOW_PACKAGE
+
+sudo -E stow -v 3 -t /etc/containers/ $STOW_PACKAGE
+
+# vim: ft=bash:

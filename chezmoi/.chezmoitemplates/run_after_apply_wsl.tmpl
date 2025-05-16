@@ -1,7 +1,9 @@
 #!/bin/sh
 
-echo "Calling stow ..."
+STOW_PACKAGE="wsl"
 
-sudo -E stow -v 3 --adopt -t /etc wsl
+echo $STOW_BANNER $STOW_PACKAGE
+
+sudo -E stow -v 3 --adopt -t /etc/ $STOW_PACKAGE
 
 # vim: ft=bash:
