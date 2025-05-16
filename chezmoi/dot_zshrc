@@ -81,6 +81,9 @@ export ZSH="${HOME}/.oh-my-zsh"
 # History timestamp fomat
 HIST_STAMPS="yyyy-mm-dd"
 
+# chezmoi workaround
+DISABLE_AUTO_UPDATE="true"
+
 # Treat dash and underscore similarly
 HYPHEN_INSENSITIVE="true"
 
