@@ -1,7 +1,8 @@
 README.md
 
-# Windows Terminal
-wt.json
+# Windows symlinks
+#wt.json
+windows
 
 # Windows
 {{ if eq .chezmoi.os "windows" -}}
