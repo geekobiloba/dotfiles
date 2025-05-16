@@ -8,6 +8,7 @@ wt.json
 .zshrc
 .p10k.zsh
 .inputrc
+.zprofile
 bin/
 .ansible.cfg
 .mitogen
