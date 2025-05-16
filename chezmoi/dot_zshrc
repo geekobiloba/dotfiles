@@ -33,20 +33,19 @@ bindkey "\e[3;5~" backward-kill-word
 # Use bash completion
 autoload -U bashcompinit && bashcompinit
 
-# Command not found
-test -r /etc/zsh_command_not_found && . $_
-
 ################################################################################
 # pyenv
 #
 # Load before oh-my-zsh pyenv plugin
 ################################################################################
 
-# BEGIN pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-test -d "${PYENV_ROOT}/bin" && PATH=$_:$PATH && export PATH
-eval "$(pyenv init -)"
-# END pyenv
+if which pyenv &>/dev/null ; then
+  export PYENV_ROOT="${HOME}/.pyenv"
+
+  test -d "${PYENV_ROOT}/bin" && PATH=$_:$PATH && export PATH
+
+  eval "$(pyenv init -)"
+fi
 
 ################################################################################
 # Powerlevel10k
@@ -54,8 +53,8 @@ eval "$(pyenv init -)"
 
 # Instant prompt
 # Should stay close to the top of ~/.zshrc
-test -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" \
-&& source $_
+test -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" &&\
+  source $_
 
 source ~/.p10k.zsh
 
@@ -66,7 +65,7 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 typeset -g POWERLEVEL9K_DIR_BACKGROUND=33 # blue prompt
 
 # prompt gradation for macOS or WSL
-if uname -s | grep -q Darwin || uname -r | grep -q WSL ; then
+if uname -s | grep -q Darwin || uname -r | grep -qi microsoft ; then
   typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%K{#585854} %K{#84847C} %K{#B1B1A5} %k'
   typeset -g   POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL='%K{#B1B1A5} %K{#84847C} %K{#585854} %k'
 fi
@@ -131,16 +130,20 @@ test -d ~/.local/bin && PATH=$_:$PATH && export PATH
 
 # Tab completion
 # See: pipx completions
-eval "$(register-python-argcomplete pipx)"
+if which register-python-argcomplete &>/dev/null ; then
+  eval "$(register-python-argcomplete pipx)"
+fi
 
 ################################################################################
 # direnv
 ################################################################################
 
-# Grey status
-export DIRENV_LOG_FORMAT=$'\e[90mdirenv: %s\e[0m'
+if which direnv &>/dev/null ; then
+  # Grey status
+  export DIRENV_LOG_FORMAT=$'\e[90mdirenv: %s\e[0m'
 
-eval "$(direnv hook zsh)"
+  eval "$(direnv hook zsh)"
+fi
 
 ################################################################################
 # fzf
@@ -148,7 +151,9 @@ eval "$(direnv hook zsh)"
 # Should be loaded after oh-my-zsh plugins
 ################################################################################
 
-source <(fzf --zsh)
+if which fzf &>/dev/null ; then
+  source <(fzf --zsh)
+fi
 
 ################################################################################
 # nvm
@@ -158,30 +163,29 @@ if [ -d ${HOME}/.nvm ] ; then
   export NVM_DIR="${HOME}/.nvm"
 
   # Load nvm
-  [ -s "${NVM_DIR}/nvm.sh" ] && . "${NVM_DIR}/nvm.sh"
+  [ -s "${NVM_DIR}/nvm.sh" ] && source "${NVM_DIR}/nvm.sh"
 
   # Load nvm bash_completion
-  [ -s "${NVM_DIR}/bash_completion" ] && . "${NVM_DIR}/bash_completion"
+  [ -s "${NVM_DIR}/bash_completion" ] && source "${NVM_DIR}/bash_completion"
 fi
 
 ################################################################################
 # Perl
 ################################################################################
 
-test -r ~/.perlrc && . $_
+test -r ~/.perlrc && source $_
 
 ################################################################################
 # Additional completions
 ################################################################################
 
-# The oh-my-zsh pyenv plugins doesn't work,
-# source the completion file instead.
+for f in /etc/zsh_completion.d/* ; do source $f ; done
 
-# jc completion is still buggy and doesn't work
+# Command not found
+test -r /etc/zsh_command_not_found && source $_
 
-for f in pyenv # jc
-do test -r /etc/zsh_completion.d/${f} && source $_
-done
+# govc
+test -r /etc/bash_completion.d/govc_bash_completion && source $_
 
 ################################################################################
 # Aliases
@@ -240,13 +244,6 @@ alias  neofetch='fastfetch'
 alias fastfetch='fastfetch -l opensuse'
 
 ################################################################################
-# govc
-################################################################################
-
-test -r ~/.govcrc                                   && . $_
-test -r /etc/bash_completion.d/govc_bash_completion && . $_
-
-################################################################################
 # Functions
 ################################################################################
 
@@ -273,7 +270,7 @@ alias kctx="kubectl ctx"
 # WSL
 ################################################################################
 
-if uname -r | grep -q WSL ; then
+if uname -r | grep -qi microsoft ; then
 
   # Windows command helper to work with WSL path smoothly
   __import_win_cmd(){
@@ -292,10 +289,8 @@ if uname -r | grep -q WSL ; then
 EOF
   }
 
-#-------------------------------------------------------------------------------
-# Examples
-#-------------------------------------------------------------------------------
-
+  ## Examples
+  ##
   ## nvim
   #if which nvim.exe &>/dev/null ; then
   #  eval "$(__import_win_cmd nvim)"
@@ -304,18 +299,6 @@ EOF
   #  alias     vim="__win_nvim"
   #  alias    view="__win_nvim -R"
   #  alias vimdiff="__win_nvim -d"
-  #fi
-
-  #for bin in iperf3 ; do
-  #  if which ${bin}.exe &>/dev/null ; then
-  #    eval "$(__import_win_cmd $bin)"
-  #    alias ${bin}="__win_${bin}"
-  #  fi
-  #done
-
-  ## govc
-  #if which govc.exe &>/dev/null && which pwsh.exe &>/dev/null ; then
-  #  alias govc='pwsh.exe -c govc.exe'
   #fi
 
   # SSH agent
