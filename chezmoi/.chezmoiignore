@@ -16,8 +16,8 @@ Documents/
 
 # WSL
 {{ if eq .chezmoi.os "linux" -}}
-{{  if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 bin/wt
-{{- end }}
+{{-   end }}
 {{- end }}
 

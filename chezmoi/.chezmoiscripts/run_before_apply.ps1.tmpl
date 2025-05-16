@@ -1,5 +1,8 @@
-{{ if eq .chezmoi.os "linux" -}}
-{{- template "run_linux.tmpl" . -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   template "run_linux.tmpl" . }}
+{{  if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-   template "run_wsl.tmpl" . }}
+{{- end -}}
 {{- else if eq .chezmoi.os "windows" -}}
-{{- template "run_windows.tmpl" . -}}
+{{-   template "run_windows.tmpl" . }}
 {{- end -}}

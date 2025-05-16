@@ -1,6 +1,12 @@
 edit:
   command: "nvim"
+
+scriptEnv:
+  STOW_DIR: {{ joinPath .chezmoi.workingTree "stow" }}
+
 {{ if eq .chezmoi.os "windows" -}}
 cd:
-  command: "pwsh"
+  command: "powershell.exe"
 {{- end }}
+
+# vim: ft=yaml:
