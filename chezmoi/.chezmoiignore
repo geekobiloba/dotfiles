@@ -1,5 +1,8 @@
 README.md
 
+# Windows Terminal
+wt.json
+
 # Windows
 {{ if eq .chezmoi.os "windows" -}}
 .zshrc
