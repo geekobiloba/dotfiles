@@ -14,6 +14,7 @@ bin/
 {{ if ne .chezmoi.os "windows" -}}
 .wslconfig
 Documents/
+AppData/
 {{- end }}
 
 # WSL
