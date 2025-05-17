@@ -269,6 +269,8 @@ test -r ~/.kubectl-aliases/.kubectl_aliases && source $_
 alias  kns="kubectl ns"
 alias kctx="kubectl ctx"
 
+{{  if eq .chezmoi.os "linux" -}}
+{{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 ################################################################################
 # WSL
 ################################################################################
@@ -307,5 +309,7 @@ EOF
   # SSH agent
   eval $(ssh-agent -s) 1>/dev/null
 fi
+{{-   end }}
+{{- end }}
 
 # vim: ft=zsh:

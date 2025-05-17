@@ -1,9 +1,5 @@
 README.md
 
-# Windows symlinks
-#wt.json
-windows
-
 # Windows
 {{ if eq .chezmoi.os "windows" -}}
 .zshrc
@@ -26,7 +22,7 @@ AppData/
 {{ if eq .chezmoi.os "linux" -}}
 {{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 bin/wt
-{{-     if not (output "sh" "-c" "which podman 2>/dev/null || true") -}}
+{{-     if not (findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin")) -}}
 .zprofile
 {{-     end }}
 {{-   end }}
@@ -35,4 +31,7 @@ bin/wt
 # Oh My Zsh
 .oh-my-zsh/cache/
 .oh-my-zsh/custom/themes/powerlevel10k/gitstatus/
+
+# Symlinks dir
+windows/
 

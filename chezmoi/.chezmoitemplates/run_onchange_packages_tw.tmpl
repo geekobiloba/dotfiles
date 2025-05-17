@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# openSUSE package installation
+#
+
+echo "Installing packages for {{ .chezmoi.osRelease.name }} ..."
+
+sudo zypper -n in -y {{ range .packages.tw }} {{ . | quote }} {{ end }}
+
+# vim: ft=bash:

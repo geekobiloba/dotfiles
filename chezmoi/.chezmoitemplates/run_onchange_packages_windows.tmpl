@@ -1,0 +1,20 @@
+#
+# Windows package installation
+#
+
+$winver = (
+  Get-CimInstance -ClassName Win32_OperatingSystem |
+    Select-Object -ExpandProperty Caption
+)
+
+Write-Host "Installing packages for $winver ..."
+
+{{ range .packages.windows.winget -}}
+winget install -e --id {{ . | quote }}
+{{ end }}
+
+{{ range .packages.windows.scoop -}}
+scoop install {{ . | quote }}
+{{ end }}
+
+# vim: ft=ps1:
