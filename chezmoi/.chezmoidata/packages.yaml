@@ -6,11 +6,13 @@ packages:
     - bind-utils
     - binutils # provides string
     - byobu
+    - chezmoi
     - cnf
     - cnf-zsh
     - curl
     - direnv
     - direnv-zsh-completion
+    - dos2unix
     - expect
     - eza
     - eza-zsh-completion
@@ -64,7 +66,6 @@ packages:
   ubuntu:
   windows:
     winget:
-      - 9MSSK2ZXXN11   # openSUSE Tumbleweed
       - 9NBLGGH6BZL3   # GlobalProtect
       - 9NCBCSZSJRSB   # Spotify
       - 9NKSQGP7F2NH   # WhatsApp
@@ -123,8 +124,8 @@ packages:
       - age
       - aria2
       - chezmoi
+      - cwrsync
       - direnv
-      - dos2unix
       - eza
       - fastfetch
       - fzf
@@ -132,16 +133,16 @@ packages:
       - gawk
       - grep
       - sed
-      - gcc # mainly for Neovim TreeSitter
       - gh
       - git
       - tea
       - govc
       - jq
       - less
-      - make
       - mc
+      - mingw
       - oh-my-posh
+      - poppler
       - scoop-completion
       - scoop-search
       - yq
