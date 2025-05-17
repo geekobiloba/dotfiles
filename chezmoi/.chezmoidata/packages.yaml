@@ -21,6 +21,8 @@ packages:
     - file
     - gh
     - gh-zsh-completion
+   #- gitea-tea
+   #- gitea-tea-zsh-completion
     - gnu_parallel
     - htop
     - iperf
@@ -64,20 +66,24 @@ packages:
     winget:
       - 9MSSK2ZXXN11   # openSUSE Tumbleweed
       - 9NBLGGH6BZL3   # GlobalProtect
+      - 9NCBCSZSJRSB   # Spotify
       - 9NKSQGP7F2NH   # WhatsApp
+      - 9P7KNL5RWT25   # Sysinternals Suite
+      - 9PC3H3V7Q9CH   # Rufus
       - 9PNRBTZXMB4Z   # Python 3.13
+      - XP89DCGQ3K6VLD # Microsoft PowerToys
       - XP8C9QZMS2PC1T # Brave Browser
       - XP8K2L36VP0QMB # KeePassXC
+      - XP99J3KP4XZ4VV # Zoom Workplace
+      - XP9KHM4BK9FZ7Q # Visual Studio Code
+      - XPFCG5NRKXQPKT # Foxit PDF Reader
+      - XPFCWP0SQWXM3V # CCleaner
       - CrystalLang.Crystal
-      - Foxit.FoxitReader
       - Genymobile.scrcpy
       - Google.GoogleDrive
       - LinuxContainers.Incus
       - RedHat.VirtViewer
       - Microsoft.PowerShell # PS 7
-      - Microsoft.PowerToys
-      - Microsoft.Sysinternals
-      - Microsoft.VisualStudioCode
       - Microsoft.WindowsTerminal
       - DEVCOM.JetBrainsMonoNerdFont
       - Mikrotik.Winbox
@@ -90,27 +96,28 @@ packages:
       - Dynalist.Dynalist
       - Ookla.Speedtest.CLI
       - Oracle.VirtualBox
-      - Piriform.CCleaner
-      - Rufus.Rufus
-      - Spotify.Spotify
       - Telegram.TelegramDesktop
       - WireGuard.WireGuard
       - OpenVPNTechnologies.OpenVPN
       - Fortinet.FortiClientVPN
-      - Zoom.Zoom
       - sharkdp.bat
       - sharkdp.fd
-     #- 9NCBCSZSJRSB # Spotify
-     #- 9P7KNL5RWT25 # Sysinternals Suite
-     #- 9PC3H3V7Q9CH # Rufus
+     #- Foxit.FoxitReader
      #- Google.Chrome
+     #- Microsoft.PowerToys
+     #- Microsoft.Sysinternals
+     #- Microsoft.VisualStudioCode
      #- MikeFarah.yq
+     #- Piriform.CCleaner
      #- Python.Python.3.13
+     #- Rufus.Rufus
+     #- Spotify.Spotify
      #- Webyog.SQLyogCommunity
-     #- XP9KHM4BK9FZ7Q # Visual Studio Code
+     #- Zoom.Zoom
      #- eza-community.eza
      #- jqlang.jq
      #- valinet.ExplorerPatcher
+
     scoop:
       - 7zip
       - age
@@ -139,6 +146,7 @@ packages:
       - scoop-search
       - yq
      #- findutils
+
   macos:
     brew:
       - bat
@@ -150,6 +158,7 @@ packages:
       - pyenv
       - ripgrep
      #- rbenv
+
     cask:
       - iterm2
       - firefox

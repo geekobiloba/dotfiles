@@ -7,11 +7,24 @@ $winver = (
     Select-Object -ExpandProperty Caption
 )
 
-Write-Host "Installing packages for $winver ..."
+Write-Host "Installing packages for $winver ..." -ForegroundColor Green
+
+################################################################################
+# winget
+################################################################################
 
 {{ range .packages.windows.winget -}}
 winget install -e --id {{ . | quote }}
 {{ end }}
+
+################################################################################
+# scoop
+################################################################################
+
+scoop install git aria2
+scoop config aria2-warning-enabled false
+scoop update
+scoop bucket add extras
 
 {{ range .packages.windows.scoop -}}
 scoop install {{ . | quote }}
