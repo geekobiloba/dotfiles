@@ -152,9 +152,12 @@ packages:
   macos:
     brew:
       - bat
-      - fd
       - byobu
+      - fd
+      - gawk
       - gh
+      - gnu-sed
+      - grep
       - neovim
       - pipx
       - pyenv
