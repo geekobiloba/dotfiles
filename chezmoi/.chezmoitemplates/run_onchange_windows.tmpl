@@ -1,4 +1,5 @@
 Get-CimInstance -ClassName Win32_OperatingSystem |
-  Select-Object -ExpandProperty Caption
+  Select-Object -ExpandProperty Caption |
+  Write-Host -ForegroundColor Blue
 
 # vim: ft=ps1:

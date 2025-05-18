@@ -1,52 +1,64 @@
-{{ if or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") -}}
+{{ if ne .chezmoi.os "windows" -}}
 
 ".oh-my-zsh":
   type:  archive
   url:   https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: "168h"
+  refreshPeriod:   "720h"
 
 ".oh-my-zsh/custom/themes/powerlevel10k":
   type:  archive
   url:   https://github.com/romkatv/powerlevel10k/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: "168h"
+  refreshPeriod:   "720h"
 
 ".oh-my-zsh/custom/plugins/fast-syntax-highlighting":
   type:  archive
   url:   https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: "168h"
+  refreshPeriod:   "720h"
 
 ".oh-my-zsh/custom/plugins/zsh-autosuggestions":
   type:  archive
   url:   https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: "168h"
+  refreshPeriod:   "720h"
 
 ".oh-my-zsh/custom/plugins/zsh-history-substring-search":
   type:  archive
   url:   https://github.com/zsh-users/zsh-history-substring-search/archive/master.tar.gz
   exact: true
   stripComponents: 1
-  refreshPeriod: "168h"
+  refreshPeriod:   "720h"
 
 ".mitogen":
   type:  archive
   url:   https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-0.3.23.tar.gz
-  stripComponents: 1
   exact: true
+  stripComponents: 1
 
 ".kubectl-aliases":
   type:  git-repo
   url:   https://github.com/ahmetb/kubectl-aliases
-  clone.args: '--depth=1'
   exact: true
-  refreshPeriod: "168h"
+  clone.args:    "--depth=1"
+  refreshPeriod: "720h"
+
+{{- else -}}
+
+"AppData/Local/nvim":
+  type:  archive
+  url:   https://github.com/NvChad/starter/archive/refs/heads/main.zip
+  exact: false
+  stripComponents: 1
+  exclude:
+    - "*/init.lua"
+    - "*/lua/chadrc.lua"
+    - "*/lua/plugins/init.lua"
 
 {{- end }}
 

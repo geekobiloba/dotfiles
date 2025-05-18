@@ -126,6 +126,7 @@ packages:
       - chezmoi
       - cwrsync
       - direnv
+      - dos2unix
       - eza
       - fastfetch
       - fzf
