@@ -21,11 +21,6 @@ winget install -e --id {{ . | quote }}
 # scoop
 ################################################################################
 
-scoop install git aria2
-scoop config aria2-warning-enabled false
-scoop update
-scoop bucket add extras
-
 {{ range .packages.windows.scoop -}}
 scoop install {{ . | quote }}
 {{ end }}

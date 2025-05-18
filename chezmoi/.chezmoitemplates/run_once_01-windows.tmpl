@@ -1,0 +1,30 @@
+#
+# Windows preparation
+#
+
+$winver = (
+  Get-CimInstance -ClassName Win32_OperatingSystem |
+    Select-Object -ExpandProperty Caption
+)
+
+Write-Host "Preparing $winver ..." -ForegroundColor Green
+
+################################################################################
+# scoop
+################################################################################
+
+scoop install git aria2
+scoop config aria2-warning-enabled false
+scoop update
+scoop bucket add extras
+
+# Prevent error when installing diffutils with scoop
+Remove-Item -Force Alias:\diff
+
+################################################################################
+# Node.js, mainly for Neovim
+################################################################################
+
+nvs add lts
+
+# vim: ft=ps1:

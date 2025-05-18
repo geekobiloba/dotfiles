@@ -20,7 +20,9 @@ $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $env:LESS = '-Ri'
 
 # node: add LTS directory to the path
-nvs use lts | Out-Null
+if (Get-Command nvs -ErrorAction SilentlyContinue) {
+  nvs use lts | Out-Null
+}
 
 #-------------------------------------------------------------------------------
 # Path
@@ -187,11 +189,11 @@ if (Get-Command sed.exe -ErrorAction SilentlyContinue) {
   }
 }
 
-## diff
-#Remove-Item -Force Alias:\diff
-#if (Get-Command diff.exe -ErrorAction SilentlyContinue) {
-#  function diff { diff.exe --color @Args }
-#}
+# diff
+Remove-Item -Force Alias:\diff
+if (Get-Command diff.exe -ErrorAction SilentlyContinue) {
+  function diff { diff.exe --color @Args }
+}
 
 #-------------------------------------------------------------------------------
 # Safe rm, cp

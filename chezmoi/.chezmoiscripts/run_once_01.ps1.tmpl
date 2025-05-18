@@ -1,0 +1,3 @@
+{{- if eq .chezmoi.os "windows" -}}
+{{    template "run_once_01-windows.tmpl" . }}
+{{- end }}

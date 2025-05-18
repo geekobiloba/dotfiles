@@ -6,7 +6,6 @@ packages:
     - bind-utils
     - binutils # provides string
     - byobu
-    - chezmoi
     - cnf
     - cnf-zsh
     - curl
@@ -63,7 +62,9 @@ packages:
    #- socat
    #- subnetcalc
    #- tree
+
   ubuntu:
+
   windows:
     winget:
       - 9NBLGGH6BZL3   # GlobalProtect
@@ -82,6 +83,7 @@ packages:
       - CrystalLang.Crystal
       - Genymobile.scrcpy
       - Google.GoogleDrive
+      - jasongin.nvs
       - LinuxContainers.Incus
       - RedHat.VirtViewer
       - Microsoft.PowerShell # PS 7
@@ -122,32 +124,30 @@ packages:
     scoop:
       - 7zip
       - age
-      - aria2
-      - chezmoi
       - cwrsync
+     #- diffutils
       - direnv
       - dos2unix
       - eza
       - fastfetch
+     #- findutils
       - fzf
       - psfzf
       - gawk
       - grep
       - sed
       - gh
-      - git
       - tea
       - govc
       - jq
       - less
       - mc
-      - mingw
+      - mingw # mainly for Neovim
       - oh-my-posh
       - poppler
       - scoop-completion
       - scoop-search
       - yq
-     #- findutils
 
   macos:
     brew:
