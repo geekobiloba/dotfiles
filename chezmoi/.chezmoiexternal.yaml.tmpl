@@ -48,6 +48,16 @@
   clone.args:    "--depth=1"
   refreshPeriod: "720h"
 
+".config/nvim":
+  type:  archive
+  url:   https://github.com/NvChad/starter/archive/refs/heads/main.zip
+  exact: false
+  stripComponents: 1
+  exclude:
+    - "*/init.lua"
+    - "*/lua/chadrc.lua"
+    - "*/lua/plugins/init.lua"
+
 {{- else -}}
 
 "AppData/Local/nvim":
