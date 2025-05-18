@@ -5,7 +5,7 @@
 {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 {{      template "run_once_99-wsl.tmpl" . }}
 {{-     if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
-{{        template "run_once_99-wsl_podman.tmpl" . }}
+{{        template "run_once_99-wsl-podman.tmpl" . }}
 {{-     end }}
 {{-   end }}
 {{- end }}
