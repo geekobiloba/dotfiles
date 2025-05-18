@@ -19,6 +19,9 @@ $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 # less
 $env:LESS = '-Ri'
 
+# node: add LTS directory to the path
+nvs use lts | Out-Null
+
 #-------------------------------------------------------------------------------
 # Path
 #-------------------------------------------------------------------------------
