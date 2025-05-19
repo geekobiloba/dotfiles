@@ -1,16 +1,16 @@
 {{- if eq .chezmoi.os "linux" -}}
 {{-   if  has "suse" (splitList " " .chezmoi.osRelease.idLike) -}}
-{{      template "run_once_99-suse.tmpl" . }}
+{{      template "run_once_after_99-suse.tmpl" . }}
 {{-   end }}
 {{-   if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
-{{      template "run_once_99-podman.tmpl" . }}
+{{      template "run_once_after_99-podman.tmpl" . }}
 {{-   end }}
 {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
-{{      template "run_once_99-wsl.tmpl" . }}
+{{      template "run_once_after_99-wsl.tmpl" . }}
 {{-     if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
-{{        template "run_once_99-wsl-podman.tmpl" . }}
+{{        template "run_once_after_99-wsl-podman.tmpl" . }}
 {{-     end }}
 {{-   end }}
 {{- else if eq .chezmoi.os "windows" -}}
-{{-   template "run_once_99-windows.tmpl" . }}
+{{-   template "run_once_after_99-windows.tmpl" . }}
 {{- end }}

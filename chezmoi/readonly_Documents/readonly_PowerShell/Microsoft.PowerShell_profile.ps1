@@ -156,6 +156,10 @@ if (Get-Command scoop-search.exe -ErrorAction SilentlyContinue) {
   Invoke-Expression (& scoop-search --hook)
 }
 
+# clip.exe
+New-Alias -Name xclip  -Value clip.exe
+New-Alias -Name pbcopy -Value clip.exe
+
 ## Use real curl instead of PowerShell alias
 Remove-Item Alias:\curl -ErrorAction SilentlyContinue
 
