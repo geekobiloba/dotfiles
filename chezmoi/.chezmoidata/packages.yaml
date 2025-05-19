@@ -32,6 +32,7 @@ packages:
     - ldns # provides drill
     - mariadb-client
     - neovim
+    - gcc
     - netcat-openbsd
     - nmap # better than the Windows version
    #- pipx

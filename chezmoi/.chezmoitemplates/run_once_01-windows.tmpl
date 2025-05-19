@@ -1,27 +1,13 @@
 #
-# Windows preparation
+# Windows first setup preparation
 #
 
-$winver = (
-  Get-CimInstance -ClassName Win32_OperatingSystem |
-    Select-Object -ExpandProperty Caption
-)
+Write-Host "Windows first setup preparation" -ForegroundColor Green
 
-Write-Host "Preparing $winver ..." -ForegroundColor Green
-
-################################################################################
-# scoop
-################################################################################
-
+# Prepare scoop
 scoop install git aria2
 scoop config aria2-warning-enabled false
 scoop update
 scoop bucket add extras
-
-################################################################################
-# Node.js, mainly for Neovim
-################################################################################
-
-nvs add lts
 
 # vim: ft=ps1:

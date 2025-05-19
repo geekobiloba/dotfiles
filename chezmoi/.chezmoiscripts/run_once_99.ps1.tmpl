@@ -1,4 +1,7 @@
 {{- if eq .chezmoi.os "linux" -}}
+{{-   if  has "suse" (splitList " " .chezmoi.osRelease.id) -}}
+{{      template "run_once_99-suse.tmpl" . }}
+{{-   end }}
 {{-   if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
 {{      template "run_once_99-podman.tmpl" . }}
 {{-   end }}
@@ -8,4 +11,6 @@
 {{        template "run_once_99-wsl-podman.tmpl" . }}
 {{-     end }}
 {{-   end }}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   template "run_once_99-windows.tmpl" . }}
 {{- end }}

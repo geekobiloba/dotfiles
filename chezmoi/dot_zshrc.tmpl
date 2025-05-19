@@ -159,17 +159,15 @@ if which fzf &>/dev/null ; then
 fi
 
 ################################################################################
-# nvm
+# nvs
 ################################################################################
 
-if [ -d ${HOME}/.nvm ] ; then
-  export NVM_DIR="${HOME}/.nvm"
+if [ -d ${HOME}/.nvs ] ; then
+  export NVS_HOME="$HOME/.nvs"
 
-  # Load nvm
-  [ -s "${NVM_DIR}/nvm.sh" ] && source "${NVM_DIR}/nvm.sh"
-
-  # Load nvm bash_completion
-  [ -s "${NVM_DIR}/bash_completion" ] && source "${NVM_DIR}/bash_completion"
+  if [ -s "$NVS_HOME/nvs.sh" ] ; then
+    source "$NVS_HOME/nvs.sh"
+  fi
 fi
 
 ################################################################################
