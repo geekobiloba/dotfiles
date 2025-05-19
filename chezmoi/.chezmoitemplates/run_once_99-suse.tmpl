@@ -3,6 +3,8 @@
 # SUSE first setup finalization
 #
 
+echo "SUSE first setup finalization"
+
 ## Fix zypper bash and zsh completion when sed is being aliased as "sed -E"
 #for f in \
 #  /usr/share/bash-completion/completions/zypper \
@@ -18,7 +20,5 @@ nvs add lts
 
 # Set user's shell to Zsh
 sudo chsh -s /bin/zsh $USER
-
-echo "SUSE is detected"
 
 # vim: ft=bash:
