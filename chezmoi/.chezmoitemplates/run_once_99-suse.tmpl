@@ -5,18 +5,17 @@
 
 echo "SUSE first setup finalization"
 
-## Fix zypper bash and zsh completion when sed is being aliased as "sed -E"
-#for f in \
-#  /usr/share/bash-completion/completions/zypper \
-#  /usr/share/zsh/functions/Completion/openSUSE/_zypper
-#do
-#  if [ -f $f ]
-#  then sudo sed -Ei 's,<(/usr/bin/)?sed>,/usr/bin/sed,g' $f
-#  fi
-#done
+################################################################################
+# nvs
+################################################################################
 
 # Add Node.js LTS, mainly for Neovim
+source $HOME/.nvs/nvs.sh
 nvs add lts
+
+################################################################################
+# zsh
+################################################################################
 
 # Set user's shell to Zsh
 sudo chsh -s /bin/zsh $USER
