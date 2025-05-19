@@ -1,6 +1,23 @@
 README.md
 bak/
 
+# Not Windows
+{{ if ne .chezmoi.os "windows" -}}
+.wslconfig
+Documents/
+AppData/
+{{- end }}
+
+# Not WSL
+{{ if eq .chezmoi.os "linux" -}}
+{{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+bin/wt
+{{-     if not (findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin")) -}}
+.zprofile
+{{-     end }}
+{{-   end }}
+{{- end }}
+
 # Windows
 {{ if eq .chezmoi.os "windows" -}}
 .zshrc
@@ -11,23 +28,6 @@ bak/
 .mitogen
 bin/
 .config/nvim/
-{{- end }}
-
-# Not Windows
-{{ if ne .chezmoi.os "windows" -}}
-.wslconfig
-Documents/
-AppData/
-{{- end }}
-
-# WSL
-{{ if eq .chezmoi.os "linux" -}}
-{{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-bin/wt
-{{-     if not (findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin")) -}}
-.zprofile
-{{-     end }}
-{{-   end }}
 {{- end }}
 
 # Oh My Zsh
