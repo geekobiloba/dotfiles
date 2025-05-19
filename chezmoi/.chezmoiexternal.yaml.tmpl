@@ -58,6 +58,13 @@
     - "*/lua/chadrc.lua"
     - "*/lua/plugins/init.lua"
 
+".nvs":
+  type:  archive
+  url:   https://github.com/jasongin/nvs/archive/master.tar.gz
+  exact: true
+  stripComponents: 1
+  refreshPeriod:   "720h"
+
 {{- else -}}
 
 "AppData/Local/nvim":

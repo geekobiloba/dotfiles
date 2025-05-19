@@ -168,6 +168,8 @@ if [ -d ${HOME}/.nvs ] ; then
   if [ -s "$NVS_HOME/nvs.sh" ] ; then
     source "$NVS_HOME/nvs.sh"
   fi
+
+  nvs use lts &>/dev/null
 fi
 
 ################################################################################
@@ -217,7 +219,7 @@ alias    rgh="rg --hidden -g '!.git'"
 alias    rga='rgh'
 alias    w3m='w3m -sixel'
 alias    cls='clear'
-alias    sed='sed  -E'
+#alias    sed='sed  -E'
 alias   grep='grep -E --color'
 alias   diff='diff    --color'
 alias   ncal='cal -v'
