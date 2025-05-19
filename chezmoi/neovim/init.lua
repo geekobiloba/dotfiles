@@ -72,7 +72,7 @@ end
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.crystal = {
   install_info = {
-    url = "$HOME/Development/tree-sitter-crystal",
+    url = "~/.tree-sitter-crystal",
     files = {"src/parser.c", "src/scanner.c"},
     branch = "main",
   },
