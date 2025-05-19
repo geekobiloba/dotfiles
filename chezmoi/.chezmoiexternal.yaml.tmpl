@@ -65,6 +65,13 @@
   stripComponents: 1
   refreshPeriod:   "720h"
 
+".tree-sitter-crystal":
+  type:  git-repo
+  url:   https://github.com/crystal-lang-tools/tree-sitter-crystal
+  exact: true
+  clone.args:    "--depth=1"
+  refreshPeriod: "720h"
+
 {{- else -}}
 
 "AppData/Local/nvim":

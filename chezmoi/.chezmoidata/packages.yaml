@@ -30,6 +30,7 @@ packages:
     - ipmitool
     - jq
     - ldns # provides drill
+    - make
     - mariadb-client
     - neovim
     - gcc
