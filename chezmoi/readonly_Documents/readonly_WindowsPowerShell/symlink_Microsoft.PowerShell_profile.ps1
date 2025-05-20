@@ -1,1 +1,1 @@
-C:/Users/ellam/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
+{{ .chezmoi.destDir }}/Documents/PowerShell/Microsoft.PowerShell_profile.ps1

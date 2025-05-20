@@ -90,6 +90,7 @@ packages:
       - XP9KHM4BK9FZ7Q # Visual Studio Code
       - XPFCG5NRKXQPKT # Foxit PDF Reader
       - XPFCWP0SQWXM3V # CCleaner
+      - XPFNZKSKLBP7RJ # PuTTY
       - CrystalLang.Crystal
       - Genymobile.scrcpy
       - GoLang.Go
@@ -116,6 +117,7 @@ packages:
       - Fortinet.FortiClientVPN
       - sharkdp.bat
       - sharkdp.fd
+      - WinSCP.WinSCP
      #- Foxit.FoxitReader
      #- Google.Chrome
      #- Microsoft.PowerToys
