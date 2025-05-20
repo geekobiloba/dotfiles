@@ -1,6 +1,7 @@
 #   First setup
 
 1.  Install chezmoi with your package manager.
+
 2.  Initialize and apply chezmoi,
 
     ```shell

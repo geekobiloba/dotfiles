@@ -9,26 +9,33 @@ bak/
 .zprofile
 .ansible.cfg
 .mitogen
-bin/
 .vimrc
-.config/nvim/
 .nvs
+bin/
+.config/nvim/
 .local/share/nvim/
 {{ end }}
 
 # Not Windows
 {{ if ne .chezmoi.os "windows" }}
 .wslconfig
-Documents/
 AppData/
+Documents/
 {{ end }}
 
-# Linux but not WSL
-{{ if eq .chezmoi.os "linux" -}}
+# Linux
+{{ if eq .chezmoi.os "linux" }}
+
+# Non-WSL
 {{   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 bin/wt
-{{     if not (findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin")) }}
 .zprofile
+
+# WSL without podman
+{{   else -}}
+{{-    if not (findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin")) }}
+.zprofile
+
 {{     end }}
 {{   end }}
 {{ end }}

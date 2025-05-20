@@ -6,6 +6,8 @@ packages:
     - bind-utils
     - binutils # provides string
     - byobu
+    - chezmoi
+    - chezmoi-zsh-completion
     - cnf
     - cnf-zsh
     - curl

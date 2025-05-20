@@ -1,13 +1,17 @@
 #
-# Windows first setup preparation
+# Windows first setup: pre-package installation
 #
 
-Write-Host "Windows first setup preparation" -ForegroundColor Green
+Write-Host "Starting Windows first setup: pre-package installation" `
+  -ForegroundColor Green
 
 # Prepare scoop
 scoop install git aria2
 scoop config aria2-warning-enabled false
 scoop update
 scoop bucket add extras
+
+Write-Host "Windows first setup: pre-package installation is done" `
+  -ForegroundColor Green
 
 # vim: ft=ps1:

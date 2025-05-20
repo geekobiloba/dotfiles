@@ -2,12 +2,8 @@
 # Windows package installation
 #
 
-$winver = (
-  Get-CimInstance -ClassName Win32_OperatingSystem |
-    Select-Object -ExpandProperty Caption
-)
-
-Write-Host "Installing packages for $winver ..." -ForegroundColor Green
+Write-Host "Starting package installation" `
+  -ForegroundColor Green
 
 ################################################################################
 # winget
@@ -24,5 +20,8 @@ winget install -e --id {{ . | quote }}
 {{ range .packages.windows.scoop -}}
 scoop install {{ . | quote }}
 {{ end }}
+
+Write-Host "Package installation is done" `
+  -ForegroundColor Green
 
 # vim: ft=ps1:

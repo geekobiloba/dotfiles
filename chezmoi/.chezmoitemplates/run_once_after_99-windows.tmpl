@@ -1,10 +1,13 @@
 #
-# Windows first setup finalization
+# Windows first setup: post-package installation
 #
 
-Write-Host "Windows first setup finalization" -ForegroundColor Green
+Write-Host "Starting Windows first setup: post-package installation" `
+  -ForegroundColor Green
 
 # Add Node.js LTS, mainly for Neovim
 nvs add lts
 
+Write-Host "Windows first setup: post-package installation is done" `
+  -ForegroundColor Green
 # vim: ft=ps1:

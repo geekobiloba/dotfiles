@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# SUSE first setup finalization
+# SUSE first setup: post-package installation
 #
 
-echo -e "${_CYAN_}SUSE first setup finalization${_RESET_}"
+echo -e "${_CYAN_}Starting SUSE first setup: post-package installation${_RESET_}"
 
 ################################################################################
 # nvs
@@ -19,5 +19,7 @@ nvs add lts
 
 # Set user's shell to Zsh
 sudo chsh -s /bin/zsh $USER
+
+echo -e "${_CYAN_}SUSE first setup: post-package installation is done${_RESET_}"
 
 # vim: ft=bash:

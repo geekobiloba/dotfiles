@@ -3,8 +3,10 @@
 # openSUSE Tumbleweed package installation
 #
 
-echo -e "${_CYAN_}Installing packages for {{ .chezmoi.osRelease.name }} ...${_RESET_}"
+echo -e "${_CYAN_}Starting package installation${_RESET_}"
 
 sudo zypper -n in -y {{ range .packages.tw }} {{ . | quote }} {{ end }}
+
+echo -e "${_CYAN_}Packages installation is done${_RESET_}"
 
 # vim: ft=bash:
