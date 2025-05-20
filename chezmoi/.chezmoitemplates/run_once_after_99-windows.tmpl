@@ -1,13 +1,28 @@
 #
-# Windows first setup: post-package installation
+# Windows first setup: post-apply installation
 #
 
-Write-Host "Starting Windows first setup: post-package installation" `
+Write-Host "Starting Windows first setup: post-apply installation" `
   -ForegroundColor Green
 
-# Add Node.js LTS, mainly for Neovim
+################################################################################
+# nvs
+################################################################################
+
+# Add Node.js LTS
 nvs add lts
 
-Write-Host "Windows first setup: post-package installation is done" `
+################################################################################
+# Neovim
+################################################################################
+
+# Remove Neovim data if it's not yet initialized.
+# This is to overcome NvChad error
+# when treesitter queries for crystal already exist before initializion.
+if (Test-Path $env:LOCALAPPDATA\nvim-data\base46) {
+  Remove-Item -Recurse -Force $env:LOCALAPPDATA\nvim-data
+}
+
+Write-Host "Windows first setup: post-apply installation is done" `
   -ForegroundColor Green
 # vim: ft=ps1:

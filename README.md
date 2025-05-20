@@ -16,7 +16,7 @@
 
 4.  Initialize Neovim,
 
-    1.  Open Neovim and let it install necessary plugins.
+    1.  Open Neovim and let it install parsers.
     2.  Run `:MasonInstallAll` to install some LSPs.
     3.  Quit.
 
