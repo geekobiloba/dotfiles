@@ -4,6 +4,18 @@ edit:
 scriptEnv:
   STOW_DIR: {{ joinPath .chezmoi.workingTree "stow" }}
 
+{{ if ne .chezmoi.os "windows" }}
+  _BLACK_   : '\e[1;30m'
+  _RED_     : '\e[1;31m'
+  _GREEN_   : '\e[1;32m'
+  _YELLOW_  : '\e[1;33m'
+  _BLUE_    : '\e[1;34m'
+  _MAGENTA_ : '\e[1;35m'
+  _CYAN_    : '\e[1;36m'
+  _WHITE_   : '\e[1;37m'
+  _RESET_   : '\e[0m'
+{{- end }}
+
 {{ if eq .chezmoi.os "windows" -}}
 cd:
   command: "pwsh.exe"

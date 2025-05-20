@@ -7,17 +7,17 @@
 # podman-docker
 ################################################################################
 
-printf '%s\n' "Silencing podman-docker ... "
+printf '%b' "${_CYAN_}Silencing podman-docker ... "
 
 sudo -E touch /etc/containers/nodocker
 
-echo "done"
+echo -e "done${_RESET_}"
 
 ################################################################################
 # podman minimum allowed port
 ################################################################################
 
-printf '%s\n' "Setting podman minimum allowed port... "
+printf '%b' "${_CYAN_}Setting podman minimum allowed port... "
 
 sudo touch /etc/sysctl.conf
 
@@ -27,6 +27,6 @@ set $conf/net.ipv4.ip_unprivileged_port_start "53"
 save
 EOF
 
-echo "done"
+echo -e "done${_RESET_}"
 
 # vim: ft=bash:

@@ -3,7 +3,7 @@
 # openSUSE Tumbleweed package installation
 #
 
-echo "Installing packages for {{ .chezmoi.osRelease.name }} ..."
+echo -e "${_CYAN_}Installing packages for {{ .chezmoi.osRelease.name }} ...${_RESET_}"
 
 sudo zypper -n in -y {{ range .packages.tw }} {{ . | quote }} {{ end }}
 

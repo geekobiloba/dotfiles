@@ -3,7 +3,7 @@
 # Podman compose on WSL fix 
 #
 
-printf '\n%s' ">>> Fixing podman compose on WSL ... "
+printf '%b' "${_CYAN_}Fixing podman compose on WSL ... "
 
 sudo touch /etc/containers/containers.conf
 
@@ -15,6 +15,6 @@ set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
 save
 EOF
 
-echo "done"
+echo -e "done${_RESET_}"
 
 # vim: ft=bash:

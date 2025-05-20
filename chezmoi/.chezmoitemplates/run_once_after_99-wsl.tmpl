@@ -3,12 +3,10 @@
 # WSL config setup
 #
 
-echo "Setting WSL config"
-
 STOW_PACKAGE="wsl"
 
-echo
-echo -e ">>> Applying stow package: $STOW_PACKAGE"
+echo -e "${_CYAN_}Setting WSL config${_RESET_}"
+echo -e "${_YELLOW_}Applying stow package:${_RESET_} $STOW_PACKAGE"
 
 sudo -E stow -v 3 --adopt -t /etc/ $STOW_PACKAGE
 
