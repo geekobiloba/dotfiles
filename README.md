@@ -8,19 +8,13 @@
     chezmoi init --apply https://github.com/geekobiloba/dotfiles
     ```
 
-3.  Remove Neovim data,
-
-    ```shell
-    rm -rf ~/.local/share/nvim
-    ```
-
-4.  Initialize Neovim,
+3.  Initialize Neovim,
 
     1.  Open Neovim and let it install parsers.
     2.  Run `:MasonInstallAll` to install some LSPs.
     3.  Quit.
 
-5.  Reapply chezmoi,
+4.  Reapply chezmoi,
 
     ```shell
     chezmoi apply
@@ -32,15 +26,16 @@
     .local/share/nvim/lazy/nvim-treesitter/queries/crystal has changed since chezmoi last wrote it?
     ```
 
-6.  Open Neovim again, run `:TSInstall crystal`, then exit.
-
-7.  Logout and relogin to check Zsh.
-
+5.  Logout and relogin.
     Ignore this error, as it won't show agian on next login,
 
     ```shell
     _p9k_init_vcs:source:47: no such file or directory: /root/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/gitstatus.plugin.zsh
     ```
 
-8.  Restart the system.
+6.  Restart the system.
+
+#   Neovim
+
+To install Crystal highlighting, run `:TSInstall crystal`.
 
