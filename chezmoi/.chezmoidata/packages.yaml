@@ -145,19 +145,19 @@ packages:
       - 7zip
       - age
       - cwrsync
-     #- diffutils # causes an unknown error
-     #- findutils
       - direnv
+      - diffutils
       - dos2unix
       - eza
       - fastfetch
+      - findutils
       - fzf
       - psfzf
       - gawk
       - grep
       - sed
       - gh
-      - tea"
+      - tea
       - govc
       - jq
       - less

@@ -10,8 +10,8 @@ echo -e "${_CYAN_}Starting package installation${_RESET_}"
 ################################################################################
 
 {{ range .packages.tw.general }}
-if ! rpm -q {{ . | quote }} &>/dev/null ; then
-  sudo zypper -n in -y {{ . | quote }}
+if ! rpm -q {{.}} &>/dev/null ; then
+  sudo zypper -n in -y {{.}}
 fi
 {{ end }}
 

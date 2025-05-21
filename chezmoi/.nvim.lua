@@ -1,1 +1,5 @@
-../.nvim.lua
+require("nvim-tree").setup({
+  view = {
+    width = 45,
+  },
+})

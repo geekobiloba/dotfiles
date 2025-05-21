@@ -10,8 +10,8 @@ Write-Host "Starting package installation" `
 ################################################################################
 
 {{ range .packages.windows.winget }}
-if (winget list {{ . | quote }} | Select-String "No installed package found") {
-  winget install -e --id {{ . | quote }}
+if (winget list {{.}} | Select-String "No installed package found") {
+  winget install -e --id {{.}}
 }
 {{ end }}
 
@@ -23,7 +23,9 @@ $scoop_installed = scoop list | Select-Object -ExpandProperty Name
 
 {{ range .packages.windows.scoop }}
 if (! ($scoop_installed -contains {{ . | quote }})) {
-  scoop install {{ . | quote }}
+  # Don't use bare scoop nor scoop.ps1
+  # to prevent Get-FileHash error!
+  scoop.cmd install {{.}}
 }
 {{ end }}
 
