@@ -1,6 +1,6 @@
 README.md
-bak/
 .nvim.lua
+bak/
 
 # Windows
 {{ if eq .chezmoi.os "windows" }}
