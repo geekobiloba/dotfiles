@@ -22,7 +22,7 @@ if (winget list {{ . | quote }} | Select-String "No installed package found") {
 $scoop_installed = scoop list | Select-Object -ExpandProperty Name
 
 {{ range .packages.windows.scoop }}
-if (!($scoop_installed -contains {{ . | quote }})) {
+if (! ($scoop_installed -contains {{ . | quote }})) {
   scoop install {{ . | quote }}
 }
 {{ end }}
