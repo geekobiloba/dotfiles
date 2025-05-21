@@ -31,6 +31,8 @@ packages:
       - gitea-tea-zsh-completion
       - gnu_parallel
       - htop
+      - incus
+     #- incus-zsh-completion # broken
       - iperf
       - ipmitool
       - jq
@@ -140,12 +142,12 @@ packages:
       - 7zip
       - age
       - cwrsync
-     #- diffutils
+     #- diffutils # causes an unknown error
+     #- findutils
       - direnv
       - dos2unix
       - eza
       - fastfetch
-     #- findutils
       - fzf
       - psfzf
       - gawk
@@ -157,7 +159,7 @@ packages:
       - jq
       - less
       - mc
-      - mingw # mainly for Neovim
+      - mingw
       - oh-my-posh
       - poppler
       - scoop-completion
