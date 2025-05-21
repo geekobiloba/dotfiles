@@ -1,23 +1,28 @@
-function Get-Linktarget {
+function Get-LinkTarget {
   param (
     [Parameter(Mandatory=$true)]
     [string]$Path
   )
   
-  $linkType = (Get-Item $Path).LinkType
+  $linkType   = (Get-Item $Path).LinkType
+  $LinkTarget = $null
 
-  if ($linkType -eq 'SymbolicLink') {
-    (Get-Item $Path).LinkTarget
+  if (($linkType -eq 'SymbolicLink') -or ($linkType -eq 'Junction')) {
+    $LinkTarget = (Get-Item $Path).LinkTarget
   } elseif ($linkType -eq 'HardLink') {
-      Get-Item (
-        fsutil.exe hardlink list $Path |
-        Select-Object -First 1
-      ) |
-      Select-Object -ExpandProperty Fullname
-  } else {
-    Write-Host -ForegroundColor Yellow `
-      "$Path is neither a hard link nor a symbolic link."
-    return
+      $LinkTarget = (
+        Get-Item (
+          fsutil.exe hardlink list $Path |
+          Select-Object -First 1
+        ).Fullname
+      )
   }
+
+  $LinkResult = [PSCustomObject]@{
+    LinkType   = $LinkType
+    LinkTarget = $LinkTarget
+  }
+
+  $LinkResult
 }
 

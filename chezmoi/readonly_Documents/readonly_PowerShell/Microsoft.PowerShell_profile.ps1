@@ -278,6 +278,7 @@ if (Get-Command eza.exe -ErrorAction SilentlyContinue) {
   function lah  { eza -lah  @Args }
   function lla  { eza -lah  @Args }
   function llah { eza -lah  @Args }
+  function llat { eza -lat  @Args }
 }
 
 #-------------------------------------------------------------------------------
@@ -316,7 +317,7 @@ function ansible9 { wsl --shell-type login -- ansible9 @Args }
 
 . $HOME\Documents\PowerShell\Includes\Functions\Get-IPInfo.ps1
 . $HOME\Documents\PowerShell\Includes\Functions\Get-IPv4Calc.ps1
-. $HOME\Documents\PowerShell\Includes\Functions\Get-Linktarget.ps1
+. $HOME\Documents\PowerShell\Includes\Functions\Get-LinkTarget.ps1
 
 ################################################################################
 # Etc

@@ -41,6 +41,7 @@ packages:
       - mariadb-client
       - micro-editor
       - neovim
+      - opentofu
       - gcc
       - netcat-openbsd
       - nmap # better than the Windows version
@@ -94,9 +95,11 @@ packages:
       - XPFCWP0SQWXM3V # CCleaner
       - XPFNZKSKLBP7RJ # PuTTY
       - CrystalLang.Crystal
+      - Fortinet.FortiClientVPN
       - Genymobile.scrcpy
       - GoLang.Go
       - JetBrains.GoLand
+      - JGraph.Draw
       - Google.GoogleDrive
       - jasongin.nvs
       - LinuxContainers.Incus
@@ -112,13 +115,13 @@ packages:
       - BurntSushi.ripgrep.MSVC
       - Obsidian.Obsidian
       - Dynalist.Dynalist
+      - abdenasser.NeoHtop
       - Ookla.Speedtest.CLI
       - OpenTofu.Tofu
       - Oracle.VirtualBox
       - Telegram.TelegramDesktop
       - WireGuard.WireGuard
       - OpenVPNTechnologies.OpenVPN
-      - Fortinet.FortiClientVPN
       - sharkdp.bat
       - sharkdp.fd
       - WinSCP.WinSCP
@@ -154,7 +157,7 @@ packages:
       - grep
       - sed
       - gh
-      - tea
+      - tea"
       - govc
       - jq
       - less
