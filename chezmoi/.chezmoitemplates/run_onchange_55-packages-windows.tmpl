@@ -9,16 +9,22 @@ Write-Host "Starting package installation" `
 # winget
 ################################################################################
 
-{{ range .packages.windows.winget -}}
-winget install -e --id {{ . | quote }}
+{{ range .packages.windows.winget }}
+if (winget list {{ . | quote }} | Select-String "No installed package found") {
+  winget install -e --id {{ . | quote }}
+}
 {{ end }}
 
 ################################################################################
 # scoop
 ################################################################################
 
-{{ range .packages.windows.scoop -}}
-scoop install {{ . | quote }}
+$scoop_installed = scoop list | Select-Object -ExpandProperty Name
+
+{{ range .packages.windows.scoop }}
+if (!($scoop_installed -contains "{{ . | quote }}")) {
+  scoop install {{ . | quote }}
+}
 {{ end }}
 
 Write-Host "Package installation is done" `

@@ -44,8 +44,8 @@ packages:
       - nmap # better than the Windows version
       - python313-pipx
       - podman
-      - podman-compose
       - podman-docker
+      - python313-podman-compose
       - progress
       - progress-zsh-completion
       - pssh
@@ -94,6 +94,7 @@ packages:
       - CrystalLang.Crystal
       - Genymobile.scrcpy
       - GoLang.Go
+      - JetBrains.GoLand
       - Google.GoogleDrive
       - jasongin.nvs
       - LinuxContainers.Incus
@@ -110,6 +111,7 @@ packages:
       - Obsidian.Obsidian
       - Dynalist.Dynalist
       - Ookla.Speedtest.CLI
+      - OpenTofu.Tofu
       - Oracle.VirtualBox
       - Telegram.TelegramDesktop
       - WireGuard.WireGuard

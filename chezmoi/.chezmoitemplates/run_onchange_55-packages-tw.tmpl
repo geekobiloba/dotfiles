@@ -5,7 +5,11 @@
 
 echo -e "${_CYAN_}Starting package installation${_RESET_}"
 
-sudo zypper -n in -y {{ range .packages.tw }} {{ . | quote }} {{ end }}
+{{ range .packages.tw.general }}
+if ! rpm -q {{ . | quote }} &>/dev/null ; then
+  sudo zypper -n in -y {{ . | quote }}
+fi
+{{ end }}
 
 echo -e "${_CYAN_}Packages installation is done${_RESET_}"
 

@@ -2,7 +2,8 @@ edit:
   command: "nvim"
 
 scriptEnv:
-  STOW_DIR: {{ joinPath .chezmoi.workingTree "stow" }}
+  STOW_DIR:     {{ joinPath .chezmoi.workingTree "stow" }}
+  STOW_VERBOSE: "3"
 
 {{ if ne .chezmoi.os "windows" }}
   _BLACK_   : '\e[1;30m'

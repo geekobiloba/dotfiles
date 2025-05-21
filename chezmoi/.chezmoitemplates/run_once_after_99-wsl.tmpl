@@ -8,6 +8,6 @@ STOW_PACKAGE="wsl"
 echo -e "${_CYAN_}Setting WSL config${_RESET_}"
 echo -e "${_YELLOW_}Applying stow package:${_RESET_} $STOW_PACKAGE"
 
-sudo -E stow -v 3 --adopt -t /etc/ $STOW_PACKAGE
+sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ $STOW_PACKAGE
 
 # vim: ft=bash:
