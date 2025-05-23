@@ -9,7 +9,7 @@ echo -e "${_CYAN_}Starting package installation${_RESET_}"
 # zypper packages
 ################################################################################
 
-{{ range .packages.tw.general }}
+{{ range .packages.tw.generic }}
 if ! rpm -q {{.}} &>/dev/null ; then
   sudo zypper -n in -y {{.}}
 fi

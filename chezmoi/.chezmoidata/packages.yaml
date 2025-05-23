@@ -1,6 +1,6 @@
 packages:
   tw:
-    general:
+    generic:
       - augeas
       - augeas-lenses
       - bat
@@ -18,8 +18,8 @@ packages:
       - expect
       - eza
       - eza-zsh-completion
-      - fastfetch
-      - fastfetch-zsh-completion
+     #- fastfetch
+     #- fastfetch-zsh-completion
       - fd
       - fd-zsh-completion
       - file
