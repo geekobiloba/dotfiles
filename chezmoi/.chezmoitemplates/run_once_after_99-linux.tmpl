@@ -67,16 +67,6 @@ EOF
 # {{-   end -}}
 # {{- end }}
 
-# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
-
-################################################################################
-# WSL
-################################################################################
-
-sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ wsl
-
-# {{- end }}
-
 # {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
 
 ################################################################################
@@ -90,6 +80,17 @@ sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ wsl
 # /etc/zsh_completion.d/_incus:type:420: bad option: -t
 
 sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
+
+# {{- end }}
+
+# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+
+################################################################################
+# WSL
+################################################################################
+
+# Link /etc/wsl.conf
+sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ wsl
 
 # {{- end }}
 

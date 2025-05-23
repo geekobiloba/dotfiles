@@ -1,8 +1,8 @@
 #
-# Windows first setup: post-apply installation
+# Windows post-apply run-once
 #
 
-Write-Host "Starting Windows first setup: post-apply installation" `
+Write-Host "Starting Windows post-apply run-once" `
   -ForegroundColor Green
 
 ################################################################################
@@ -23,6 +23,6 @@ if (Test-Path $env:LOCALAPPDATA\nvim-data\base46) {
   Remove-Item -Recurse -Force $env:LOCALAPPDATA\nvim-data
 }
 
-Write-Host "Windows first setup: post-apply installation is done" `
+Write-Host "Windows post-apply run-once is done" `
   -ForegroundColor Green
 # vim: ft=ps1:

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# Linux pre-package run-once
+#
+
+set -euo pipefail
+
+################################################################################
+# sudo
+################################################################################
+
+# No sudo password for default WSL user
+sudo sh -c "echo $USER 'ALL=(ALL:ALL) NOPASSWD: ALL' > $USER"
+
+# vim: ft=bash:
