@@ -1,7 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # openSUSE Tumbleweed package installation
 #
+
+set -euo pipefail
+
+################################################################################
+# BEGIN
+################################################################################
 
 echo -e "${_CYAN_}Starting package installation${_RESET_}"
 
@@ -9,16 +15,30 @@ echo -e "${_CYAN_}Starting package installation${_RESET_}"
 # zypper packages
 ################################################################################
 
-{{ range .packages.tw.generic }}
+# {{- range .packages.tw.generic }}
 if ! rpm -q {{.}} &>/dev/null ; then
   sudo zypper -n in -y {{.}}
 fi
-{{ end }}
+# {{- end }}
+
+################################################################################
+# Incus completion
+################################################################################
+
+# {{- if findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
+# Generate Incus Zsh completion,
+# as incus-zsh-completion package is broken (at least in Tumbleweed)
+# with the following error:
+#
+# /etc/zsh_completion.d/_incus:type:420: bad option: -t
 
 # Uninstall Incus Zsh completion that may be installed as recommendation
-if ! rpm -q incus-zsh-completion &>/dev/null ; then
+if rpm -q incus-zsh-completion &>/dev/null ; then
   sudo zypper -n rm -uy incus-zsh-completion
 fi
+
+sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
+# {{- end }}
 
 ################################################################################
 # Ansible
@@ -35,6 +55,10 @@ if [ ! -x ~/.local/bin/ansible9 ] ; then
    pipx install --include-deps --suffix=9 ansible==9.13.0
    pipx inject  --include-apps --with-suffix ansible9 ansible-lint
 fi
+
+################################################################################
+# END
+################################################################################
 
 echo -e "${_CYAN_}Packages installation is done${_RESET_}"
 

@@ -34,6 +34,7 @@ nvs add lts
 ################################################################################
 
 # {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
+
 # Silencing docker from podman-docker
 sudo -E touch /etc/containers/nodocker
 
@@ -46,6 +47,7 @@ save
 EOF
 
 # {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+
 # Fix podman-compose in WSL
 sudo touch /etc/containers/containers.conf
 sudo augtool -r / -bAt 'Toml.lns incl /etc/containers/containers.conf' <<'EOF'
@@ -56,29 +58,6 @@ set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
 save
 EOF
 # {{-   end -}}
-# {{- end }}
-
-################################################################################
-# Incus
-################################################################################
-
-# {{- if findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
-# Generate Incus Zsh completion,
-# as incus-zsh-completion package is broken (at least in Tumbleweed)
-# with the following error:
-#
-# /etc/zsh_completion.d/_incus:type:420: bad option: -t
-
-sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
-# {{- end }}
-
-################################################################################
-# WSL
-################################################################################
-
-# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
-## Link /etc/wsl.conf
-#sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ wsl
 # {{- end }}
 
 ################################################################################

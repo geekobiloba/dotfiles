@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Linux early commands
 #
+
+set -euo pipefail
 
 echo -e "${_BLUE_}{{ .chezmoi.osRelease.name }}${_RESET_}"
 

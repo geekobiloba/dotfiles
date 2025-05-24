@@ -1,0 +1,50 @@
+#
+# Link Windows extra files
+#
+
+################################################################################
+# BEGIN
+################################################################################
+
+Write-Host "Starting linking Windows extra files" `
+  -ForegroundColor Green
+
+################################################################################
+# Links
+################################################################################
+
+function New-HardLink {
+  param (
+    [string]$Source ,
+    [string]$Destination
+  )
+
+  $chezmoiDir = "{{ .chezmoi.sourceDir }}"
+
+  New-Item -ItemType Directory -Force -Path (
+    Split-Path $Destination
+  )
+
+  if (Test-Path $Source) {
+    New-Item -ItemType HardLink -Force `
+      -Target $Source `
+      -Path   $Destination
+  } else {
+    New-Item -ItemType HardLink -Force `
+      -Target (Join-Path $chezmoiDir $Source) `
+      -Path   $Destination
+  }
+}
+
+# {{- range .links.windows }}
+New-HardLink -Source {{ .src }} -Destination {{ .dst }}
+# {{- end }}
+
+################################################################################
+# END
+################################################################################
+
+Write-Host "Linking Windows extra files is done" `
+  -ForegroundColor Green
+
+# vim: ft=ps1:

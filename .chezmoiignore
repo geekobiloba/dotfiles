@@ -1,22 +1,22 @@
 README.md
 .nvim.lua
-outer/
+neovim/
+targets/
 tmp/
-bak/
 
 # Windows
 # {{- if eq .chezmoi.os "windows" }}
-.zshrc
-.p10k.zsh
-.inputrc
-.zprofile
 .ansible.cfg
+.inputrc
 .mitogen
-.vimrc
 .nvs
-bin/
+.p10k.zsh
+.vimrc
+.zprofile
+.zshrc
 .config/nvim/
 .local/share/nvim/
+bin/
 # {{- end }}
 
 # Not Windows
@@ -39,11 +39,6 @@ bin/wt
 
 # Mitogen
 .mitogen/**/__pycache__
-
-# Symlinked
-windows/
-neovim/
-nvs/
 
 # nvs
 .nvs/node/

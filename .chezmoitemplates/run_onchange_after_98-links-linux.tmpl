@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+#
+# Link Linux extra files
+#
+
+set -euo pipefail
+
+################################################################################
+# BEGIN
+################################################################################
+
+echo -e "${_CYAN_}Starting linking Linux extra files${_RESET_}"
+
+################################################################################
+# Links
+################################################################################
+
+make_link() {
+  local SRC=$1
+  local DST=$2
+  local DIR="{{ .chezmoi.sourceDir }}"
+
+  mkdir -p $(dirname $DST)
+
+  if [ -f $SRC ] ; then
+    ln -sf $SRC $DST
+  else
+    ln -sf ${DIR}/$SRC $DST
+  fi
+}
+
+# {{- range .links.linux.generic }}
+sudo make_link {{ .src }} {{ .dst }}
+# {{- end }}
+
+# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+# {{-   range .links.linux.wsl }}
+sudo make_link {{ .src }} {{ .dst }}
+# {{-   end }}
+# {{- end }}
+
+# {{- if has "suse" (splitList " " .chezmoi.osRelease.idLike) }}
+# {{-   range .links.linux.suse }}
+sudo make_link {{ .src }} {{ .dst }}
+# {{-   end }}
+# {{- end }}
+
+# {{- if has "debian" (splitList " " .chezmoi.osRelease.idLike) }}
+# {{-   range .links.linux.debian }}
+sudo make_link {{ .src }} {{ .dst }}
+# {{-   end }}
+# {{- end }}
+
+################################################################################
+# END
+################################################################################
+
+echo -e "${_CYAN_}Linking Linux extra files is done${_RESET_}"
+
+# vim: ft=bash:
