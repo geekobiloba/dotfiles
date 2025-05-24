@@ -18,6 +18,8 @@ echo -e "${_CYAN_}Starting linking Linux extra files${_RESET_}"
 make_link=$(mktemp)
 
 cat <<"EOF" > $make_link
+#!/usr/bin/env bash
+
 make_link() {
   local SRC=$1
   local DST=$2
@@ -31,6 +33,8 @@ make_link() {
     ln -sf ${DIR}/$SRC $DST
   fi
 }
+
+make_link $1 $2
 EOF
 
 chmod +x $make_link
