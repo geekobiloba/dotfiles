@@ -15,7 +15,7 @@ echo -e "${_CYAN_}Starting linking Linux extra files${_RESET_}"
 # Links
 ################################################################################
 
-$make_link=$(mktemp)
+make_link=$(mktemp)
 
 cat <<"EOF" > $make_link
 make_link() {
