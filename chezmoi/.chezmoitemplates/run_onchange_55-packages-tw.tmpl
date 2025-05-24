@@ -15,6 +15,11 @@ if ! rpm -q {{.}} &>/dev/null ; then
 fi
 {{ end }}
 
+# Uninstall Incus Zsh completion that may be installed as recommendation
+if ! rpm -q incus-zsh-completion &>/dev/null ; then
+  sudo zypper -n rm -uy incus-zsh-completion
+fi
+
 ################################################################################
 # Ansible
 ################################################################################

@@ -8,6 +8,20 @@
     chezmoi init --apply https://github.com/geekobiloba/dotfiles
     ```
 
+3.  Remove Neovim data,
+
+    -   UNIX-like:
+
+        ```shell
+        rm -rf ~/.local/share/nvim
+        ```
+
+    -   Windows:
+
+        ```powershell
+        Remove-Item -Recurse -Force $env:LOCALAPPDATA\nvim-data
+        ```
+
 3.  Initialize Neovim,
 
     1.  Open Neovim and let it install parsers.
