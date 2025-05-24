@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Linux post-apply run-once
+# Linux run_once_after (post-apply)
 #
 
 set -euo pipefail
@@ -9,7 +9,7 @@ set -euo pipefail
 # BEGIN
 ################################################################################
 
-echo -e "${_CYAN_}Starting Linux post-apply run-once${_RESET_}"
+echo -e "${_CYAN_}Starting Linux run_once_after (post-apply)${_RESET_}"
 
 ################################################################################
 # zsh
@@ -19,28 +19,21 @@ echo -e "${_CYAN_}Starting Linux post-apply run-once${_RESET_}"
 sudo chsh -s /bin/zsh $USER
 
 ################################################################################
-# Neovim
-################################################################################
-
-# Remove Neovim data if it's not yet initialized.
-# This is to overcome NvChad error
-# when treesitter queries for crystal already exist before initializion.
-test ! -d ~/.local/share/nvim/base46 && rm -rf $(dirname $_)
-
-################################################################################
 # nvs
 ################################################################################
 
+# {{- if stat (joinPath .chezmoi.homeDir ".nvs" "node") }}
 # Add Node.js LTS
+NVS_USE_XZ=false # fix line 190: NVS_USE_XZ: unbound variable
 source $HOME/.nvs/nvs.sh
 nvs add lts
-
-# {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
+# {{- end }}
 
 ################################################################################
 # Podman
 ################################################################################
 
+# {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
 # Silencing docker from podman-docker
 sudo -E touch /etc/containers/nodocker
 
@@ -53,7 +46,6 @@ save
 EOF
 
 # {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
-
 # Fix podman-compose in WSL
 sudo touch /etc/containers/containers.conf
 sudo augtool -r / -bAt 'Toml.lns incl /etc/containers/containers.conf' <<'EOF'
@@ -63,16 +55,14 @@ set $conf/table["network"]/entry["firewall_driver"]        "firewall_driver"
 set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
 save
 EOF
-
 # {{-   end -}}
 # {{- end }}
-
-# {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
 
 ################################################################################
 # Incus
 ################################################################################
 
+# {{- if findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
 # Generate Incus Zsh completion,
 # as incus-zsh-completion package is broken (at least in Tumbleweed)
 # with the following error:
@@ -80,24 +70,21 @@ EOF
 # /etc/zsh_completion.d/_incus:type:420: bad option: -t
 
 sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
-
 # {{- end }}
-
-# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 
 ################################################################################
 # WSL
 ################################################################################
 
-# Link /etc/wsl.conf
-sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ wsl
-
+# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+## Link /etc/wsl.conf
+#sudo -E stow -v $STOW_VERBOSE --adopt -t /etc/ wsl
 # {{- end }}
 
 ################################################################################
 # END
 ################################################################################
 
-echo -e "${_CYAN_}Linux post-apply run-once is done${_RESET_}"
+echo -e "${_CYAN_}Linux run_once_after (post-apply) is done${_RESET_}"
 
 # vim: ft=bash:

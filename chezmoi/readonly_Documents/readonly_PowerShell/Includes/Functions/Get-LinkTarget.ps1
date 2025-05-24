@@ -11,11 +11,8 @@ function Get-LinkTarget {
     $LinkTarget = (Get-Item $Path).LinkTarget
   } elseif ($linkType -eq 'HardLink') {
       $LinkTarget = (
-        Get-Item (
-          fsutil.exe hardlink list $Path |
-          Select-Object -First 1
-        ).Fullname
-      )
+        Get-Item (fsutil.exe hardlink list $Path)[0]
+      ).Fullname
   }
 
   $LinkResult = [PSCustomObject]@{

@@ -1,17 +1,49 @@
 #
-# Windows pre-package run-once
+# Windows run_once (pre-package)
 #
 
-Write-Host "Starting Windows pre-package run-once" `
+################################################################################
+# BEGIN
+################################################################################
+
+Write-Host "Starting Windows run_once (pre-package)" `
   -ForegroundColor Green
 
-# Prepare scoop
-scoop install git aria2
-scoop config aria2-warning-enabled false
-scoop update
-scoop bucket add extras
+################################################################################
+# scoop
+################################################################################
 
-Write-Host "Windows pre-package run-once is done" `
+# Install git & aria2
+$pkgs = scoop list | Select-Object -ExpandProperty Name
+foreach ($pkg in @("git", "aria2")) {
+  if (! ($pkg -in $pkgs)) {
+    scoop install $pkg
+  }
+}
+
+# Set aria2 to download scoop packages
+if (! (scoop config aria2-enabled)) {
+  scoop config aria2-enabled true
+}
+
+# Silence scoop warning when downloading scoop packages using aria2
+if (scoop config aria2-warning-enabled) {
+  scoop config aria2-warning-enabled false
+}
+
+scoop update
+
+# Install extras bucket
+$buckets = scoop bucket list | Select-Object -ExpandProperty Name
+if (! ($buckets -contains "extras")) {
+  scoop bucket add extras
+}
+
+################################################################################
+# END
+################################################################################
+
+Write-Host "Windows run_once (pre-package) is done" `
   -ForegroundColor Green
 
 # vim: ft=ps1:

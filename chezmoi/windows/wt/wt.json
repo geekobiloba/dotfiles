@@ -4,10 +4,6 @@
     "actions": 
     [
         {
-            "command": "scrollDownPage",
-            "id": "User.scrollDownPage"
-        },
-        {
             "command": 
             {
                 "action": "moveTab",
@@ -16,12 +12,8 @@
             "id": "User.moveTab.793E2350"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "down"
-            },
-            "id": "User.splitPane.D5151347"
+            "command": "scrollDownPage",
+            "id": "User.scrollDownPage"
         },
         {
             "command": 
@@ -32,12 +24,16 @@
             "id": "User.copy.644BA8F2"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "down"
+            },
+            "id": "User.splitPane.D5151347"
         },
         {
-            "command": "find",
-            "id": "User.find"
+            "command": "paste",
+            "id": "User.paste"
         },
         {
             "command": 
@@ -49,6 +45,10 @@
             "id": "User.splitPane.A6751878"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "nextTab"
@@ -58,17 +58,17 @@
         {
             "command": 
             {
-                "action": "moveTab",
-                "direction": "backward"
+                "action": "prevTab"
             },
-            "id": "User.moveTab.EF07D31B"
+            "id": "User.prevTab.0"
         },
         {
             "command": 
             {
-                "action": "prevTab"
+                "action": "moveTab",
+                "direction": "backward"
             },
-            "id": "User.prevTab.0"
+            "id": "User.moveTab.EF07D31B"
         },
         {
             "command": 
@@ -98,15 +98,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+tab"
-        },
-        {
-            "id": null,
             "keys": "ctrl+c"
         },
         {
             "id": null,
             "keys": "ctrl+shift+tab"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+tab"
         },
         {
             "id": "User.find",
@@ -121,12 +121,12 @@
             "keys": "pgdn"
         },
         {
-            "id": "User.prevTab.0",
-            "keys": "ctrl+pgup"
-        },
-        {
             "id": null,
             "keys": "pgup"
+        },
+        {
+            "id": "User.prevTab.0",
+            "keys": "ctrl+pgup"
         },
         {
             "id": "User.splitPane.A6751878",
@@ -141,12 +141,12 @@
             "keys": "ctrl+shift+["
         },
         {
-            "id": "User.splitPane.864CD510",
-            "keys": "ctrl+shift+]"
-        },
-        {
             "id": "User.scrollDownPage",
             "keys": "shift+pgdn"
+        },
+        {
+            "id": "User.splitPane.864CD510",
+            "keys": "ctrl+shift+]"
         },
         {
             "id": "User.scrollUpPage",
@@ -280,6 +280,12 @@
                 "guid": "{4f489bb0-5799-5962-bc2b-8b3c0b0c3135}",
                 "hidden": false,
                 "name": "openSUSE-Tumbleweed",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{2c11263a-302b-5b82-b3f2-c351baeeaa33}",
+                "hidden": false,
+                "name": "tw",
                 "source": "Microsoft.WSL"
             }
         ]

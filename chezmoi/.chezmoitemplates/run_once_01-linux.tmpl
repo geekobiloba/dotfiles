@@ -1,15 +1,27 @@
 #!/usr/bin/env bash
 #
-# Linux pre-package run-once
+# Linux run_once (pre-package)
 #
 
 set -euo pipefail
 
 ################################################################################
+# BEGIN
+################################################################################
+
+echo -e "${_CYAN_}Starting Linux run_once (pre-package)${_RESET_}"
+
+################################################################################
 # sudo
 ################################################################################
 
-# No sudo password for default WSL user
+# Set passwordless sudo for default WSL user
 sudo sh -c "echo $USER 'ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/$USER"
+
+################################################################################
+# END
+################################################################################
+
+echo -e "${_CYAN_}Starting Linux run_once (pre-package)${_RESET_}"
 
 # vim: ft=bash:

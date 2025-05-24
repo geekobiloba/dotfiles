@@ -1,5 +1,7 @@
 README.md
 .nvim.lua
+outer/
+tmp/
 bak/
 
 # Windows

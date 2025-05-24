@@ -2,12 +2,10 @@ edit:
   command: "nvim"
 
 # {{- if eq .chezmoi.os "windows" }}
-
 cd:
   command: "pwsh.exe"
 
 # {{- else }}
-
 scriptEnv:
   STOW_DIR:     {{ joinPath .chezmoi.workingTree "stow" }}
   STOW_VERBOSE: "3"
@@ -22,10 +20,14 @@ scriptEnv:
   _WHITE_   : '\e[1;37m'
   _RESET_   : '\e[0m'
 
+files:
+
+# {{-   if eq .chezmoi.os "linux" -}}
+# {{-     if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+  /etc/wsl.conf:
+    source: {{ .chezmoi.sourceDir }}/outer/wsl/wsl.conf
+# {{-     end }}
+# {{-   end }}
 # {{- end }}
 
-#files:
-#  /etc/wsl.conf:
-#    source: {{ .chezmoi.workingTree }}/stow/chezmoi
-
-
+# vim: ft=yaml:
