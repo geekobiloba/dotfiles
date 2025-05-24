@@ -13,23 +13,32 @@ Write-Host "Starting Windows run_once_after (post-apply)" `
 # Nmap
 ################################################################################
 
-# {{- if stat (joinPath "C:" "Program Files (x86)" "Nmap") }}
+# {{- if stat "C:/Program Files (x86)/Nmap" }}
+
+# Improve Nmap performance
 Invoke-Item "${env:ProgramFiles(x86)}\Nmap\nmap_performance.reg"
 
 # Add Nmap to path
 [Environment]::SetEnvironmentVariable(
   "Path" ,
-  $env:Path + ";" + "${env:ProgramFiles(x86)}\Nmap" ,
+  (
+    [Environment]::GetEnvironmentVariable("Path", "User") +
+    ";" +
+    "${env:ProgramFiles(x86)}\Nmap"
+  ) ,
   "User"
 )
 
 # Clean empty and duplicate fields
 [Environment]::SetEnvironmentVariable(
-  $env:Path     -split    ';'     |
-  Select-String -NotMatch '^\s*$' |
-  Select-Object -Unique
-) -join ";"
-
+  "Path" ,
+  (
+    [Environment]::GetEnvironmentVariable("Path", "User") -split ';' |
+    Select-String -NotMatch '^\s*$' |
+    Select-Object -Unique
+  ) -join ";" ,
+  "User"
+)
 # {{- end }}
 
 ################################################################################
