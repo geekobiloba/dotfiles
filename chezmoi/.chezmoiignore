@@ -3,7 +3,7 @@ README.md
 bak/
 
 # Windows
-{{ if eq .chezmoi.os "windows" -}}
+# {{- if eq .chezmoi.os "windows" }}
 .zshrc
 .p10k.zsh
 .inputrc
@@ -15,21 +15,21 @@ bak/
 bin/
 .config/nvim/
 .local/share/nvim/
-{{- end }}
+# {{- end }}
 
 # Not Windows
-{{ if ne .chezmoi.os "windows" -}}
+# {{- if ne .chezmoi.os "windows" }}
 .wslconfig
 AppData/
 Documents/
-{{- end }}
+# {{- end }}
 
 # Non-WSL Linux
-{{  if eq .chezmoi.os "linux" -}}
-{{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+# {{- if eq .chezmoi.os "linux" }}
+# {{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 bin/wt
-{{-   end -}}
-{{- end }}
+# {{-   end }}
+# {{- end }}
 
 # Oh My Zsh
 .oh-my-zsh/cache/
@@ -46,3 +46,5 @@ nvs/
 # nvs
 .nvs/node/
 .nvs/cache
+
+# vim: ft=gitignore:

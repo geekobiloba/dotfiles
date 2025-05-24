@@ -1,11 +1,17 @@
 edit:
   command: "nvim"
 
+# {{- if eq .chezmoi.os "windows" }}
+
+cd:
+  command: "pwsh.exe"
+
+# {{- else }}
+
 scriptEnv:
   STOW_DIR:     {{ joinPath .chezmoi.workingTree "stow" }}
   STOW_VERBOSE: "3"
 
-{{ if ne .chezmoi.os "windows" }}
   _BLACK_   : '\e[1;30m'
   _RED_     : '\e[1;31m'
   _GREEN_   : '\e[1;32m'
@@ -15,11 +21,11 @@ scriptEnv:
   _CYAN_    : '\e[1;36m'
   _WHITE_   : '\e[1;37m'
   _RESET_   : '\e[0m'
-{{- end }}
 
-{{ if eq .chezmoi.os "windows" -}}
-cd:
-  command: "pwsh.exe"
-{{- end }}
+# {{- end }}
 
-# vim: ft=yaml:
+#files:
+#  /etc/wsl.conf:
+#    source: {{ .chezmoi.workingTree }}/stow/chezmoi
+
+

@@ -1,4 +1,16 @@
-{{ if ne .chezmoi.os "windows" -}}
+# {{ if eq .chezmoi.os "windows" }}
+
+"AppData/Local/nvim":
+  type:  archive
+  url:   https://github.com/NvChad/starter/archive/refs/heads/main.zip
+  exact: false
+  stripComponents: 1
+  exclude:
+    - "*/init.lua"
+    - "*/lua/chadrc.lua"
+    - "*/lua/plugins/init.lua"
+
+# {{- else }}
 
 ".oh-my-zsh":
   type:  archive
@@ -65,19 +77,7 @@
   stripComponents: 1
   refreshPeriod:   "720h"
 
-{{- else -}}
-
-"AppData/Local/nvim":
-  type:  archive
-  url:   https://github.com/NvChad/starter/archive/refs/heads/main.zip
-  exact: false
-  stripComponents: 1
-  exclude:
-    - "*/init.lua"
-    - "*/lua/chadrc.lua"
-    - "*/lua/plugins/init.lua"
-
-{{- end }}
+# {{- end }}
 
 ".tree-sitter-crystal":
   type:  git-repo
