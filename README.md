@@ -22,13 +22,13 @@
         Remove-Item -Recurse -Force $env:LOCALAPPDATA\nvim-data
         ```
 
-3.  Initialize Neovim,
+4.  Initialize Neovim,
 
-    1.  Open Neovim and let it install parsers.
-    2.  Run `:MasonInstallAll` to install some LSPs.
+    1.  Open Neovim and let `nvim-treesitter` setup to finish.
+    2.  Run `:MasonInstallAll` and let `stylua` setup to finish.
     3.  Quit.
 
-4.  Reapply chezmoi,
+5.  Reapply chezmoi,
 
     ```shell
     chezmoi apply
@@ -38,13 +38,6 @@
 
     ```
     .local/share/nvim/lazy/nvim-treesitter/queries/crystal has changed since chezmoi last wrote it?
-    ```
-
-5.  Logout and relogin.
-    Ignore this error, as it won't show agian on next login,
-
-    ```shell
-    _p9k_init_vcs:source:47: no such file or directory: /root/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/gitstatus.plugin.zsh
     ```
 
 6.  Restart the system.
