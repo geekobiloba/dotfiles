@@ -94,37 +94,39 @@ packages:
       - XPFCG5NRKXQPKT # Foxit PDF Reader
       - XPFCWP0SQWXM3V # CCleaner
       - XPFNZKSKLBP7RJ # PuTTY
+      - BurntSushi.ripgrep.MSVC
       - CrystalLang.Crystal
+      - DEVCOM.JetBrainsMonoNerdFont
+      - DEVCOM.Lua
+      - Dynalist.Dynalist
       - Fortinet.FortiClientVPN
       - Genymobile.scrcpy
       - GoLang.Go
-      - JetBrains.GoLand
-      - JGraph.Draw
       - Google.GoogleDrive
-      - jasongin.nvs
+      - Insecure.Nmap
+      - JGraph.Draw
+      - JetBrains.GoLand
       - LinuxContainers.Incus
-      - RedHat.VirtViewer
       - Microsoft.PowerShell # PS 7
       - Microsoft.WindowsTerminal
-      - DEVCOM.JetBrainsMonoNerdFont
       - Mikrotik.Winbox
       - MiniTool.PartitionWizard.Free
       - Mozilla.Firefox
       - Neovim.Neovim
-      - DEVCOM.Lua
-      - BurntSushi.ripgrep.MSVC
       - Obsidian.Obsidian
-      - Dynalist.Dynalist
-      - abdenasser.NeoHtop
       - Ookla.Speedtest.CLI
       - OpenTofu.Tofu
-      - Oracle.VirtualBox
-      - Telegram.TelegramDesktop
-      - WireGuard.WireGuard
       - OpenVPNTechnologies.OpenVPN
+      - Oracle.VirtualBox
+      - RedHat.VirtViewer
+      - Telegram.TelegramDesktop
+      - WinSCP.WinSCP
+      - WireGuard.WireGuard
+      - abdenasser.NeoHtop
+      - ar51an.iPerf3
+      - jasongin.nvs
       - sharkdp.bat
       - sharkdp.fd
-      - WinSCP.WinSCP
      #- Foxit.FoxitReader
      #- Google.Chrome
      #- Microsoft.PowerToys
@@ -145,28 +147,28 @@ packages:
       - 7zip
       - age
       - cwrsync
-      - direnv
       - diffutils
+      - direnv
       - dos2unix
       - eza
       - fastfetch
       - findutils
       - fzf
-      - psfzf
       - gawk
-      - grep
-      - sed
       - gh
-      - tea
       - govc
+      - grep
       - jq
       - less
       - mc
       - mingw
       - oh-my-posh
       - poppler
+      - psfzf
       - scoop-completion
       - scoop-search
+      - sed
+      - tea
       - yq
 
   macos:
@@ -185,7 +187,7 @@ packages:
      #- rbenv
 
     cask:
-      - iterm2
       - firefox
+      - iterm2
       - tunnelblick
 
