@@ -15,6 +15,9 @@ echo -e "${_CYAN_}Starting linking Linux extra files${_RESET_}"
 # Links
 ################################################################################
 
+$make_link=$(mktemp)
+
+cat <<"EOF" > $make_link
 make_link() {
   local SRC=$1
   local DST=$2
@@ -28,28 +31,33 @@ make_link() {
     ln -sf ${DIR}/$SRC $DST
   fi
 }
+EOF
+
+chmod +x $make_link
 
 # {{- range .links.linux.generic }}
-sudo make_link {{ .src }} {{ .dst }}
+sudo $make_link {{ .src }} {{ .dst }}
 # {{- end }}
 
 # {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 # {{-   range .links.linux.wsl }}
-sudo make_link {{ .src }} {{ .dst }}
+sudo $make_link {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
 # {{- if has "suse" (splitList " " .chezmoi.osRelease.idLike) }}
 # {{-   range .links.linux.suse }}
-sudo make_link {{ .src }} {{ .dst }}
+sudo $make_link {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
 # {{- if has "debian" (splitList " " .chezmoi.osRelease.idLike) }}
 # {{-   range .links.linux.debian }}
-sudo make_link {{ .src }} {{ .dst }}
+sudo $make_link {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
+
+rm -f $make_link
 
 ################################################################################
 # END
