@@ -15,7 +15,7 @@ echo -e "${_CYAN_}Starting package installation${_RESET_}"
 # zypper packages
 ################################################################################
 
-# {{- if has "locked" .packages.tw }}
+# {{- if index .packages.tw "locked" }}
 sudo zypper addlock {{- range .packages.tw.locked }} {{.}} {{- end }}
 # {{- end }}
 
@@ -106,13 +106,13 @@ fi
 ################################################################################
 
 # Ansible latest
-# {{- if not (findExecutable "ansible" (list "~/.local/bin")) }}
+# {{- if not (stat "~/.local/bin/ansible") }}
 pipx install --include-deps ansible
 pipx inject  --include-apps ansible ansible-lint
 # {{- end }}
 
 # Ansible 9
-# {{- if not (findExecutable "ansible9" (list "~/.local/bin")) }}
+# {{- if not (stat "~/.local/bin/ansible9") }}
 pipx install --include-deps --suffix=9 ansible==9.13.0
 pipx inject  --include-apps --with-suffix ansible9 ansible-lint
 # {{- end }}

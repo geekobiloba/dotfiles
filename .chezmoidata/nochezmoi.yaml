@@ -8,8 +8,6 @@
 nochezmoi:
   linux:
     generic:
-      - src: nochezmoi/inputrc
-        dst: /etc/inputrc
 
     wsl:
       - src: nochezmoi/wsl/wsl.conf

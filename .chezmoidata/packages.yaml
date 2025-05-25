@@ -32,7 +32,7 @@ packages:
       - gitea-tea-zsh-completion
       - gnu_parallel
       - htop
-     #- incus # see run_onchange_55-packages-tw.tmpl for installation
+      - incus # see run_onchange_55-packages-tw.tmpl
       - iperf
       - ipmitool
       - jq
