@@ -16,16 +16,23 @@ echo -e "${_CYAN_}Starting copying Linux global configs${_RESET_}"
 ################################################################################
 
 copy_global_conf() {
-  local SRC=$1
-  local DST=$2
+  local SRC="$1"
+  local DST="$2"
   local DIR="{{ .chezmoi.sourceDir }}"
+  local ABS
 
   mkdir -p $(dirname $DST)
 
-  if [ -f $SRC ] ; then
-    cmp --silent $SRC $DST && sudo cp $SRC $DST
-  elif [ -f ${DIR}/${SRC} ] ; then
-    cmp --silent ${DIR}/${SRC} $DST && sudo cp ${DIR}/$SRC $DST
+  if [ -f "$SRC" ] ; then
+    ABS="$SRC"
+  elif [ -f "${DIR}/${SRC}" ] ; then
+    ABS="${DIR}/${SRC}"
+  fi
+
+  if [ -f "$DST" ] ; then
+    cmp --silent "$ABS" "$DST" || sudo cp "$ABS" "$DST"
+  else
+    sudo cp "$ABS" "$DST"
   fi
 }
 
