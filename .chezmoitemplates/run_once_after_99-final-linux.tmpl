@@ -60,6 +60,7 @@ EOF
 ################################################################################
 
 # {{- if findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin") }}
+# {{-   if eq "opensuse-tumbleweed" .chezmoi.osRelease.id }}
 #
 # Generate Incus Zsh completion,
 # as incus-zsh-completion package is broken (at least in Tumbleweed)
@@ -69,6 +70,7 @@ EOF
 
 sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
 
+# {{-   end }}
 # {{- end }}
 
 ################################################################################
