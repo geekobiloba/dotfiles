@@ -8,17 +8,19 @@
 nochezmoi:
   linux:
     generic:
+      - src: nochezmoi/inputrc
+        dst: /etc/inputrc.local
 
     wsl:
-      - src: nochezmoi/wsl/wsl.conf
+      - src: nochezmoi/wsl.conf
         dst: /etc/wsl.conf
 
     suse:
-      - src: nochezmoi/vim/vimrc
+      - src: nochezmoi/vimrc
         dst: /etc/vimrc
 
     debian:
-      - src: nochezmoi/vim/vimrc
+      - src: nochezmoi/vimrc
         dst: /etc/vim/vimrc
 
   windows:

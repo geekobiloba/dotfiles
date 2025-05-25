@@ -63,6 +63,9 @@ send "y\r"
 expect eof
 EOF
 
+# {{-     else }}
+sudo zypper -n in -y --no-recommends incus
+
 # {{-     end }}
 # {{-   end }}
 # {{- end }}
@@ -79,26 +82,14 @@ EOF
 #
 # /etc/zsh_completion.d/_incus:type:420: bad option: -t
 
-# NOTE: incus-zsh-completion is already locked.
-#
-## Uninstall Incus Zsh completion that may be installed as recommendation
-#if rpm -q incus-zsh-completion &>/dev/null ; then
-#  sudo zypper -n rm -uy incus-zsh-completion
-#fi
+# {{-   if stat "/etc/zsh_completion.d/incus" }}
+cmp -s /etc/zsh_completion.d/incus <(incus completion zsh) ||\
+sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
 
-gen_incus_completion() {
-  sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
-}
+# {{-   else }}
+sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
 
-# Generate Incus completion when it differs or doesn't exist
-if [ -f /etc/zsh_completion.d/incus ] ; then
-  if ! cmp -s /etc/zsh_completion.d/incus <(incus completion zsh) ; then
-    gen_incus_completion
-  fi
-else
-  gen_incus_completion
-fi
-
+# {{-   end }}
 # {{- end }}
 
 ################################################################################
