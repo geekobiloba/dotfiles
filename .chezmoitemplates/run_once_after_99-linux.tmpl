@@ -33,7 +33,7 @@ nvs add lts
 # Podman
 ################################################################################
 
-# {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") -}}
+# {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") }}
 
 # Silencing docker from podman-docker
 sudo -E touch /etc/containers/nodocker
@@ -46,7 +46,7 @@ set $conf/net.ipv4.ip_unprivileged_port_start "53"
 save
 EOF
 
-# {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+# {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 
 # Fix podman-compose in WSL
 sudo touch /etc/containers/containers.conf
@@ -57,6 +57,7 @@ set $conf/table["network"]/entry["firewall_driver"]        "firewall_driver"
 set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
 save
 EOF
+
 # {{-   end -}}
 # {{- end }}
 

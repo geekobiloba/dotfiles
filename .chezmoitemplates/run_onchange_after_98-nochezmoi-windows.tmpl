@@ -1,12 +1,12 @@
 #
-# Link Windows extra files
+# Hard-link Windows extra configs
 #
 
 ################################################################################
 # BEGIN
 ################################################################################
 
-Write-Host "Starting linking Windows extra files" `
+Write-Host "Starting hard-linking Windows extra configs" `
   -ForegroundColor Green
 
 ################################################################################
@@ -36,7 +36,7 @@ function New-HardLink {
   }
 }
 
-# {{- range .links.windows }}
+# {{- range .nochezmoi.windows }}
 New-HardLink -Source {{ .src }} -Destination {{ .dst }}
 # {{- end }}
 
@@ -44,7 +44,7 @@ New-HardLink -Source {{ .src }} -Destination {{ .dst }}
 # END
 ################################################################################
 
-Write-Host "Linking Windows extra files is done" `
+Write-Host "Hard-linking Windows extra configs is done" `
   -ForegroundColor Green
 
 # vim: ft=ps1:

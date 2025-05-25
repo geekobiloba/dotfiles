@@ -1,7 +1,7 @@
 README.md
 .nvim.lua
 neovim/
-targets/
+nochezmoi/
 tmp/
 
 # Windows

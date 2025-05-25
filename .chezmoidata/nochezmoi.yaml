@@ -1,30 +1,33 @@
 #
-# Links can be either absolute path or relative to chezmoi sourceDir.
+# Files not managed by chezmoi.
+# On Linux (and other UNIX-like), the files are copied from src to dst.
+# On Windows, the files are hardlinked.
+# src can be either absolute path or relative to chezmoi sourceDir.
 #
 
-links:
+nochezmoi:
   linux:
     generic:
-      - src: targets/inputrc
+      - src: nochezmoi/inputrc
         dst: /etc/inputrc
 
     wsl:
-      - src: targets/wsl/wsl.conf
+      - src: nochezmoi/wsl/wsl.conf
         dst: /etc/wsl.conf
 
     suse:
-      - src: targets/vimrc
+      - src: nochezmoi/vimrc
         dst: /etc/vimrc
 
     debian:
-      - src: targets/vimrc
+      - src: nochezmoi/vimrc
         dst: /etc/vim/vimrc
 
   windows:
     - src: $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
       dst: $HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 
-    - src: targets\windows\wt.json
+    - src: nochezmoi\windows\wt.json
       dst: $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 
     - src: neovim\init.lua

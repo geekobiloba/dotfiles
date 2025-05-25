@@ -58,7 +58,8 @@ packages:
       - ripgrep-zsh-completion
       - rsync
       - sshpass
-      - stow
+      - strace
+      - tar
       - tcpdump
       - telnet # better than the Windows version
       - tmux
@@ -71,8 +72,10 @@ packages:
      #- git
      #- mtr
      #- socat
+     #- stow
      #- subnetcalc
      #- tree
+
     desktop:
       - yakuake
 

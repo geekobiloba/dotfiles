@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Link Linux extra files
+# Copy Linux global configs
 #
 
 set -euo pipefail
@@ -9,64 +9,64 @@ set -euo pipefail
 # BEGIN
 ################################################################################
 
-echo -e "${_CYAN_}Starting linking Linux extra files${_RESET_}"
+echo -e "${_CYAN_}Starting copying Linux global configs${_RESET_}"
 
 ################################################################################
 # Links
 ################################################################################
 
-make_link=$(mktemp)
+copy_global_conf=$(mktemp)
 
-cat <<"EOF" > $make_link
+cat <<"EOF" > $copy_global_conf
 #!/usr/bin/env bash
 
-make_link() {
+copy_global_conf() {
   local SRC=$1
   local DST=$2
   local DIR="{{ .chezmoi.sourceDir }}"
 
   mkdir -p $(dirname $DST)
 
-  if [ -f $SRC ] ; then
-    ln -sf $SRC $DST
-  else
-    ln -sf ${DIR}/$SRC $DST
+  if   [ -f $SRC ] ; then
+    cmp --silent $SRC $DST && cp $SRC $DST
+  elif [ -f ${DIR}/${SRC} ]
+    cmp --silent ${DIR}/${SRC} $DST && cp ${DIR}/$SRC $DST
   fi
 }
 
-make_link $1 $2
+copy_global_conf $1 $2
 EOF
 
-chmod +x $make_link
+chmod +x $copy_global_conf
 
-# {{- range .links.linux.generic }}
-sudo $make_link {{ .src }} {{ .dst }}
+# {{- range .nochezmoi.linux.generic }}
+sudo $copy_global_conf {{ .src }} {{ .dst }}
 # {{- end }}
 
 # {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
-# {{-   range .links.linux.wsl }}
-sudo $make_link {{ .src }} {{ .dst }}
+# {{-   range .nochezmoi.linux.wsl }}
+sudo $copy_global_conf {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
 # {{- if has "suse" (splitList " " .chezmoi.osRelease.idLike) }}
-# {{-   range .links.linux.suse }}
-sudo $make_link {{ .src }} {{ .dst }}
+# {{-   range .nochezmoi.linux.suse }}
+sudo $copy_global_conf {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
 # {{- if has "debian" (splitList " " .chezmoi.osRelease.idLike) }}
-# {{-   range .links.linux.debian }}
-sudo $make_link {{ .src }} {{ .dst }}
+# {{-   range .nochezmoi.linux.debian }}
+sudo $copy_global_conf {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
-rm -f $make_link
+rm -f $copy_global_conf
 
 ################################################################################
 # END
 ################################################################################
 
-echo -e "${_CYAN_}Linking Linux extra files is done${_RESET_}"
+echo -e "${_CYAN_}Copying Linux global configs is done${_RESET_}"
 
 # vim: ft=bash:
