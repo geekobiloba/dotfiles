@@ -31,6 +31,8 @@ fi
 # Incus
 ################################################################################
 
+# We need Incus client only on WSL or LXC containers.
+
 # {{- if has "incus" .packages.tw.generic }}
 
 if ! rpm -q incus &>/dev/null ; then
@@ -39,6 +41,7 @@ if ! rpm -q incus &>/dev/null ; then
 
   sudo zypper addlock \
     Mesa \
+    dnsmasq \
     kernel-debug \
     kernel-default \
     kernel-default-base \

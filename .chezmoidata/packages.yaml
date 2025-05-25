@@ -33,6 +33,7 @@ packages:
       - gitea-tea
       - gitea-tea-zsh-completion
       - gnu_parallel
+      - gzip
       - htop
       - incus # see run_onchange_55-packages-tw.tmpl
       - iperf
@@ -72,6 +73,7 @@ packages:
       - yq
       - yq-zsh-completion
       - zsh
+      - zstd
      #- stow
      #- subnetcalc
 

@@ -43,9 +43,13 @@ EOF
 # {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 #
 # Fix podman-compose in WSL
+if ! rpm -q iptables &>/dev/null ; then
+  sudo zypper -n in -y --no-recommends iptables
+fi
+
 sudo touch /etc/containers/containers.conf
 sudo augtool -r / -bAt 'Toml.lns incl /etc/containers/containers.conf' <<'EOF'
-defvar conf /files/containers.conf
+defvar conf /files/etc/containers/containers.conf
 set $conf/table["network"] "network"
 set $conf/table["network"]/entry["firewall_driver"]        "firewall_driver"
 set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
