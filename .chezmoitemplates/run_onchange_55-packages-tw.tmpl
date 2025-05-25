@@ -32,7 +32,8 @@ fi
 ################################################################################
 
 # {{- if has "incus" .packages.tw.generic }}
-# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "sh" "-c" "tr -cd '[:print:]' < /proc/1/environ" | trim))) (stat "/.dockerenv") }}
+# {{-   if not (findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin")) }}
+# {{-     if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "sh" "-c" "tr -cd '[:print:]' < /proc/1/environ" | trim))) (stat "/.dockerenv") }}
 
 sudo zypper addlock \
   Mesa \
@@ -62,6 +63,7 @@ send "y\r"
 expect eof
 EOF
 
+# {{-     end }}
 # {{-   end }}
 # {{- end }}
 
