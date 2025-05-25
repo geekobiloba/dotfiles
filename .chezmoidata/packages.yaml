@@ -19,15 +19,17 @@ packages:
       - expect
       - eza
       - eza-zsh-completion
-     #- fastfetch
-     #- fastfetch-zsh-completion
+      - fastfetch
+      - fastfetch-zsh-completion
       - fd
       - fd-zsh-completion
       - file
       - fzf
       - fzf-zsh-integration
+      - gcc
       - gh
       - gh-zsh-completion
+      - git-core
       - gitea-tea
       - gitea-tea-zsh-completion
       - gnu_parallel
@@ -40,46 +42,45 @@ packages:
       - make
       - mariadb-client
       - micro-editor
+      - mtr
       - neovim
-      - opentofu
-      - gcc
       - netcat-openbsd
-      - nmap # better than the Windows version
-      - python313-pipx
+      - nmap
+      - opentofu
       - podman
       - podman-docker
-      - python313-podman-compose
       - progress
       - progress-zsh-completion
       - pssh
       - pyenv
       - pyenv-zsh-completion
+      - python313-pipx
+      - python313-podman-compose
       - ripgrep
       - ripgrep-zsh-completion
       - rsync
+      - socat
       - sshpass
       - strace
       - tar
       - tcpdump
-      - telnet # better than the Windows version
+      - telnet
       - tmux
-      - traceroute # faster than Windows tracert
+      - traceroute
       - whois
-     #- whois-bash-completion
+      - whois-bash-completion
       - yq
       - yq-zsh-completion
       - zsh
-     #- git
-     #- mtr
-     #- socat
      #- stow
      #- subnetcalc
-     #- tree
 
     desktop:
       - yakuake
 
     locked:
+      - ansible      # via pipx
+      - ansible-lint # ibid.
       - incus-zsh-completion # broken
 
   ubuntu:

@@ -32,24 +32,26 @@ fi
 ################################################################################
 
 # {{- if has "incus" .packages.tw.generic }}
-# {{-   if not (findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin")) }}
-# {{-     if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "sh" "-c" "tr -cd '[:print:]' < /proc/1/environ" | trim))) (stat "/.dockerenv") }}
 
-sudo zypper addlock \
-  Mesa \
-  kernel-debug \
-  kernel-default \
-  kernel-default-base \
-  kernel-kvmsmall \
-  kernel-longterm \
-  kernel-vanilla \
-  lxcfs \
-  qemu \
-  qemu-hw-display-virtio-gpu \
-  qemu-hw-display-virtio-vga \
-  qemu-hw-usb-redirect
+if ! rpm -q incus &>/dev/null ; then
 
-expect <<"EOF"
+# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "sh" "-c" "tr -cd '[:print:]' < /proc/1/environ" | trim))) (stat "/.dockerenv") }}
+
+  sudo zypper addlock \
+    Mesa \
+    kernel-debug \
+    kernel-default \
+    kernel-default-base \
+    kernel-kvmsmall \
+    kernel-longterm \
+    kernel-vanilla \
+    lxcfs \
+    qemu \
+    qemu-hw-display-virtio-gpu \
+    qemu-hw-display-virtio-vga \
+    qemu-hw-usb-redirect
+
+  expect <<"EOF"
 set timeout -1
 
 spawn sudo zypper install --no-recommends incus
@@ -60,13 +62,17 @@ send "8\r"
 expect "Continue?"
 send "y\r"
 
+expect -re "Running post-transaction scripts.+done.+"
+sleep 10
+
 expect eof
 EOF
 
-# {{-     else }}
+# {{-   else }}
 sudo zypper -n in -y --no-recommends incus
 
-# {{-     end }}
+fi
+
 # {{-   end }}
 # {{- end }}
 
@@ -75,16 +81,16 @@ sudo zypper -n in -y --no-recommends incus
 ################################################################################
 
 # Ansible latest
-# {{- if not (stat (joinPath .chezmoi.homeDir ".local" "bin" "ansible")) }}
-pipx install --include-deps ansible
-pipx inject  --include-apps ansible ansible-lint
-# {{- end }}
+if [ -x ~/.local/bin/ansible ] ; then
+  pipx install --include-deps ansible
+  pipx inject  --include-apps ansible ansible-lint
+fi
 
 # Ansible 9
-# {{- if not (stat (joinPath .chezmoi.homeDir ".local" "bin" "ansible9")) }}
-pipx install --include-deps --suffix=9 ansible==9.13.0
-pipx inject  --include-apps --with-suffix ansible9 ansible-lint
-# {{- end }}
+if [ -x ~/.local/bin/ansible9 ] ; then
+  pipx install --include-deps --suffix=9 ansible==9.13.0
+  pipx inject  --include-apps --with-suffix ansible9 ansible-lint
+fi
 
 ################################################################################
 # END

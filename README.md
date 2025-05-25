@@ -46,3 +46,8 @@
 
 To install Crystal highlighting, run `:TSInstall crystal`.
 
+#   Notes
+
+Don't use `findExecutable` nor `stat` in `onchange` scripts.
+
+
