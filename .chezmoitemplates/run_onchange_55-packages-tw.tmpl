@@ -15,10 +15,56 @@ echo -e "${_CYAN_}Starting package installation${_RESET_}"
 # zypper packages
 ################################################################################
 
+# {{- if has "locked" .packages.tw }}
+sudo zypper addlock {{ range .packages.tw.locked }} {{.}} {{ end }}
+# {{- end }}
+
 # {{- range .packages.tw.generic }}
+# {{-   if ne . "incus" }}
 if ! rpm -q {{.}} &>/dev/null ; then
-  sudo zypper -n in --no-recommends -y {{.}}
+  sudo zypper -n in -y --no-recommends {{.}}
 fi
+# {{-   end }}
+# {{- end }}
+
+################################################################################
+# Incus
+################################################################################
+
+# {{- if has "incus" .packages.tw.generic }}
+# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "cat" "/proc/1/environ"))) (stat "/.dockerenv")
+
+sudo zypper addlock \
+  Mesa \
+  kernel-debug \
+  kernel-default \
+  kernel-default-base \
+  kernel-kvmsmall \
+  kernel-longterm \
+  kernel-vanilla \
+  lxcfs \
+  qemu \
+  qemu-hw-display-virtio-gpu \
+  qemu-hw-display-virtio-vga \
+  qemu-hw-usb-redirect
+
+sudo zypper -n in -y --no-recommends expect
+
+expect <<"EOF"
+set timeout -1
+
+spawn sudo zypper install --no-recommends incus
+
+expect "Choose from above solutions by number"
+send "8\r"
+
+expect "Continue?"
+send "y\r"
+
+expect eof
+EOF
+
+# {{-   end }}
 # {{- end }}
 
 ################################################################################
@@ -26,18 +72,33 @@ fi
 ################################################################################
 
 # {{- if findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin") }}
+#
 # Generate Incus Zsh completion,
 # as incus-zsh-completion package is broken (at least in Tumbleweed)
 # with the following error:
 #
 # /etc/zsh_completion.d/_incus:type:420: bad option: -t
 
-# Uninstall Incus Zsh completion that may be installed as recommendation
-if rpm -q incus-zsh-completion &>/dev/null ; then
-  sudo zypper -n rm -uy incus-zsh-completion
+# NOTE: incus-zsh-completion is already locked.
+#
+## Uninstall Incus Zsh completion that may be installed as recommendation
+#if rpm -q incus-zsh-completion &>/dev/null ; then
+#  sudo zypper -n rm -uy incus-zsh-completion
+#fi
+
+gen_incus_completion() {
+  sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
+}
+
+# Generate Incus completion when it differs or doesn't exist
+if [ -f /etc/zsh_completion.d/incus ] ; then
+  if ! cmp -s /etc/zsh_completion.d/incus <(incus completion zsh) ; then
+    gen_incus_completion
+  fi
+else
+  gen_incus_completion
 fi
 
-sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
 # {{- end }}
 
 ################################################################################
@@ -45,16 +106,16 @@ sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
 ################################################################################
 
 # Ansible latest
-if [ ! -x ~/.local/bin/ansible ] ; then
-   pipx install --include-deps ansible
-   pipx inject  --include-apps ansible ansible-lint
-fi
+# {{- if not (findExecutable "ansible" (list "~/.local/bin")) }}
+pipx install --include-deps ansible
+pipx inject  --include-apps ansible ansible-lint
+# {{- end }}
 
 # Ansible 9
-if [ ! -x ~/.local/bin/ansible9 ] ; then
-   pipx install --include-deps --suffix=9 ansible==9.13.0
-   pipx inject  --include-apps --with-suffix ansible9 ansible-lint
-fi
+# {{- if not (findExecutable "ansible9" (list "~/.local/bin")) }}
+pipx install --include-deps --suffix=9 ansible==9.13.0
+pipx inject  --include-apps --with-suffix ansible9 ansible-lint
+# {{- end }}
 
 ################################################################################
 # END

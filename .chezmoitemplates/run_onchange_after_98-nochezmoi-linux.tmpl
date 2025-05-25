@@ -12,13 +12,8 @@ set -euo pipefail
 echo -e "${_CYAN_}Starting copying Linux global configs${_RESET_}"
 
 ################################################################################
-# Links
+# Main
 ################################################################################
-
-copy_global_conf=$(mktemp)
-
-cat <<"EOF" > $copy_global_conf
-#!/usr/bin/env bash
 
 copy_global_conf() {
   local SRC=$1
@@ -27,41 +22,34 @@ copy_global_conf() {
 
   mkdir -p $(dirname $DST)
 
-  if   [ -f $SRC ] ; then
-    cmp --silent $SRC $DST && cp $SRC $DST
-  elif [ -f ${DIR}/${SRC} ]
-    cmp --silent ${DIR}/${SRC} $DST && cp ${DIR}/$SRC $DST
+  if [ -f $SRC ] ; then
+    cmp --silent $SRC $DST && sudo cp $SRC $DST
+  elif [ -f ${DIR}/${SRC} ] ; then
+    cmp --silent ${DIR}/${SRC} $DST && sudo cp ${DIR}/$SRC $DST
   fi
 }
 
-copy_global_conf $1 $2
-EOF
-
-chmod +x $copy_global_conf
-
 # {{- range .nochezmoi.linux.generic }}
-sudo $copy_global_conf {{ .src }} {{ .dst }}
+copy_global_conf {{ .src }} {{ .dst }}
 # {{- end }}
 
 # {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 # {{-   range .nochezmoi.linux.wsl }}
-sudo $copy_global_conf {{ .src }} {{ .dst }}
+copy_global_conf {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
 # {{- if has "suse" (splitList " " .chezmoi.osRelease.idLike) }}
 # {{-   range .nochezmoi.linux.suse }}
-sudo $copy_global_conf {{ .src }} {{ .dst }}
+copy_global_conf {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
 
 # {{- if has "debian" (splitList " " .chezmoi.osRelease.idLike) }}
 # {{-   range .nochezmoi.linux.debian }}
-sudo $copy_global_conf {{ .src }} {{ .dst }}
+copy_global_conf {{ .src }} {{ .dst }}
 # {{-   end }}
 # {{- end }}
-
-rm -f $copy_global_conf
 
 ################################################################################
 # END

@@ -11,6 +11,7 @@ packages:
       - chezmoi-zsh-completion
       - cnf
       - cnf-zsh
+      - cpio
       - curl
       - direnv
       - direnv-zsh-completion
@@ -31,8 +32,7 @@ packages:
       - gitea-tea-zsh-completion
       - gnu_parallel
       - htop
-      - incus
-     #- incus-zsh-completion # broken
+     #- incus # see run_onchange_55-packages-tw.tmpl for installation
       - iperf
       - ipmitool
       - jq
@@ -78,6 +78,9 @@ packages:
 
     desktop:
       - yakuake
+
+    locked:
+      - incus-zsh-completion # broken
 
   ubuntu:
 

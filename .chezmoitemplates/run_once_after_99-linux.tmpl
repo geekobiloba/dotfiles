@@ -12,17 +12,11 @@ set -euo pipefail
 echo -e "${_CYAN_}Starting Linux run_once_after (post-apply)${_RESET_}"
 
 ################################################################################
-# zsh
-################################################################################
-
-# Set user's shell to Zsh
-sudo chsh -s /bin/zsh $USER
-
-################################################################################
 # nvs
 ################################################################################
 
 # {{- if stat (joinPath .chezmoi.homeDir ".nvs" "node") }}
+#
 # Add Node.js LTS
 NVS_USE_XZ=false # fix line 190: NVS_USE_XZ: unbound variable
 source $HOME/.nvs/nvs.sh
@@ -34,7 +28,7 @@ nvs add lts
 ################################################################################
 
 # {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") }}
-
+#
 # Silencing docker from podman-docker
 sudo -E touch /etc/containers/nodocker
 
@@ -47,7 +41,7 @@ save
 EOF
 
 # {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
-
+#
 # Fix podman-compose in WSL
 sudo touch /etc/containers/containers.conf
 sudo augtool -r / -bAt 'Toml.lns incl /etc/containers/containers.conf' <<'EOF'
@@ -60,6 +54,13 @@ EOF
 
 # {{-   end -}}
 # {{- end }}
+
+################################################################################
+# zsh
+################################################################################
+
+# Set user's shell to Zsh
+sudo chsh -s /bin/zsh $USER
 
 ################################################################################
 # END
