@@ -1,5 +1,8 @@
 {{- if eq .chezmoi.os "linux" -}}
-{{-   template "run_once_after_99-final-linux.tmpl" . -}}
+{{-   if eq "opensuse-tumbleweed" .chezmoi.osRelease.id -}}
+{{-     template "run_once_after_99-final-tw.tmpl" . -}}
+{{-   end }}
+{{    template "run_once_after_99-final-linux.tmpl" . -}}
 {{- else if eq .chezmoi.os "windows" -}}
 {{-   template "run_once_after_99-final-windows.tmpl" . -}}
 {{- end -}}
