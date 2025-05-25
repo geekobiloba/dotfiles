@@ -14,11 +14,11 @@ nochezmoi:
         dst: /etc/wsl.conf
 
     suse:
-      - src: nochezmoi/vimrc
+      - src: nochezmoi/vim/vimrc
         dst: /etc/vimrc
 
     debian:
-      - src: nochezmoi/vimrc
+      - src: nochezmoi/vim/vimrc
         dst: /etc/vim/vimrc
 
   windows:
