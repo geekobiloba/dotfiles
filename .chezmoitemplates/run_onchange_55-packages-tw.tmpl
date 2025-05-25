@@ -80,13 +80,13 @@ fi
 ################################################################################
 
 # Ansible latest
-if [ -x ~/.local/bin/ansible ] ; then
+if [ ! -x ~/.local/bin/ansible ] ; then
   pipx install --include-deps ansible
   pipx inject  --include-apps ansible ansible-lint
 fi
 
 # Ansible 9
-if [ -x ~/.local/bin/ansible9 ] ; then
+if [ ! -x ~/.local/bin/ansible9 ] ; then
   pipx install --include-deps --suffix=9 ansible==9.13.0
   pipx inject  --include-apps --with-suffix ansible9 ansible-lint
 fi
