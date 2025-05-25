@@ -16,7 +16,7 @@ echo -e "${_CYAN_}Starting package installation${_RESET_}"
 ################################################################################
 
 # {{- if has "locked" .packages.tw }}
-sudo zypper addlock {{ range .packages.tw.locked }} {{.}} {{ end }}
+sudo zypper addlock {{- range .packages.tw.locked }} {{.}} {{- end }}
 # {{- end }}
 
 # {{- range .packages.tw.generic }}
@@ -32,7 +32,7 @@ fi
 ################################################################################
 
 # {{- if has "incus" .packages.tw.generic }}
-# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "cat" "/proc/1/environ"))) (stat "/.dockerenv")
+# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "cat" "/proc/1/environ"))) (stat "/.dockerenv") }}
 
 sudo zypper addlock \
   Mesa \

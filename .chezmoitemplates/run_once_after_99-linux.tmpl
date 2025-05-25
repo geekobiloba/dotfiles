@@ -30,7 +30,7 @@ nvs add lts
 # {{- if findExecutable "podman" (list "/bin" "/usr/bin" "/usr/local/bin") }}
 #
 # Silencing docker from podman-docker
-sudo -E touch /etc/containers/nodocker
+sudo touch /etc/containers/nodocker
 
 # Set podman's lowest publishable port
 sudo touch /etc/sysctl.conf
