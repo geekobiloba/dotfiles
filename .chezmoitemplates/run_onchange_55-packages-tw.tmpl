@@ -32,7 +32,7 @@ fi
 ################################################################################
 
 # {{- if has "incus" .packages.tw.generic }}
-# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "strings" "/proc/1/environ" | trim))) (stat "/.dockerenv") }}
+# {{-   if or (.chezmoi.kernel.osrelease | lower | contains "microsoft") (has "lxc" (splitList "=" (output "sh" "-c" "tr -cd '[:print:]' < /proc/1/environ" | trim))) (stat "/.dockerenv") }}
 
 sudo zypper addlock \
   Mesa \
