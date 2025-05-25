@@ -71,28 +71,6 @@ sudo zypper -n in -y --no-recommends incus
 # {{- end }}
 
 ################################################################################
-# Incus completion
-################################################################################
-
-# {{- if findExecutable "incus" (list "/bin" "/usr/bin" "/usr/local/bin") }}
-#
-# Generate Incus Zsh completion,
-# as incus-zsh-completion package is broken (at least in Tumbleweed)
-# with the following error:
-#
-# /etc/zsh_completion.d/_incus:type:420: bad option: -t
-
-# {{-   if stat "/etc/zsh_completion.d/incus" }}
-cmp -s /etc/zsh_completion.d/incus <(incus completion zsh) ||\
-sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
-
-# {{-   else }}
-sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
-
-# {{-   end }}
-# {{- end }}
-
-################################################################################
 # Ansible
 ################################################################################
 
