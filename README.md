@@ -41,26 +41,32 @@ try install `gsudo` from `scoop` as non-Administrator.
 >   Packages are only minimally defined,
 >   but their installation script is yet to be crafted.
 
-Install Xcode Command Line Tools,
-either manually,
+1.  Install Xcode Command Line Tools,
+    either manually,
 
-```shell
-xcode-select --install
-```
+    ```shell
+    xcode-select --install
+    ```
 
-or non-interactively,
+    or non-interactively,
 
-```shell
-xcode-select --install && \
-sleep 5 && \
-osascript \
-  -e 'tell application "System Events"' \
-  -e 'tell process "Install Command Line Developer Tools"' \
-  -e 'keystroke return' \
-  -e 'click button "Agree" of window "License Agreement"' \
-  -e 'end tell' \
-  -e 'end tell'
-```
+    ```shell
+    xcode-select --install && \
+    sleep 5 && \
+    osascript \
+      -e 'tell application "System Events"' \
+      -e 'tell process "Install Command Line Developer Tools"' \
+      -e 'keystroke return' \
+      -e 'click button "Agree" of window "License Agreement"' \
+      -e 'end tell' \
+      -e 'end tell'
+    ```
+
+2.  Install Homebrew,
+
+    ```shell
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
 
 #   First setup
 
