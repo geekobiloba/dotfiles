@@ -49,4 +49,3 @@
 
 -   Don't use `findExecutable` nor `stat` in `onchange` scripts.
 
-
