@@ -36,6 +36,7 @@ packages:
       - gnu_parallel
       - go
       - go-race
+      - govc
       - gzip
       - htop
       - incus # see run_onchange_55-packages-tw.tmpl

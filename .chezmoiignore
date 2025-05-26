@@ -16,6 +16,7 @@ tmp/
 .zshrc
 .config/nvim/
 .local/share/nvim/
+.completions/
 bin/
 # {{- end }}
 

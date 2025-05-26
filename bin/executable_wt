@@ -49,6 +49,7 @@ EOF
 case ${1:-} in
   ("") # no arg at all
     showhelp
+    exit 1
     ;;
   (-*) # with option
     . /etc/os-release
@@ -64,7 +65,8 @@ case ${1:-} in
     done
     ;;
   (*) # no option, with arg
-    ipinfo $1
+    showhelp
+    exit 1
     ;;
 esac
 

@@ -64,11 +64,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 typeset -g POWERLEVEL9K_DIR_BACKGROUND=33 # blue prompt
 
-{{  if or (eq .chezmoi.os "darwin") (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
+# {{-  if or (eq .chezmoi.os "darwin") (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
 # Prompt gradation for macOS or WSL
 typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL='%K{#585854} %K{#84847C} %K{#B1B1A5} %k'
 typeset -g   POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL='%K{#B1B1A5} %K{#84847C} %K{#585854} %k'
-{{- end }}
+# {{- end }}
 
 ################################################################################
 # oh-my-zsh
@@ -184,6 +184,8 @@ test -r ~/.perlrc && source $_
 
 for f in /etc/zsh_completion.d/* ; do source $f ; done
 
+test -d ~/.completions && for f in ~/.completions/* ; do source $f ; done
+
 # Command not found
 test -r /etc/zsh_command_not_found && source $_
 
@@ -226,13 +228,24 @@ alias   ncal='cal -v'
 alias   cal3='cal -v3'
 alias   sudo='sudo '
 alias   trim="sed 's,^\\s+|\\s+\$,,g'"
-alias  xclip='trim | xclip -r -sel clip'
 alias  mkdir='mkdir -p'
 alias  dmesg='dmesg -HTL'
 alias reload="exec $SHELL"
 alias vmstat='vmstat -SM -w'
 alias iperf3='iperf'
+
+# Clipboard copy
+# {{- if eq .chezmoi.os "linux" -}}
+# {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+alias xclip='clip.exe'
+# {{-   else }}
+alias xclip='trim | xclip -r -sel clip'
+# {{-   end }}
 alias pbcopy='xclip'
+# {{- end }}
+# {{- if eq .chezmoi.os "darwin" -}}
+alias xclip='pbcopy'
+# {{- end }}
 
 # nvim
 if which nvim &>/dev/null ; then
@@ -244,7 +257,11 @@ fi
 
 # fastfetch
 alias  neofetch='fastfetch'
+# {{- if eq .chezmoi.os "linux" -}}
+# {{-   if has "suse" (splitList " " .chezmoi.osRelease.idLike) }}
 alias fastfetch='fastfetch -l opensuse'
+# {{-   end -}}
+# {{- end }}
 
 ################################################################################
 # Functions
@@ -269,8 +286,8 @@ test -r ~/.kubectl-aliases/.kubectl_aliases && source $_
 alias  kns="kubectl ns"
 alias kctx="kubectl ctx"
 
-{{  if eq .chezmoi.os "linux" -}}
-{{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+# {{- if eq .chezmoi.os "linux" -}}
+# {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 ################################################################################
 # WSL
 ################################################################################
@@ -309,7 +326,7 @@ EOF
   # SSH agent
   eval $(ssh-agent -s) 1>/dev/null
 fi
-{{-   end }}
-{{- end }}
+# {{-   end -}}
+# {{- end }}
 
 # vim:ft=zsh:

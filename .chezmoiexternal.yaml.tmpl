@@ -79,6 +79,12 @@
   exclude:
     - "*/settings.json"
 
+".completions/govc":
+  type:  file
+  url:   https://raw.githubusercontent.com/vmware/govmomi/refs/heads/main/scripts/govc_bash_completion
+  exact: false
+  refreshPeriod:   "720h"
+
 # {{- end }}
 
 ".tree-sitter-crystal":
