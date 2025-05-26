@@ -45,4 +45,4 @@ bin/wt
 .nvs/node/
 .nvs/cache
 
-# vim: ft=gitignore:
+# vim:ft=gitignore:

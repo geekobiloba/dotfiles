@@ -64,5 +64,5 @@ case ${1:-} in
     ;;
 esac
 
-# vim: ft=bash:
+# vim:ft=bash:
 
