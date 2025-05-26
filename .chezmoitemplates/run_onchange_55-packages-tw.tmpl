@@ -20,7 +20,7 @@ sudo zypper addlock {{- range .packages.tw.locked }} {{.}} {{- end }}
 # {{- end }}
 
 # {{- range .packages.tw.generic }}
-# {{-   if ne . "incus" }}
+# {{-   if and (ne . "incus") (ne . "crystal") }}
 if ! rpm -q {{.}} &>/dev/null ; then
   sudo zypper -n in -y --no-recommends {{.}}
 fi
@@ -60,10 +60,10 @@ set timeout -1
 spawn sudo zypper install --no-recommends incus
 
 expect "Choose from above solutions by number"
-send "3\r"
+send   "3\r"
 
 expect "Continue?"
-send "y\r"
+send   "y\r"
 
 expect -re "Running post-transaction scripts.+done.+"
 sleep 10
@@ -74,6 +74,32 @@ EOF
 # {{-   else }}
 sudo zypper -n in -y --no-recommends incus
 # {{-   end }}
+
+fi
+# {{- end }}
+
+################################################################################
+# Crystal
+################################################################################
+
+# {{- if has "crystal" .packages.tw.generic }}
+if ! rpm -q crystal &>/dev/null ; then
+  expect <<"EOF"
+set timeout -1
+
+spawn sudo zypper install crystal
+
+expect "Do you want to reject the key, trust temporarily, or trust always?"
+send   "a\r"
+
+expect "Continue?"
+send   "y\r"
+
+expect -re "Running post-transaction scripts.+done.+"
+sleep 10
+
+expect eof
+EOF
 
 fi
 # {{- end }}

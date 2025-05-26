@@ -12,6 +12,7 @@ packages:
       - cnf
       - cnf-zsh
       - cpio
+      - crystal
       - curl
       - direnv
       - direnv-zsh-completion
