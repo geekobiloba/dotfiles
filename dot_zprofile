@@ -1,11 +1,6 @@
-# {{- if eq .chezmoi.os "linux" -}}
-# {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
-
 # Fix Podman on WSL: WARN[0000] "/" is not a shared mount
 if which podman &>/dev/null ; then
   wsl.exe -u root -e mount --make-rshared /
 fi
 
 # vim:ft=zsh:
-# {{-   end -}}
-# {{- end -}}
