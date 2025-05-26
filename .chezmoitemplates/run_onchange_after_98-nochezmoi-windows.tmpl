@@ -13,31 +13,43 @@ Write-Host "Starting hard-linking Windows extra configs" `
 # Main
 ################################################################################
 
-function New-HardLink {
+function New-Link {
   param (
     [string]$Source ,
-    [string]$Destination
+    [string]$Destination,
+    [string]$LinkType
   )
 
   $chezmoiDir = "{{ .chezmoi.sourceDir }}"
+  $absSource  = ""
 
   New-Item -ItemType Directory -Force -Path (
     Split-Path $Destination
   )
 
   if (Test-Path $Source) {
-    New-Item -ItemType HardLink -Force `
-      -Target $Source `
-      -Path   $Destination
+    $absSource = $Source
   } else {
-    New-Item -ItemType HardLink -Force `
-      -Target (Join-Path $chezmoiDir $Source) `
-      -Path   $Destination
+    $absSource = Join-Path $chezmoiDir $Source
+  }
+
+  if ($LinkType -eq "Hardlink") {
+    New-Item -Force `
+      -ItemType $LinkType `
+      -Target   $absSource `
+      -Path     $Destination
+  } elseif ($LinkType -eq "SymbolicLink") {
+    sudo powershell -c `
+      "New-Item -Force -ItemType $LinkType -Target $absSource -Path $Destination"
   }
 }
 
-# {{- range .nochezmoi.windows }}
-New-HardLink -Source {{ .src }} -Destination {{ .dst }}
+# {{- range .nochezmoi.windows.hardlinks }}
+New-Link -LinkType Hardlink -Source {{ .src }} -Destination {{ .dst }}
+# {{- end }}
+
+# {{- range .nochezmoi.windows.symlinks }}
+New-Link -LinkType SymbolicLink -Source {{ .src }} -Destination {{ .dst }}
 # {{- end }}
 
 ################################################################################
