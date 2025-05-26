@@ -61,6 +61,7 @@ packages:
       - pyenv-zsh-completion
       - python313-pipx
       - python313-podman-compose
+      - redfishtool
       - ripgrep
       - ripgrep-zsh-completion
       - rsync
@@ -167,7 +168,7 @@ packages:
       - fzf
       - gawk
       - gh
-      - govc
+     #- govc
       - grep
       - iperf3
       - jq
