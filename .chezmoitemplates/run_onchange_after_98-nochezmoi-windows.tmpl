@@ -1,12 +1,12 @@
 #
-# Hard-link Windows extra configs
+# Link Windows extra configs
 #
 
 ################################################################################
 # BEGIN
 ################################################################################
 
-Write-Host "Starting hard-linking Windows extra configs" `
+Write-Host "Starting linking Windows extra configs" `
   -ForegroundColor Green
 
 ################################################################################
@@ -56,7 +56,7 @@ New-Link -LinkType SymbolicLink -Source {{ .src }} -Destination {{ .dst }}
 # END
 ################################################################################
 
-Write-Host "Hard-linking Windows extra configs is done" `
+Write-Host "Linking Windows extra configs is done" `
   -ForegroundColor Green
 
 # vim:ft=ps1:
