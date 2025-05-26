@@ -24,6 +24,7 @@ bin/
 .wslconfig
 AppData/
 Documents/
+Pictures/
 # {{- end }}
 
 # Non-WSL Linux
