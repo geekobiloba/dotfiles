@@ -84,6 +84,9 @@ fi
 
 # {{- if has "crystal" .packages.tw.generic }}
 if ! rpm -q crystal &>/dev/null ; then
+  sudo zypper addrepo --refresh \
+    https://download.opensuse.org/repositories/devel:languages:crystal/openSUSE_Tumbleweed/devel:languages:crystal.repo
+
   expect <<"EOF"
 set timeout -1
 
