@@ -198,20 +198,17 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
+                "bellStyle": 
+                [
+                    "audible",
+                    "window"
+                ],
                 "cursorShape": "filledBox",
-                "guid": "{bc2da056-dd06-5879-b969-1dfcefc8d2c7}",
+                "guid": "{1245064a-5118-5e7c-8f85-1a49d1c93def}",
                 "hidden": false,
                 "icon": "C:\\Users\\ellam\\Pictures\\icons\\opensuse.png",
-                "name": "openSUSE Tumbleweed",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "cursorShape": "filledBox",
-                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
-                "hidden": false,
-                "icon": "C:\\Users\\ellam\\Pictures\\icons\\Debian.png",
-                "name": "Debian GNU/Linux 12 (bookworm)",
-                "source": "Windows.Terminal.Wsl"
+                "name": "openSUSE-Tumbleweed",
+                "source": "Microsoft.WSL"
             },
             {
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
@@ -234,13 +231,6 @@
                 "source": "Git"
             },
             {
-                "guid": "{8ab8e6f6-35c6-5b46-8419-3e1568105476}",
-                "hidden": false,
-                "icon": "C:\\Users\\ellam\\Pictures\\icons\\Podman.png",
-                "name": "podman-machine-default",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
                 "guid": "{b58c4562-2490-541f-b1fe-9535745202eb}",
                 "hidden": false,
                 "name": "Developer Command Prompt for VS 2022",
@@ -251,42 +241,6 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{24fe2b8e-5c79-5580-aa35-7ebe1803d999}",
-                "hidden": false,
-                "name": "openSUSE-Leap-15.6",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{d4b3618e-bd70-5d1b-879f-7057fb018671}",
-                "hidden": false,
-                "name": "Ubuntu-24.04",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}",
-                "hidden": false,
-                "name": "Ubuntu 22.04.5 LTS",
-                "source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc"
-            },
-            {
-                "guid": "{1d64b7a7-a126-554f-ab98-85e597cc1121}",
-                "hidden": false,
-                "name": "openSUSE-Tumbleweed",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{4f489bb0-5799-5962-bc2b-8b3c0b0c3135}",
-                "hidden": false,
-                "name": "openSUSE-Tumbleweed",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{2c11263a-302b-5b82-b3f2-c351baeeaa33}",
-                "hidden": false,
-                "name": "tw",
-                "source": "Microsoft.WSL"
             }
         ]
     },
