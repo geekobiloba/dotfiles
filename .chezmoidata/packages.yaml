@@ -63,6 +63,7 @@ packages:
       - ripgrep
       - ripgrep-zsh-completion
       - rsync
+      - ruby
       - socat
       - sshpass
       - strace
