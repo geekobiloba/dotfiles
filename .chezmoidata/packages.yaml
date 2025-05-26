@@ -34,6 +34,7 @@ packages:
       - gitea-tea-zsh-completion
       - gnu_parallel
       - go
+      - go-race
       - gzip
       - htop
       - incus # see run_onchange_55-packages-tw.tmpl
