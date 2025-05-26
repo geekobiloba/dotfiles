@@ -3,7 +3,7 @@
 ##  Windows
 
 Open PowerShell (non-Administrator, non-elevated),
-then do the the following,
+then do the following,
 
 1.  Ensure `winget` is available and working,
 
@@ -23,13 +23,16 @@ then do the the following,
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
     ```
 
-Open Administrator PowerShell, then do the the following,
+Open Administrator PowerShell, then do the following,
 
 4.  Enable `sudo` for creating symlinks,[^sudo]
 
     ```powershell
     sudo config --enable inline
     ```
+
+5.  Close the Administrator PowerShell,
+    and continue with the non-Administrator one.
 
 [^sudo]: For Windows < 11,
 try install `gsudo` from `scoop` as non-Administrator.
