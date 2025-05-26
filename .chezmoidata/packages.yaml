@@ -33,6 +33,7 @@ packages:
       - gitea-tea
       - gitea-tea-zsh-completion
       - gnu_parallel
+      - go
       - gzip
       - htop
       - incus # see run_onchange_55-packages-tw.tmpl
