@@ -42,12 +42,11 @@
 
 6.  Restart the system.
 
-#   Neovim
-
-To install Crystal highlighting, run `:TSInstall crystal`.
-
 #   Notes
 
-Don't use `findExecutable` nor `stat` in `onchange` scripts.
+-   To manually install Crystal highlighting in Neovim,
+    run `:TSInstall crystal`.
+
+-   Don't use `findExecutable` nor `stat` in `onchange` scripts.
 
 
