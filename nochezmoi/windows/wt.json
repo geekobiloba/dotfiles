@@ -36,6 +36,10 @@
             "id": "User.paste"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -43,10 +47,6 @@
                 "splitMode": "duplicate"
             },
             "id": "User.splitPane.A6751878"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
         },
         {
             "command": 
@@ -89,16 +89,16 @@
     "keybindings": 
     [
         {
-            "id": "User.moveTab.793E2350",
-            "keys": "ctrl+shift+pgdn"
-        },
-        {
             "id": "User.moveTab.EF07D31B",
             "keys": "ctrl+shift+pgup"
         },
         {
+            "id": "User.moveTab.793E2350",
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
             "id": null,
-            "keys": "ctrl+c"
+            "keys": "ctrl+tab"
         },
         {
             "id": null,
@@ -106,15 +106,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+tab"
-        },
-        {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+c"
         },
         {
             "id": null,
             "keys": "ctrl+v"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": null,
@@ -207,7 +207,7 @@
                 "guid": "{1245064a-5118-5e7c-8f85-1a49d1c93def}",
                 "hidden": false,
                 "icon": "C:\\Users\\ellam\\Pictures\\icons\\opensuse.png",
-                "name": "openSUSE-Tumbleweed",
+                "name": "openSUSE Tumbleweed",
                 "source": "Microsoft.WSL"
             },
             {
