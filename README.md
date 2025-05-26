@@ -32,7 +32,7 @@ Open Administrator PowerShell, then do the following,
     ```
 
 5.  Close the Administrator PowerShell,
-    and continue with the non-Administrator one.
+    and continue with non-Administrator one.
 
 [^sudo]: For Windows < 11,
 try install `gsudo` from `scoop` as non-Administrator.
