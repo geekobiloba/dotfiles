@@ -135,6 +135,7 @@ packages:
       - WinSCP.WinSCP
       - WireGuard.WireGuard
       - abdenasser.NeoHtop
+      - goplus.gop
       - jasongin.nvs
       - sharkdp.bat
       - sharkdp.fd
