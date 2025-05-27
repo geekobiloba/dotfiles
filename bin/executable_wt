@@ -56,9 +56,9 @@ case ${1:-} in
 
     while getopts :DHVh optchar ; do 
       case $optchar in
-        (D) wt.exe nt -p "$PRETTY_NAME" -d $PWD    ;;
-        (H) wt.exe sp -p "$PRETTY_NAME" -d $PWD -H ;;
-        (V) wt.exe sp -p "$PRETTY_NAME" -d $PWD -V ;;
+        (D) wt.exe nt -p "$(echo $WT_PROFILE_ID)" -- wsl.exe --cd "$PWD"    ;;
+        (H) wt.exe sp -p "$(echo $WT_PROFILE_ID)" -- wsl.exe --cd "$PWD" -H ;;
+        (V) wt.exe sp -p "$(echo $WT_PROFILE_ID)" -- wsl.exe --cd "$PWD" -V ;;
         (h) showhelp ; exit 0 ;;
         (*) showhelp ; exit 1 ;; # wrong option
       esac
