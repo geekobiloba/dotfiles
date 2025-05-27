@@ -315,9 +315,7 @@ function ansible9 { wsl --shell-type login -- ansible9 @Args }
 # Functions
 ################################################################################
 
-. $HOME\Documents\PowerShell\Includes\Functions\Get-IPInfo.ps1
-. $HOME\Documents\PowerShell\Includes\Functions\Get-IPv4Calc.ps1
-. $HOME\Documents\PowerShell\Includes\Functions\Get-LinkTarget.ps1
+Get-ChildItem $HOME\Documents\PowerShell\Includes\Functions | % { . $_ }
 
 ################################################################################
 # Etc
