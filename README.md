@@ -45,7 +45,7 @@ try install `gsudo` from `scoop` as non-Administrator.
 >   but their installation script is yet to be crafted.
 
 1.  Install Xcode Command Line Tools,
-    either manually,
+    either interactively,
 
     ```shell
     xcode-select --install
