@@ -4,24 +4,16 @@
     "actions": 
     [
         {
-            "command": 
-            {
-                "action": "moveTab",
-                "direction": "forward"
-            },
-            "id": "User.moveTab.793E2350"
-        },
-        {
             "command": "scrollDownPage",
             "id": "User.scrollDownPage"
         },
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
+                "action": "moveTab",
+                "direction": "forward"
             },
-            "id": "User.copy.644BA8F2"
+            "id": "User.moveTab.793E2350"
         },
         {
             "command": 
@@ -32,12 +24,16 @@
             "id": "User.splitPane.D5151347"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy.644BA8F2"
         },
         {
-            "command": "find",
-            "id": "User.find"
+            "command": "paste",
+            "id": "User.paste"
         },
         {
             "command": 
@@ -49,6 +45,10 @@
             "id": "User.splitPane.A6751878"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "nextTab"
@@ -58,17 +58,17 @@
         {
             "command": 
             {
-                "action": "prevTab"
-            },
-            "id": "User.prevTab.0"
-        },
-        {
-            "command": 
-            {
                 "action": "moveTab",
                 "direction": "backward"
             },
             "id": "User.moveTab.EF07D31B"
+        },
+        {
+            "command": 
+            {
+                "action": "prevTab"
+            },
+            "id": "User.prevTab.0"
         },
         {
             "command": 
@@ -98,15 +98,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+tab"
-        },
-        {
-            "id": null,
             "keys": "ctrl+shift+tab"
         },
         {
             "id": null,
             "keys": "ctrl+c"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+tab"
         },
         {
             "id": null,
@@ -121,12 +121,12 @@
             "keys": "pgdn"
         },
         {
-            "id": null,
-            "keys": "pgup"
-        },
-        {
             "id": "User.prevTab.0",
             "keys": "ctrl+pgup"
+        },
+        {
+            "id": null,
+            "keys": "pgup"
         },
         {
             "id": "User.splitPane.A6751878",
@@ -141,12 +141,12 @@
             "keys": "ctrl+shift+["
         },
         {
-            "id": "User.scrollDownPage",
-            "keys": "shift+pgdn"
-        },
-        {
             "id": "User.splitPane.864CD510",
             "keys": "ctrl+shift+]"
+        },
+        {
+            "id": "User.scrollDownPage",
+            "keys": "shift+pgdn"
         },
         {
             "id": "User.scrollUpPage",
@@ -199,25 +199,13 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "bellStyle": 
-                [
-                    "audible",
-                    "window"
-                ],
                 "cursorShape": "filledBox",
-                "experimental.retroTerminalEffect": false,
-                "guid": "{1245064a-5118-5e7c-8f85-1a49d1c93def}",
+                "guid": "{f638ae5a-66df-5958-bc47-5b6be0599c96}",
                 "hidden": false,
                 "icon": "C:\\Users\\ellam\\Pictures\\icons\\opensuse.png",
                 "name": "openSUSE Tumbleweed",
                 "source": "Microsoft.WSL",
                 "startingDirectory": null
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": true,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
             },
             {
                 "guid": "{4e27f4db-7c55-564f-af04-19d8f3a30148}",
@@ -244,18 +232,6 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{04fa8b05-e72e-5e47-b609-ac069b37c886}",
-                "hidden": false,
-                "name": "ostw2",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{31227361-160c-50c7-a0d3-8780a9778aa6}",
-                "hidden": false,
-                "name": "ostw5",
-                "source": "Microsoft.WSL"
             }
         ]
     },
