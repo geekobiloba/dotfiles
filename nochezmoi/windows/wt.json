@@ -36,6 +36,10 @@
             "id": "User.paste"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -43,10 +47,6 @@
                 "splitMode": "duplicate"
             },
             "id": "User.splitPane.A6751878"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
         },
         {
             "command": 
@@ -89,16 +89,16 @@
     "keybindings": 
     [
         {
-            "id": "User.moveTab.793E2350",
-            "keys": "ctrl+shift+pgdn"
-        },
-        {
             "id": "User.moveTab.EF07D31B",
             "keys": "ctrl+shift+pgup"
         },
         {
+            "id": "User.moveTab.793E2350",
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
             "id": null,
-            "keys": "ctrl+c"
+            "keys": "ctrl+tab"
         },
         {
             "id": null,
@@ -106,15 +106,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+tab"
-        },
-        {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+c"
         },
         {
             "id": null,
             "keys": "ctrl+v"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": null,
@@ -210,7 +210,8 @@
                 "hidden": false,
                 "icon": "C:\\Users\\ellam\\Pictures\\icons\\opensuse.png",
                 "name": "openSUSE Tumbleweed",
-                "source": "Microsoft.WSL"
+                "source": "Microsoft.WSL",
+                "startingDirectory": null
             },
             {
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
@@ -243,6 +244,18 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{04fa8b05-e72e-5e47-b609-ac069b37c886}",
+                "hidden": false,
+                "name": "ostw2",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{31227361-160c-50c7-a0d3-8780a9778aa6}",
+                "hidden": false,
+                "name": "ostw5",
+                "source": "Microsoft.WSL"
             }
         ]
     },
