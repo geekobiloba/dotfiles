@@ -140,11 +140,5 @@ try install `gsudo` from `scoop` as non-Administrator.
 
 #   Notes
 
-<!--
--   To manually install Crystal highlighting in Neovim,
-    run `:TSInstall crystal`.
--->
-
--   Packages that should be absent are removed and locked.
--   Avoid `findExecutable` nor `stat` in `onchange` scripts.
+-   Avoid `findExecutable` nor `stat` in templates when possible.
 

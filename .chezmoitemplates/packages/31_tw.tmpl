@@ -22,6 +22,7 @@ echo -e "${_CYAN_}Package installation steps has started${_RESET_}"
 # {{- if index .packages.tw.generic "repo" -}}
 # {{-   range .packages.tw.generic.repo }}
 # {{-     if index . "url" -}}
+sudo zypper in -y --no-recommends expect
 sudo zypper addrepo --refresh {{ .url | quote }}
 expect <<"EOF"
 set timeout -1
