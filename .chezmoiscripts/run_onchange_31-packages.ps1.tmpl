@@ -1,0 +1,7 @@
+{{- if eq .chezmoi.os "linux" -}}
+{{-   if eq "openSUSE Tumbleweed" .chezmoi.osRelease.name -}}
+{{-     template "packages/31_tw.tmpl" . -}}
+{{-   end -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   template "packages/31_windows.tmpl" . -}}
+{{- end -}}

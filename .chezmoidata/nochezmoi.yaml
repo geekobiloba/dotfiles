@@ -22,38 +22,37 @@ nochezmoi:
         dst: /etc/vim/vimrc
 
   windows:
-    symlinks:
-      - src: nochezmoi\windows\wt.json
-        dst: $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+    - src:  nochezmoi\windows\wt.json
+      dst:  $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+      mode: symlink
 
-    hardlinks:
-      - src: $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-        dst: $HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+    - src:  $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+      dst:  $HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 
-      - src: neovim\init.lua
-        dst: $env:LOCALAPPDATA\nvim\init.lua
+    - src:  neovim\init.lua
+      dst:  $env:LOCALAPPDATA\nvim\init.lua
 
-      - src: neovim\lua\chadrc.lua
-        dst: $env:LOCALAPPDATA\nvim\lua\chadrc.lua
+    - src:  neovim\lua\chadrc.lua
+      dst:  $env:LOCALAPPDATA\nvim\lua\chadrc.lua
 
-      - src: neovim\lua\plugins\init.lua
-        dst: $env:LOCALAPPDATA\nvim\lua\plugins\init.lua
+    - src:  neovim\lua\plugins\init.lua
+      dst:  $env:LOCALAPPDATA\nvim\lua\plugins\init.lua
 
-      - src: $HOME\.tree-sitter-crystal\queries\nvim\aerial.scm
-        dst: $env:LOCALAPPDATA\nvim-data\aerial.scm
+    - src:  $HOME\.tree-sitter-crystal\queries\nvim\aerial.scm
+      dst:  $env:LOCALAPPDATA\nvim-data\aerial.scm
 
-      - src: $HOME\.tree-sitter-crystal\queries\nvim\context.scm
-        dst: $env:LOCALAPPDATA\nvim-data\context.scm
+    - src:  $HOME\.tree-sitter-crystal\queries\nvim\context.scm
+      dst:  $env:LOCALAPPDATA\nvim-data\context.scm
 
-      - src: $HOME\.tree-sitter-crystal\queries\nvim\folds.scm
-        dst: $env:LOCALAPPDATA\nvim-data\folds.scm
+    - src:  $HOME\.tree-sitter-crystal\queries\nvim\folds.scm
+      dst:  $env:LOCALAPPDATA\nvim-data\folds.scm
 
-      - src: $HOME\.tree-sitter-crystal\queries\nvim\highlights.scm
-        dst: $env:LOCALAPPDATA\nvim-data\highlights.scm
+    - src:  $HOME\.tree-sitter-crystal\queries\nvim\highlights.scm
+      dst:  $env:LOCALAPPDATA\nvim-data\highlights.scm
 
-      - src: $HOME\.tree-sitter-crystal\queries\nvim\injections.scm
-        dst: $env:LOCALAPPDATA\nvim-data\injections.scm
+    - src:  $HOME\.tree-sitter-crystal\queries\nvim\injections.scm
+      dst:  $env:LOCALAPPDATA\nvim-data\injections.scm
 
-      - src: dot_nvs\settings.json
-        dst: $env:LOCALAPPDATA\nvs\settings.json
+    - src:  dot_nvs\settings.json
+      dst:  $env:LOCALAPPDATA\nvs\settings.json
 

@@ -1,0 +1,63 @@
+#
+# Windows post-package installation
+#
+
+################################################################################
+# BEGIN
+################################################################################
+
+Write-Host "Post-package installation steps" `
+  -ForegroundColor Green
+
+################################################################################
+# Nmap
+################################################################################
+
+if (
+  (Test-Path "${env:ProgramFiles}\Nmap") `
+    -or `
+  (Test-Path "${env:ProgramFiles(x86)}\Nmap")
+) {
+  # Improve Nmap performance
+  Invoke-Item "${env:ProgramFiles(x86)}\Nmap\nmap_performance.reg"
+
+  # Add Nmap to path
+  [Environment]::SetEnvironmentVariable(
+    "Path" ,
+    (
+      [Environment]::GetEnvironmentVariable("Path", "User") +
+      ";" +
+      "${env:ProgramFiles(x86)}\Nmap"
+    ) ,
+    "User"
+  )
+
+  # Clean empty and duplicate fields
+  [Environment]::SetEnvironmentVariable(
+    "Path" ,
+    (
+      [Environment]::GetEnvironmentVariable("Path", "User") -split ';' |
+      Select-String -NotMatch '^\s*$' |
+      Select-Object -Unique
+    ) -join ";" ,
+    "User"
+  )
+}
+
+################################################################################
+# nvs
+################################################################################
+
+# Add Node.js LTS
+if (!(Test-Path "$env:LOCALAPPDATA\nvs\node")) {
+  nvs add lts
+}
+
+################################################################################
+# END
+################################################################################
+
+Write-Host "Post-package installation steps has finished" `
+  -ForegroundColor Green
+
+# vim:ft=ps1:

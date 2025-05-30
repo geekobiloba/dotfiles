@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.os "linux" -}}
+{{-   template "nochezmoi/50_linux.tmpl" . -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   template "nochezmoi/50_windows.tmpl" . -}}
+{{- end -}}

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# openSUSE Tumbleweed run_once_after (post-apply)
+# Linux post-package installation
 #
 
 set -euo pipefail
@@ -9,71 +9,73 @@ set -euo pipefail
 # BEGIN
 ################################################################################
 
-echo -e "${_CYAN_}Starting openSUSE Tumbleweed run_once_after (post-apply)${_RESET_}"
+echo -e "${_CYAN_}Post-package installation steps${_RESET_}"
 
 ################################################################################
 # nvs
 ################################################################################
 
-# {{- if stat (joinPath .chezmoi.homeDir ".nvs" "node") }}
-#
 # Add Node.js LTS
-NVS_USE_XZ=false # fix line 190: NVS_USE_XZ: unbound variable
-source $HOME/.nvs/nvs.sh
-nvs add lts
-# {{- end }}
+if [ -r $HOME/.nvs/nvs.sh ] && [ ! -d $HOME/.nvs/node ] ; then
+  NVS_USE_XZ=false # fix line 190: NVS_USE_XZ: unbound variable
+  source $HOME/.nvs/nvs.sh
+  nvs add lts
+fi
 
 ################################################################################
 # Podman
 ################################################################################
 
-# {{- if has "podman" .packages.tw.generic }}
-#
-# Silencing docker from podman-docker
-sudo touch /etc/containers/nodocker
+if which podman &>/dev/null ; then
 
-# Set podman's lowest publishable port
-sudo touch /etc/sysctl.conf
-sudo augtool -r / -bAt 'Sysctl.lns incl /etc/sysctl.conf' <<'EOF'
+  # Silencing docker from podman-docker
+  sudo touch /etc/containers/nodocker
+
+  # Set podman's lowest publishable port
+  sudo touch /etc/sysctl.conf
+  sudo augtool -r / -bAt 'Sysctl.lns incl /etc/sysctl.conf' <<'EOF'
 defvar conf /files/etc/sysctl.conf
 set $conf/net.ipv4.ip_unprivileged_port_start "53"
 save
 EOF
 
-# {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
-#
-# Fix podman-compose in WSL
-if ! rpm -q iptables &>/dev/null ; then
-  sudo zypper -n in -y --no-recommends iptables
-fi
+# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 
-sudo touch /etc/containers/containers.conf
-sudo augtool -r / -bAt 'Toml.lns incl /etc/containers/containers.conf' <<'EOF'
+  # Fix podman-compose in WSL
+  if ! rpm -q iptables &>/dev/null ; then
+    sudo zypper -n in -y --no-recommends iptables
+  fi
+
+  sudo touch /etc/containers/containers.conf
+  sudo augtool -r / -bAt 'Toml.lns incl /etc/containers/containers.conf' <<'EOF'
 defvar conf /files/etc/containers/containers.conf
 set $conf/table["network"] "network"
 set $conf/table["network"]/entry["firewall_driver"]        "firewall_driver"
 set $conf/table["network"]/entry["firewall_driver"]/string "iptables"
 save
 EOF
-
-# {{-   end -}}
 # {{- end }}
+fi
 
 ################################################################################
 # Incus completion
 ################################################################################
 
-# {{- if has "incus" .packages.tw.generic }}
-#
 # Generate Incus Zsh completion,
 # as incus-zsh-completion package is broken (at least in Tumbleweed)
 # with the following error:
 #
 # /etc/zsh_completion.d/_incus:type:420: bad option: -t
+#
+if which incus &>/dev/null ; then
+  incus completion zsh > $HOME/.completions/incus
+fi
 
-sudo sh -c 'incus completion zsh > /etc/zsh_completion.d/incus'
+################################################################################
+# zypper
+################################################################################
 
-# {{- end }}
+sudo zypper cc
 
 ################################################################################
 # zsh
@@ -86,6 +88,6 @@ sudo chsh -s /bin/zsh $USER
 # END
 ################################################################################
 
-echo -e "${_CYAN_}openSUSE Tumbleweed run_once_after (post-apply) is done${_RESET_}"
+echo -e "${_CYAN_}Post-package installation steps has finished${_RESET_}"
 
 # vim:ft=bash:

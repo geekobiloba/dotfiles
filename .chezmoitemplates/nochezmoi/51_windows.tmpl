@@ -1,0 +1,64 @@
+#
+# Windows nochezmoi
+#
+
+################################################################################
+# BEGIN
+################################################################################
+
+Write-Host "nochezmoi steps has started" `
+  -ForegroundColor Green
+
+################################################################################
+# Main
+################################################################################
+
+function nochezmoi {
+  param (
+    [string]$Source ,
+    [string]$Destination,
+    [string]$Mode
+  )
+
+  $chezmoiDir = "{{ .chezmoi.sourceDir }}"
+  $absSource  = ""
+
+  New-Item -ItemType Directory -Force -Path (
+    Split-Path "$Destination"
+  )
+
+  if (Test-Path "$Source") {
+    $absSource = "$Source"
+  } else {
+    $absSource = Join-Path "$chezmoiDir" "$Source"
+  }
+
+  if ($Mode -eq "hardlink") {
+    New-Item -Force `
+      -ItemType HardLink `
+      -Target   "$absSource" `
+      -Path     "$Destination"
+  } elseif ($Mode -eq "symlink") {
+    sudo powershell -c `
+      "New-Item -Force -ItemType SymbolicLink -Target $absSource -Path $Destination"
+  } elseif ($Mode -eq "copy") {
+    Copy-Item -Force -Recurse "$absSource" "$Destination"
+  }
+}
+
+# {{- range .nochezmoi.windows }}
+# {{-   if index . "mode" }}
+nochezmoi -Source "{{ .src }}" -Destination "{{ .dst }}" -Mode {{ .mode }}
+# {{-   else }}
+nochezmoi -Source "{{ .src }}" -Destination "{{ .dst }}" -Mode hardlink
+# {{-   end }}
+# {{- end }}
+
+################################################################################
+# END
+################################################################################
+
+Write-Host "nochezmoi steps has finished" `
+  -ForegroundColor Green
+
+# vim:ft=ps1:

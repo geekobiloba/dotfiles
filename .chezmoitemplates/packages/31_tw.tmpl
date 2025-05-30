@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+#
+# openSUSE Tumbleweed package installation
+#
+
+set -euo pipefail
+
+################################################################################
+# BEGIN
+################################################################################
+
+echo -e "${_CYAN_}Package installation steps has started${_RESET_}"
+
+################################################################################
+# Zypper Packages
+################################################################################
+
+#-------------------------------------------------------------------------------
+# Generic
+#-------------------------------------------------------------------------------
+
+# {{- if index .packages.tw.generic "repo" -}}
+# {{-   range .packages.tw.generic.repo }}
+# {{-     if index . "url" -}}
+sudo zypper addrepo --refresh {{ .url | quote }}
+expect <<"EOF"
+set timeout -1
+
+spawn sudo zypper refresh
+
+expect "Do you want to reject the key, trust temporarily, or trust always?"
+send   "a\r"
+
+expect eof
+EOF
+# {{-     else if and (index . "enabled") (index . "alias") -}}
+# {{-       if .enabled -}}
+sudo zypper modifyrepo --enable {{ .name }}
+# {{-       else }}
+sudo zypper modifyrepo --disable {{ .name }}
+# {{-       end -}}
+# {{-     end -}}
+# {{-   end -}}
+# {{- end }}
+# {{- if index .packages.tw.generic "absent" -}}
+# {{-   range .packages.tw.generic.absent }}
+if rpm -q {{.}} &>/dev/null ; then
+  sudo zypper rm -uy {{.}}
+fi
+# {{-   end -}}
+# {{- end }}
+# {{- if index .packages.tw.generic "locked" -}}
+# {{-   range .packages.tw.generic.locked }}
+sudo zypper addlock {{.}}
+# {{-   end -}}
+# {{- end }}
+# {{- if index .packages.tw.generic "present" -}}
+# {{-   range .packages.tw.generic.present }}
+if ! rpm -q {{.}} &>/dev/null ; then
+  sudo zypper in -y --no-recommends {{.}}
+fi
+# {{-   end -}}
+# {{- end }}
+
+#-------------------------------------------------------------------------------
+# WSL
+#-------------------------------------------------------------------------------
+
+# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+# {{-   if index .packages.tw.wsl "repo" -}}
+# {{-     range .packages.tw.wsl.repo }}
+# {{-       if index . "url" -}}
+sudo zypper addrepo --refresh {{ .url | quote }}
+expect <<"EOF"
+set timeout -1
+
+spawn sudo zypper refresh
+
+expect "Do you want to reject the key, trust temporarily, or trust always?"
+send   "a\r"
+
+expect eof
+EOF
+# {{-       else if and (index . "enabled") (index . "alias") -}}
+# {{-         if .enabled -}}
+sudo zypper modifyrepo --enable {{ .name }}
+# {{-         else }}
+sudo zypper modifyrepo --disable {{ .name }}
+# {{-         end -}}
+# {{-       end -}}
+# {{-     end -}}
+# {{-   end }}
+# {{-   if index .packages.tw.wsl "absent" -}}
+# {{-     range .packages.tw.wsl.absent }}
+if rpm -q {{.}} &>/dev/null ; then
+  sudo zypper rm -uy {{.}}
+fi
+# {{-     end -}}
+# {{-   end }}
+# {{-   if index .packages.tw.wsl "locked" -}}
+# {{-     range .packages.tw.wsl.locked }}
+sudo zypper addlock {{.}}
+# {{-     end -}}
+# {{-   end }}
+# {{-   if index .packages.tw.wsl "present" -}}
+# {{-     range .packages.tw.wsl.present }}
+if ! rpm -q {{.}} &>/dev/null ; then
+  sudo zypper in -y --no-recommends {{.}}
+fi
+# {{-     end -}}
+# {{-   end }}
+# {{- end }}
+
+################################################################################
+# Ansible
+################################################################################
+
+# Ansible latest
+if [ ! -x ~/.local/bin/ansible ] ; then
+  pipx install --include-deps ansible
+  pipx inject  --include-apps ansible ansible-lint
+fi
+
+# Ansible 9
+if [ ! -x ~/.local/bin/ansible9 ] ; then
+  pipx install --include-deps --suffix=9 ansible==9.13.0
+  pipx inject  --include-apps --with-suffix ansible9 ansible-lint
+fi
+
+################################################################################
+# END
+################################################################################
+
+echo -e "${_CYAN_}Package installation steps has finished${_RESET_}"
+
+# vim:ft=bash:

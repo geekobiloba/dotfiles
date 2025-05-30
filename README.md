@@ -145,5 +145,6 @@ try install `gsudo` from `scoop` as non-Administrator.
     run `:TSInstall crystal`.
 -->
 
--   Don't use `findExecutable` nor `stat` in `onchange` scripts.
+-   Packages that should be absent are removed and locked.
+-   Avoid `findExecutable` nor `stat` in `onchange` scripts.
 

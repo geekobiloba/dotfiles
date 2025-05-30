@@ -1,7 +1,0 @@
-{{- if eq .chezmoi.os "linux" -}}
-{{-   if eq "opensuse-tumbleweed" .chezmoi.osRelease.id -}}
-{{-     template "run_onchange_55-packages-tw.tmpl" . -}}
-{{-   end -}}
-{{- else if eq .chezmoi.os "windows" -}}
-{{-   template "run_onchange_55-packages-windows.tmpl" . -}}
-{{- end -}}

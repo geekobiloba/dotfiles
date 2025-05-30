@@ -1,206 +1,262 @@
 packages:
   tw:
     generic:
-      - augeas
-      - augeas-lenses
-      - bat
-      - bind-utils
-      - binutils # provides string
-      - byobu
-      - chezmoi
-      - chezmoi-zsh-completion
-      - cnf
-      - cnf-zsh
-      - cpio
-      - crystal
-      - curl
-      - direnv
-      - direnv-zsh-completion
-      - dos2unix
-      - expect
-      - eza
-      - eza-zsh-completion
-      - fastfetch
-      - fastfetch-zsh-completion
-      - fd
-      - fd-zsh-completion
-      - file
-      - fzf
-      - fzf-zsh-integration
-      - gcc
-      - gh
-      - gh-zsh-completion
-      - git-core
-      - gitea-tea
-      - gitea-tea-zsh-completion
-      - gnu_parallel
-      - go
-      - go-race
-      - govc
-      - gzip
-      - htop
-      - incus # see run_onchange_55-packages-tw.tmpl
-      - iperf
-      - ipmitool
-      - jq
-      - ldns # provides drill
-      - make
-      - mariadb-client
-      - micro-editor
-      - mtr
-      - neovim
-      - netcat-openbsd
-      - nmap
-      - opentofu
-      - podman
-      - podman-docker
-      - progress
-      - progress-zsh-completion
-      - pssh
-      - pyenv
-      - pyenv-zsh-completion
-      - python313-pipx
-      - python313-podman-compose
-      - redfishtool
-      - ripgrep
-      - ripgrep-zsh-completion
-      - rsync
-      - ruby
-      - socat
-      - sshpass
-      - strace
-      - tar
-      - tcpdump
-      - telnet
-      - tmux
-      - traceroute
-      - whois
-      - whois-bash-completion
-      - yq
-      - yq-zsh-completion
-      - zsh
-      - zstd
-     #- stow
-     #- subnetcalc
+      present:
+        - augeas
+        - augeas-lenses
+        - bat
+        - bind-utils
+        - binutils # provides string
+        - byobu
+        - chezmoi
+        - chezmoi-zsh-completion
+        - cnf
+        - cnf-zsh
+        - cpio
+        - crystal
+        - curl
+        - direnv
+        - direnv-zsh-completion
+        - dos2unix
+        - expect
+        - eza
+        - eza-zsh-completion
+        - fastfetch
+        - fastfetch-zsh-completion
+        - fd
+        - fd-zsh-completion
+        - file
+        - fzf
+        - fzf-zsh-integration
+        - gcc
+        - gh
+        - gh-zsh-completion
+        - git-core
+        - gitea-tea
+        - gitea-tea-zsh-completion
+        - gnu_parallel
+        - go
+        - go-race
+        - govc
+        - gzip
+        - htop
+        - incus
+        - iperf
+        - ipmitool
+        - jq
+        - ldns # provides drill
+        - make
+        - mariadb-client
+        - micro-editor
+        - mtr
+        - neovim
+        - netcat-openbsd
+        - nmap
+        - opentofu
+        - podman
+        - podman-docker
+        - progress
+        - progress-zsh-completion
+        - pssh
+        - pyenv
+        - pyenv-zsh-completion
+        - python313-pipx
+        - python313-podman-compose
+        - redfishtool
+        - ripgrep
+        - ripgrep-zsh-completion
+        - rsync
+        - ruby
+        - socat
+        - sshpass
+        - strace
+        - tar
+        - tcpdump
+        - telnet
+        - tmux
+        - traceroute
+        - whois
+        - whois-bash-completion
+        - yq
+        - yq-zsh-completion
+        - zsh
+        - zstd
+       #- subnetcalc
+
+      locked:
+        - stow # we use chezmoi
+        - ansible      # via pipx
+        - ansible-lint # ibid.
+        - incus-zsh-completion # broken
+
+      repo:
+        - url: https://download.opensuse.org/repositories/devel:languages:crystal/openSUSE_Tumbleweed/devel:languages:crystal.repo
+
+    wsl:
+      repo:
+        - alias:   repo-openh264
+          enabled: false
+
+     #locked:
+     #
+     #  # Incus dependencies
+     #  - Mesa
+     #  - dnsmasq
+     #  - kernel-debug
+     #  - kernel-default
+     #  - kernel-default-base
+     #  - kernel-kvmsmall
+     #  - kernel-longterm
+     #  - kernel-vanilla
+     #  - lxcfs
+     #  - qemu
+     #  - qemu-hw-display-virtio-gpu
+     #  - qemu-hw-display-virtio-vga
+     #  - qemu-hw-usb-redirect
 
     desktop:
-      - yakuake
-
-    locked:
-      - ansible      # via pipx
-      - ansible-lint # ibid.
-      - incus-zsh-completion # broken
+      present:
+        - yakuake
 
   ubuntu:
 
   windows:
-    winget:
-      - 9NBLGGH6BZL3   # GlobalProtect
-      - 9NCBCSZSJRSB   # Spotify
-      - 9NKSQGP7F2NH   # WhatsApp
-      - 9P7KNL5RWT25   # Sysinternals Suite
-      - 9PC3H3V7Q9CH   # Rufus
-      - 9PNRBTZXMB4Z   # Python 3.13
-      - XP89DCGQ3K6VLD # Microsoft PowerToys
-      - XP8C9QZMS2PC1T # Brave Browser
-      - XP8K2L36VP0QMB # KeePassXC
-      - XP99J3KP4XZ4VV # Zoom Workplace
-      - XP9KHM4BK9FZ7Q # Visual Studio Code
-      - XPFCG5NRKXQPKT # Foxit PDF Reader
-      - XPFCWP0SQWXM3V # CCleaner
-      - XPFNZKSKLBP7RJ # PuTTY
-      - BurntSushi.ripgrep.MSVC
-      - CrystalLang.Crystal
-      - DEVCOM.JetBrainsMonoNerdFont
-      - DEVCOM.Lua
-      - Dynalist.Dynalist
-      - Fortinet.FortiClientVPN
-      - Genymobile.scrcpy
-      - GoLang.Go
-      - Google.Chrome
-      - Google.GoogleDrive
-      - Insecure.Nmap
-      - JGraph.Draw
-      - JetBrains.GoLand
-      - LinuxContainers.Incus
-      - Microsoft.PowerShell # PS 7
-      - Microsoft.WindowsTerminal
-      - Mikrotik.Winbox
-      - MiniTool.PartitionWizard.Free
-      - Mozilla.Firefox
-      - Neovim.Neovim
-      - Obsidian.Obsidian
-      - Ookla.Speedtest.CLI
-      - OpenTofu.Tofu
-      - OpenVPNTechnologies.OpenVPN
-      - Oracle.VirtualBox
-      - RedHat.VirtViewer
-      - Telegram.TelegramDesktop
-      - WinSCP.WinSCP
-      - WireGuard.WireGuard
-      - abdenasser.NeoHtop
-      - goplus.gop
-      - jasongin.nvs
-      - sharkdp.bat
-      - sharkdp.fd
-     #- Foxit.FoxitReader
-     #- Microsoft.PowerToys
-     #- Microsoft.Sysinternals
-     #- Microsoft.VisualStudioCode
-     #- Piriform.CCleaner
-     #- Python.Python.3.13
-     #- Rufus.Rufus
-     #- Spotify.Spotify
-     #- Webyog.SQLyogCommunity
-     #- Zoom.Zoom
-     #- valinet.ExplorerPatcher
+    generic:
+      winget:
+        absent:
+          - XPFCWP0SQWXM3V # CCleaner
+          - 9PNRBTZXMB4Z   # Python 3.13
+          - 9P7KNL5RWT25   # Sysinternals Suite
+          - XPFCG5NRKXQPKT # Foxit PDF Reader
 
-    scoop:
-      - 7zip
-      - age
-      - cwrsync
-      - diffutils
-      - direnv
-      - dos2unix
-      - eza
-      - fastfetch
-      - findutils
-      - fzf
-      - gawk
-      - gh
-     #- govc
-      - grep
-      - iperf3
-      - jq
-      - less
-      - mc
-      - mingw
-      - oh-my-posh
-      - poppler
-      - psfzf
-      - scoop-completion
-      - scoop-search
-      - sed
-      - tea
-      - yq
+        present:
+          - AutoHotkey.AutoHotkey
+          - Foxit.FoxitReader
+          - Insecure.Nmap
+          - Microsoft.PowerShell # PS 7
+          - Microsoft.Sysinternals
+          - Ookla.Speedtest.CLI
+          - Piriform.CCleaner.Slim
+          - Python.Python.3.13
+          - sharkdp.bat
+          - sharkdp.fd
+         #- MSYS2.MSYS2
+
+          # Windows Terminal
+          - Microsoft.WindowsTerminal
+          - DEVCOM.JetBrainsMonoNerdFont
+
+          # Neovim
+          - Neovim.Neovim
+          - DEVCOM.Lua
+          - BurntSushi.ripgrep.MSVC
+          - jasongin.nvs
+
+      scoop:
+        absent:
+        present:
+          - age
+          - dos2unix
+          - eza
+          - fastfetch
+          - fzf
+          - psfzf
+          - mingw # mainly for Neovim
+          - oh-my-posh
+          - scoop-completion
+          - scoop-search
+
+    desktop:
+      winget:
+        present:
+          - 9NBLGGH6BZL3   # GlobalProtect
+          - 9NCBCSZSJRSB   # Spotify
+          - 9NKSQGP7F2NH   # WhatsApp
+          - 9PC3H3V7Q9CH   # Rufus
+          - XP89DCGQ3K6VLD # Microsoft PowerToys
+          - XP8C9QZMS2PC1T # Brave Browser
+          - XP8K2L36VP0QMB # KeePassXC
+          - XP99J3KP4XZ4VV # Zoom Workplace
+          - XP9KHM4BK9FZ7Q # Visual Studio Code
+          - XPFNZKSKLBP7RJ # PuTTY
+          - CrystalLang.Crystal
+          - Dynalist.Dynalist
+          - Fortinet.FortiClientVPN
+          - Genymobile.scrcpy
+          - GoLang.Go
+          - Google.Chrome
+          - Google.GoogleDrive
+          - JGraph.Draw
+          - JetBrains.GoLand
+          - LinuxContainers.Incus
+          - Mikrotik.Winbox
+          - MiniTool.PartitionWizard.Free
+          - Mozilla.Firefox
+          - Obsidian.Obsidian
+          - OpenTofu.Tofu
+          - OpenVPNTechnologies.OpenVPN
+          - Oracle.VirtualBox
+          - Postman.Postman
+          - Postman.Postman.CLI
+          - RedHat.VirtViewer
+          - Telegram.TelegramDesktop
+          - WinSCP.WinSCP
+          - WireGuard.WireGuard
+          - abdenasser.NeoHtop
+          - goplus.gop
+         #- Microsoft.PowerToys
+         #- Microsoft.VisualStudioCode
+         #- Piriform.CCleaner
+         #- Python.Python.3.13
+         #- Rufus.Rufus
+         #- Spotify.Spotify
+         #- Webyog.SQLyogCommunity
+         #- Zoom.Zoom
+         #- valinet.ExplorerPatcher
+
+      scoop:
+        absent:
+          - direnv
+        present:
+          - 7zip
+          - cwrsync
+          - diffutils
+          - findutils
+          - gawk
+          - gh
+         #- govc
+          - grep
+          - iperf3
+          - jq
+          - less
+          - mc
+          - poppler
+          - sed
+          - tea
+          - yq
+    server:
 
   macos:
     brew:
-      - bat
-      - byobu
-      - fd
-      - gawk
-      - gh
-      - gnu-sed
-      - grep
-      - neovim
-      - pipx
-      - pyenv
-      - ripgrep
-     #- rbenv
+      absent:
+      present:
+        - bat
+        - byobu
+        - fd
+        - gawk
+        - gh
+        - gnu-sed
+        - grep
+        - neovim
+        - pipx
+        - pyenv
+        - ripgrep
+       #- rbenv
 
     cask:
-      - firefox
-      - iterm2
-      - tunnelblick
+      absent:
+      present:
+        - firefox
+        - iterm2
+        - tunnelblick
 

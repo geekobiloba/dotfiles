@@ -1,0 +1,147 @@
+#
+# Windows package installation
+#
+
+################################################################################
+# BEGIN
+################################################################################
+
+Write-Host "Package installation steps has started" `
+  -ForegroundColor Green
+
+################################################################################
+# Packages
+################################################################################
+
+#-------------------------------------------------------------------------------
+# Generic
+#-------------------------------------------------------------------------------
+
+# {{- if index .packages.windows.generic "winget" -}}
+# {{-   if index .packages.windows.generic.winget "absent" -}}
+# {{-     range .packages.windows.generic.winget.absent }}
+if (winget list {{.}} | Select-String {{ . | quote }}) {
+  winget uninstall -e --id {{.}} --all-versions
+}
+# {{-     end -}}
+# {{-   end -}}
+# {{-   if index .packages.windows.generic.winget "present" -}}
+# {{-     range .packages.windows.generic.winget.present }}
+if (winget list {{.}} | Select-String "No installed package found") {
+  winget install -e --id {{.}}
+}
+# {{-     end -}}
+# {{-   end -}}
+# {{- end }}
+# {{- if index .packages.windows.generic "scoop" -}}
+$scoop_installed = scoop list | Select-Object -ExpandProperty Name
+# {{-   if index .packages.windows.generic.scoop "absent" -}}
+# {{-     range .packages.windows.generic.scoop.absent }}
+if ($scoop_installed -contains {{ . | quote }}) {
+  # Don't use bare scoop nor scoop.ps1
+  # to prevent Get-FileHash error!
+  scoop.cmd uninstall {{.}}
+}
+# {{-     end -}}
+# {{-   end -}}
+# {{-   if index .packages.windows.generic.scoop "present" -}}
+# {{-     range .packages.windows.generic.scoop.present }}
+if (! ($scoop_installed -contains {{ . | quote }})) {
+  scoop.cmd install {{.}}
+}
+# {{-     end -}}
+# {{-   end -}}
+# {{- end }}
+
+#-------------------------------------------------------------------------------
+# Server
+#-------------------------------------------------------------------------------
+
+# {{- if .chezmoi.windowsVersion.productName | lower | contains "server" -}}
+# {{-   if index .packages.windows.server "winget" -}}
+# {{-     if index .packages.windows.server.winget "absent" -}}
+# {{-       range .packages.windows.server.winget.absent }}
+if (winget list {{.}} | Select-String {{ . | quote }}) {
+  winget uninstall -e --id {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-     if index .packages.windows.server.winget "present" -}}
+# {{-       range .packages.windows.server.winget.present }}
+if (winget list {{.}} | Select-String "No installed package found") {
+  winget install -e --id {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-   end }}
+# {{-   if index .packages.windows.server "scoop" -}}
+$scoop_installed = scoop list | Select-Object -ExpandProperty Name
+# {{-     if index .packages.windows.server.scoop "absent" -}}
+# {{-       range .packages.windows.server.scoop.absent }}
+if ($scoop_installed -contains {{ . | quote }}) {
+  # Don't use bare scoop nor scoop.ps1
+  # to prevent Get-FileHash error!
+  scoop.cmd uninstall {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-     if index .packages.windows.server.scoop "present" -}}
+# {{-       range .packages.windows.server.scoop.present }}
+if (! ($scoop_installed -contains {{ . | quote }})) {
+  scoop.cmd install {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-   end }}
+# {{- end }}
+
+#-------------------------------------------------------------------------------
+# Desktop
+#-------------------------------------------------------------------------------
+
+# {{- if not (.chezmoi.windowsVersion.productName | lower | contains "server") -}}
+# {{-   if index .packages.windows.desktop "winget" -}}
+# {{-     if index .packages.windows.desktop.winget "absent" -}}
+# {{-       range .packages.windows.desktop.winget.absent }}
+if (winget list {{.}} | Select-String {{ . | quote }}) {
+  winget uninstall -e --id {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-     if index .packages.windows.desktop.winget "present" -}}
+# {{-       range .packages.windows.desktop.winget.present }}
+if (winget list {{.}} | Select-String "No installed package found") {
+  winget install -e --id {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-   end }}
+# {{-   if index .packages.windows.desktop "scoop" -}}
+$scoop_installed = scoop list | Select-Object -ExpandProperty Name
+# {{-     if index .packages.windows.desktop.scoop "absent" -}}
+# {{-       range .packages.windows.desktop.scoop.absent }}
+if ($scoop_installed -contains {{ . | quote }}) {
+  # Don't use bare scoop nor scoop.ps1
+  # to prevent Get-FileHash error!
+  scoop.cmd uninstall {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-     if index .packages.windows.desktop.scoop "present" -}}
+# {{-       range .packages.windows.desktop.scoop.present }}
+if (! ($scoop_installed -contains {{ . | quote }})) {
+  scoop.cmd install {{.}}
+}
+# {{-       end -}}
+# {{-     end -}}
+# {{-   end }}
+# {{- end }}
+
+################################################################################
+# END
+################################################################################
+
+Write-Host "Package installation steps has finished" `
+  -ForegroundColor Green
+
+# vim:ft=ps1:

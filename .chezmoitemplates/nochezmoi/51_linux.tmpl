@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+#
+# Linux nochezmoi
+#
+
+set -euo pipefail
+
+################################################################################
+# BEGIN
+################################################################################
+
+echo -e "${_CYAN_}nochezmoi steps has started${_RESET_}"
+
+################################################################################
+# Main
+################################################################################
+
+nochezmoi() {
+  local SRC="$1"
+  local DST="$2"
+  local MOD="$3"
+  local DIR="{{ .chezmoi.sourceDir }}"
+  local ABS
+
+  if [ -e "${DIR}/${SRC}" ] ; then
+    ABS="${DIR}/${SRC}"
+  else
+    ABS="$SRC"
+  fi
+
+  if [ $MOD = "copy" ] ; then
+    mkdir -p "$(dirname "$DST")"
+
+    if [ -f "$DST" ] ; then
+      diff -rq "$ABS" "$DST" ||\
+      sudo cp -r "$ABS" "$DST"
+    else
+      sudo cp -r "$ABS" "$DST"
+    fi
+  elif [ $MOD = "symlink" ] ; then
+    ln -sf "$ABS" "$DST"
+  fi
+}
+
+# {{- if index .nochezmoi.linux "generic" }}
+# {{-   range .nochezmoi.linux.generic }}
+# {{-     if index . "mode" }}
+nochezmoi "{{ .src }}" "{{ .dst }}" {{ .mode }}
+# {{-     else }}
+nochezmoi "{{ .src }}" "{{ .dst }}" copy
+# {{-     end }}
+# {{-   end }}
+# {{- end }}
+
+# {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+# {{-   if index .nochezmoi.linux "wsl" }}
+# {{-     range .nochezmoi.linux.wsl }}
+# {{-       if index . "mode" }}
+nochezmoi "{{ .src }}" "{{ .dst }}" {{ .mode }}
+# {{-       else }}
+nochezmoi "{{ .src }}" "{{ .dst }}" copy
+# {{-       end }}
+# {{-     end }}
+# {{-   end }}
+# {{- end }}
+
+################################################################################
+# END
+################################################################################
+
+echo -e "${_CYAN_}nochezmoi steps has finished${_RESET_}"
+
+# vim:ft=bash:
