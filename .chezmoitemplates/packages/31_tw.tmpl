@@ -69,6 +69,7 @@ fi
 
 # {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 # {{-   if index .packages.tw.wsl "repo" -}}
+sudo zypper in -y --no-recommends expect
 # {{-     range .packages.tw.wsl.repo }}
 # {{-       if index . "url" -}}
 sudo zypper addrepo --refresh {{ .url | quote }}
