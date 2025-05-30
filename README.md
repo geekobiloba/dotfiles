@@ -78,7 +78,7 @@ try install `gsudo` from `scoop` as non-Administrator.
     -   openSUSE
 
         ```shell
-        sudo zypper install -y chezmoi
+        sudo zypper install -y --no-recommends chezmoi
         ```
 
     -   Windows

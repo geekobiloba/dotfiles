@@ -19,10 +19,12 @@ echo -e "${_CYAN_}Package installation steps has started${_RESET_}"
 # Generic
 #-------------------------------------------------------------------------------
 
-# {{- if index .packages.tw.generic "repo" -}}
-sudo zypper in -y --no-recommends expect
+# {{- if index .packages.tw.generic "repo" }}
+if ! rpm -q expect ; then
+  sudo zypper in -y --no-recommends expect
+fi
 # {{-   range .packages.tw.generic.repo }}
-# {{-     if index . "url" -}}
+# {{-     if index . "url" }}
 sudo zypper addrepo --refresh {{ .url | quote }}
 expect <<"EOF"
 set timeout -1
@@ -35,7 +37,7 @@ send   "a\r"
 expect eof
 EOF
 # {{-     else if and (index . "enabled") (index . "alias") -}}
-# {{-       if .enabled -}}
+# {{-       if .enabled }}
 sudo zypper modifyrepo --enable {{ .name }}
 # {{-       else }}
 sudo zypper modifyrepo --disable {{ .name }}
@@ -68,10 +70,12 @@ fi
 #-------------------------------------------------------------------------------
 
 # {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
-# {{-   if index .packages.tw.wsl "repo" -}}
-sudo zypper in -y --no-recommends expect
+# {{-   if index .packages.tw.wsl "repo" }}
+if ! rpm -q expect ; then
+  sudo zypper in -y --no-recommends expect
+fi
 # {{-     range .packages.tw.wsl.repo }}
-# {{-       if index . "url" -}}
+# {{-       if index . "url" }}
 sudo zypper addrepo --refresh {{ .url | quote }}
 expect <<"EOF"
 set timeout -1
@@ -84,7 +88,7 @@ send   "a\r"
 expect eof
 EOF
 # {{-       else if and (index . "enabled") (index . "alias") -}}
-# {{-         if .enabled -}}
+# {{-         if .enabled }}
 sudo zypper modifyrepo --enable {{ .name }}
 # {{-         else }}
 sudo zypper modifyrepo --disable {{ .name }}
