@@ -25,17 +25,30 @@ if ! rpm -q expect ; then
 fi
 # {{-   range .packages.tw.generic.repo }}
 # {{-     if index . "url" }}
-sudo zypper addrepo --refresh {{ .url | quote }}
-expect <<"EOF"
+if \
+  zypper lr -u |\
+  awk -F '[[:space:]]*\\|[[:space:]]*' \
+    -v uri="$(dirname {{ .url }} | sed -E 's,:([^/]),:/\1,g')" \
+    '$7 ~ uri {exit 1} {exit 0}'
+then
+  sudo zypper addrepo --refresh {{ .url | quote }}
+  expect <<"EOF"
 set timeout -1
 
 spawn sudo zypper refresh
 
-expect "Do you want to reject the key, trust temporarily, or trust always?"
-send   "a\r"
+expect {
+  "Do you want to reject the key, trust temporarily, or trust always?" {
+    send "a\r"
+  }
+  -re ".*" {
+    send "expect keeps goind"
+  }
+}
 
 expect eof
 EOF
+fi
 # {{-     else if and (index . "enabled") (index . "alias") -}}
 # {{-       if .enabled }}
 sudo zypper modifyrepo --enable {{ .name }}
@@ -76,17 +89,30 @@ if ! rpm -q expect ; then
 fi
 # {{-     range .packages.tw.wsl.repo }}
 # {{-       if index . "url" }}
-sudo zypper addrepo --refresh {{ .url | quote }}
-expect <<"EOF"
+if \
+  zypper lr -u |\
+  awk -F '[[:space:]]*\\|[[:space:]]*' \
+    -v uri="$(dirname {{ .url }} | sed -E 's,:([^/]),:/\1,g')" \
+    '$7 ~ uri {exit 1} {exit 0}'
+then
+  sudo zypper addrepo --refresh {{ .url | quote }}
+  expect <<"EOF"
 set timeout -1
 
 spawn sudo zypper refresh
 
-expect "Do you want to reject the key, trust temporarily, or trust always?"
-send   "a\r"
+expect {
+  "Do you want to reject the key, trust temporarily, or trust always?" {
+    send "a\r"
+  }
+  -re ".*" {
+    send "expect keeps goind"
+  }
+}
 
 expect eof
 EOF
+fi
 # {{-       else if and (index . "enabled") (index . "alias") -}}
 # {{-         if .enabled }}
 sudo zypper modifyrepo --enable {{ .name }}

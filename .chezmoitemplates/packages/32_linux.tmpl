@@ -68,6 +68,7 @@ fi
 # /etc/zsh_completion.d/_incus:type:420: bad option: -t
 #
 if which incus &>/dev/null ; then
+  mkdir -p $HOME/.completions/
   incus completion zsh > $HOME/.completions/incus
 fi
 
