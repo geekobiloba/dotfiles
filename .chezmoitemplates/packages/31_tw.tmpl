@@ -37,14 +37,8 @@ set timeout -1
 
 spawn sudo zypper refresh
 
-expect {
-  "Do you want to reject the key, trust temporarily, or trust always?" {
-    send "a\r"
-  }
-  -re ".*" {
-    send "expect keeps goind"
-  }
-}
+expect "Do you want to reject the key, trust temporarily, or trust always?" {
+send   "a\r"
 
 expect eof
 EOF
@@ -101,14 +95,8 @@ set timeout -1
 
 spawn sudo zypper refresh
 
-expect {
-  "Do you want to reject the key, trust temporarily, or trust always?" {
-    send "a\r"
-  }
-  -re ".*" {
-    send "expect keeps goind"
-  }
-}
+expect "Do you want to reject the key, trust temporarily, or trust always?" {
+send   "a\r"
 
 expect eof
 EOF
