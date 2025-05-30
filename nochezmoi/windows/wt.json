@@ -200,7 +200,7 @@
             },
             {
                 "cursorShape": "filledBox",
-                "guid": "{f638ae5a-66df-5958-bc47-5b6be0599c96}",
+                "guid": "{6482cc69-8213-5efb-9ec5-0d60d0ed7056}",
                 "hidden": false,
                 "icon": "C:\\Users\\ellam\\Pictures\\icons\\opensuse.png",
                 "name": "openSUSE Tumbleweed",
@@ -232,42 +232,6 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{70589238-e05a-593f-9c71-20cbd15e801d}",
-                "hidden": false,
-                "name": "ostw",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{bc656355-cebc-5781-a893-6b15749cf67c}",
-                "hidden": false,
-                "name": "ostw",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{b5af0769-959d-5e47-8750-4b0b53e061d5}",
-                "hidden": false,
-                "name": "ostw",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{42b7ec9a-46ae-57f4-9177-08c0e3148097}",
-                "hidden": false,
-                "name": "ostw",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{c33ebb0c-3975-5793-a692-e6988cf1c332}",
-                "hidden": false,
-                "name": "ostw",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{787374b2-8634-515e-8151-824fcc29f983}",
-                "hidden": false,
-                "name": "ostw",
-                "source": "Microsoft.WSL"
             }
         ]
     },
