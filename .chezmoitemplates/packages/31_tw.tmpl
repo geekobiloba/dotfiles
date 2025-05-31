@@ -20,7 +20,7 @@ echo -e "${_CYAN_}Package installation steps has started${_RESET_}"
 #-------------------------------------------------------------------------------
 
 # {{- if index .packages.tw.generic "repo" }}
-if ! rpm -q expect ; then
+if ! rpm -q expect &>/dev/null ; then
   sudo zypper in -y --no-recommends expect
 fi
 # {{-   range .packages.tw.generic.repo }}
@@ -29,7 +29,7 @@ if \
   zypper lr -u |\
   awk -F '[[:space:]]*\\|[[:space:]]*' \
     -v uri="$(dirname {{ .url }} | sed -E 's,:([^/]),:/\1,g')" \
-    '$7 ~ uri {exit 1} {exit 0}'
+    '$7 ~ uri {exit 1}'
 then
   sudo zypper addrepo --refresh {{ .url | quote }}
   expect <<"EOF"
@@ -78,7 +78,7 @@ fi
 
 # {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
 # {{-   if index .packages.tw.wsl "repo" }}
-if ! rpm -q expect ; then
+if ! rpm -q expect &>/dev/null ; then
   sudo zypper in -y --no-recommends expect
 fi
 # {{-     range .packages.tw.wsl.repo }}
@@ -87,7 +87,7 @@ if \
   zypper lr -u |\
   awk -F '[[:space:]]*\\|[[:space:]]*' \
     -v uri="$(dirname {{ .url }} | sed -E 's,:([^/]),:/\1,g')" \
-    '$7 ~ uri {exit 1} {exit 0}'
+    '$7 ~ uri {exit 1}'
 then
   sudo zypper addrepo --refresh {{ .url | quote }}
   expect <<"EOF"
