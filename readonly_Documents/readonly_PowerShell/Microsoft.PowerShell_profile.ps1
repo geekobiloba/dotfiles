@@ -93,6 +93,15 @@ if (Get-Command incus.exe -ErrorAction SilentlyContinue) {
   . $HOME\Documents\PowerShell\Includes\Completions\incus.ps1
 }
 
+# Deno
+if (Get-Command deno.exe -ErrorAction SilentlyContinue) {
+  if (!(Test-Path $HOME\Documents\PowerShell\Includes\Completions\deno.ps1)) {
+    deno completions powershell |
+    Out-File $HOME\Documents\PowerShell\Includes\Completions\deno.ps1
+  }
+  . $HOME\Documents\PowerShell\Includes\Completions\deno.ps1
+}
+
 # Scoop
 if (Test-Path $HOME\scoop\modules\scoop-completion\scoop-completion.psd1) {
   Import-Module scoop-completion

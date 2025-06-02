@@ -182,6 +182,7 @@ packages:
           - XP9KHM4BK9FZ7Q # Visual Studio Code
           - XPFNZKSKLBP7RJ # PuTTY
           - CrystalLang.Crystal
+          - DenoLand.Deno
           - Dynalist.Dynalist
           - Fortinet.FortiClientVPN
           - Genymobile.scrcpy

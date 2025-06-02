@@ -38,6 +38,9 @@ nochezmoi:
     - src:  neovim\lua\plugins\init.lua
       dst:  $env:LOCALAPPDATA\nvim\lua\plugins\init.lua
 
+    - src:  neovim\lua\configs\lspconfig.lua
+      dst:  $env:LOCALAPPDATA\nvim\lua\configs\lspconfig.lua
+
     - src:  $HOME\.tree-sitter-crystal\queries\nvim\aerial.scm
       dst:  $env:LOCALAPPDATA\nvim-data\aerial.scm
 
