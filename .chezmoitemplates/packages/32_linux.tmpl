@@ -2,7 +2,6 @@
 #
 # Linux post-package installation
 #
-#
 
 set -euo pipefail
 
@@ -18,9 +17,7 @@ echo -e "${_CYAN_}Post-package installation steps${_RESET_}"
 
 # Add Node.js LTS
 if [ -r $HOME/.nvs/nvs.sh ] && [ ! -d $HOME/.nvs/node ] ; then
-  set +u
-  #NVS_USE_XZ=false  # fix line 190: NVS_USE_XZ: unbound variable
-  #NVS_EXECUTE=true  # fix line 190: NVS_EXECUTE: unbound variable
+  set +u # fix unbound variables
   source $HOME/.nvs/nvs.sh
   nvs add lts
   set -u
