@@ -1,0 +1,22 @@
+alias   rm='rm -i'
+alias   mv='mv -i'
+alias   cp='cp -i'
+alias   rl='readlink -f'
+alias   ip='ip --color=auto'
+alias   fd='fdfind'
+alias  cls='clear'
+alias  bat='batcat'
+alias  sed='sed -E'
+alias grep='grep -E --color=auto'
+alias diff='diff --color'
+
+alias   ls='ls --color=auto'
+alias    l='ls -CF'
+alias   la='ls -A'
+alias   ll='ls -alF'
+alias  lla='ll'
+alias  llt='ll -t'
+alias  llh='ll -h'
+alias llah='llh'
+
+# vim:ft=bash:

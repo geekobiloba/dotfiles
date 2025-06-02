@@ -59,3 +59,9 @@ nochezmoi:
     - src:  dot_nvs\settings.json
       dst:  $env:LOCALAPPDATA\nvs\settings.json
 
+    - src:  nochezmoi\windows\bash_aliases
+      dst:  C:\msys64\home\$env:USERNAME\.bash_aliases
+
+    - src:  nochezmoi\windows\minttyrc
+      dst:  C:\msys64\home\$env:USERNAME\.minttyrc
+

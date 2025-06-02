@@ -33,7 +33,7 @@ if (winget list {{.}} | Select-String "No installed package found") {
 # {{-     end -}}
 # {{-   end -}}
 # {{- end }}
-# {{- if index .packages.windows.generic "scoop" -}}
+# {{- if index .packages.windows.generic "scoop" }}
 $scoop_installed = scoop list | Select-Object -ExpandProperty Name
 # {{-   if index .packages.windows.generic.scoop "absent" -}}
 # {{-     range .packages.windows.generic.scoop.absent }}
@@ -74,7 +74,7 @@ if (winget list {{.}} | Select-String "No installed package found") {
 # {{-       end -}}
 # {{-     end -}}
 # {{-   end }}
-# {{-   if index .packages.windows.server "scoop" -}}
+# {{-   if index .packages.windows.server "scoop" }}
 $scoop_installed = scoop list | Select-Object -ExpandProperty Name
 # {{-     if index .packages.windows.server.scoop "absent" -}}
 # {{-       range .packages.windows.server.scoop.absent }}
@@ -116,7 +116,7 @@ if (winget list {{.}} | Select-String "No installed package found") {
 # {{-       end -}}
 # {{-     end -}}
 # {{-   end }}
-# {{-   if index .packages.windows.desktop "scoop" -}}
+# {{-   if index .packages.windows.desktop "scoop" }}
 $scoop_installed = scoop list | Select-Object -ExpandProperty Name
 # {{-     if index .packages.windows.desktop.scoop "absent" -}}
 # {{-       range .packages.windows.desktop.scoop.absent }}

@@ -125,12 +125,6 @@ packages:
   windows:
     generic:
       winget:
-        absent:
-          - XPFCWP0SQWXM3V # CCleaner
-          - 9PNRBTZXMB4Z   # Python 3.13
-          - 9P7KNL5RWT25   # Sysinternals Suite
-          - XPFCG5NRKXQPKT # Foxit PDF Reader
-
         present:
           - AutoHotkey.AutoHotkey
           - Foxit.FoxitReader
@@ -155,7 +149,6 @@ packages:
           - jasongin.nvs
 
       scoop:
-        absent:
         present:
           - age
           - dos2unix
@@ -163,10 +156,10 @@ packages:
           - fastfetch
           - fzf
           - psfzf
-          - mingw # mainly for Neovim
           - oh-my-posh
           - scoop-completion
           - scoop-search
+         #- mingw # mainly for Neovim
 
     desktop:
       winget:
@@ -200,7 +193,6 @@ packages:
           - OpenVPNTechnologies.OpenVPN
           - Oracle.VirtualBox
           - Postman.Postman
-          - Postman.Postman.CLI
           - RedHat.VirtViewer
           - Telegram.TelegramDesktop
           - WinSCP.WinSCP
@@ -209,6 +201,7 @@ packages:
           - goplus.gop
          #- Microsoft.PowerToys
          #- Microsoft.VisualStudioCode
+         #- Postman.Postman.CLI # error: Installer hash does not match.
          #- Piriform.CCleaner
          #- Python.Python.3.13
          #- Rufus.Rufus
@@ -218,25 +211,23 @@ packages:
          #- valinet.ExplorerPatcher
 
       scoop:
-        absent:
-          - direnv
         present:
           - 7zip
           - cwrsync
           - diffutils
-          - findutils
-          - gawk
           - gh
-         #- govc
-          - grep
           - iperf3
           - jq
-          - less
           - mc
           - poppler
-          - sed
           - tea
           - yq
+         #- findutils
+         #- gawk
+         #- govc
+         #- grep
+         #- less
+         #- sed
     server:
 
   macos:

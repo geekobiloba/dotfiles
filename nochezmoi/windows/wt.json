@@ -212,8 +212,8 @@
                 "guid": "{8c4c294d-0760-4f96-ace3-ac2b9bb93e9a}",
                 "hidden": false,
                 "cursorShape": "filledBox",
-                "icon": "C:\\msys64\\mingw64.ico",
-                "name": "MINGW64"
+                "icon": "C:\\msys64\\msys2.ico",
+                "name": "MSYS2"
             },
             {
                 "guid": "{4e27f4db-7c55-564f-af04-19d8f3a30148}",
