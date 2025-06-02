@@ -35,19 +35,21 @@ if (Test-Path $env:ProgramFiles\Oracle\VirtualBox\VirtualBox.exe) {
 
 # Prioritize scoop paths
 $env:Path = (
-  (
+  @(
     $env:Path -split ";" | Select-String           scoop
-  ) + (
+  ) + `
+  @(
     $env:Path -split ";" | Select-String -NotMatch scoop
   )
 ) -join ";"
 
 # Ensure WinGet packages are included
 $env:Path = (
-  (
+  @(
     $env:Path -split ";" |
     Select-String -NotMatch winget
-  ) + (
+  ) + `
+  @(
     Get-ChildItem $env:LOCALAPPDATA\Microsoft\WinGet\ -Recurse -Filter '*.exe' |
     Select-Object -ExpandProperty Directory -Unique
   )

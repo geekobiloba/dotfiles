@@ -36,6 +36,10 @@
             "id": "User.paste"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -43,10 +47,6 @@
                 "splitMode": "duplicate"
             },
             "id": "User.splitPane.A6751878"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
         },
         {
             "command": 
@@ -89,20 +89,12 @@
     "keybindings": 
     [
         {
-            "id": "User.moveTab.EF07D31B",
-            "keys": "ctrl+shift+pgup"
-        },
-        {
             "id": "User.moveTab.793E2350",
             "keys": "ctrl+shift+pgdn"
         },
         {
-            "id": null,
-            "keys": "ctrl+shift+tab"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+c"
+            "id": "User.moveTab.EF07D31B",
+            "keys": "ctrl+shift+pgup"
         },
         {
             "id": null,
@@ -110,11 +102,19 @@
         },
         {
             "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+c"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+tab"
         },
         {
             "id": "User.find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
         },
         {
             "id": null,
@@ -206,6 +206,14 @@
                 "name": "openSUSE Tumbleweed",
                 "source": "Microsoft.WSL",
                 "startingDirectory": null
+            },
+            {
+                "commandline": "C:\\msys64\\usr\\bin\\bash.exe -i -l",
+                "guid": "{8c4c294d-0760-4f96-ace3-ac2b9bb93e9a}",
+                "hidden": false,
+                "cursorShape": "filledBox",
+                "icon": "C:\\msys64\\mingw64.ico",
+                "name": "MINGW64"
             },
             {
                 "guid": "{4e27f4db-7c55-564f-af04-19d8f3a30148}",

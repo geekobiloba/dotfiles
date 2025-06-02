@@ -142,7 +142,7 @@ packages:
           - Python.Python.3.13
           - sharkdp.bat
           - sharkdp.fd
-         #- MSYS2.MSYS2
+          - MSYS2.MSYS2
 
           # Windows Terminal
           - Microsoft.WindowsTerminal
