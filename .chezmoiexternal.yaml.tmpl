@@ -1,6 +1,8 @@
-# {{ if eq .chezmoi.os "windows" }}
-
+# {{- if eq .chezmoi.os "windows" }}
 "AppData/Local/nvim":
+# {{- else }}
+".config/nvim":
+# {{- end }}
   type:  archive
   url:   https://github.com/NvChad/starter/archive/refs/heads/main.zip
   exact: false
@@ -11,8 +13,7 @@
     - "*/lua/plugins/init.lua"
     - "*/lua/configs/lspconfig.lua"
 
-# {{- else }}
-
+# {{- if ne .chezmoi.os "windows" }}
 ".oh-my-zsh":
   type:  archive
   url:   https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
@@ -61,16 +62,6 @@
   clone.args:    "--depth=1"
   refreshPeriod: "720h"
 
-".config/nvim":
-  type:  archive
-  url:   https://github.com/NvChad/starter/archive/refs/heads/main.zip
-  exact: false
-  stripComponents: 1
-  exclude:
-    - "*/init.lua"
-    - "*/lua/chadrc.lua"
-    - "*/lua/plugins/init.lua"
-
 ".nvs":
   type:  archive
   url:   https://github.com/jasongin/nvs/archive/master.tar.gz
@@ -85,7 +76,6 @@
   url:   https://raw.githubusercontent.com/vmware/govmomi/refs/heads/main/scripts/govc_bash_completion
   exact: false
   refreshPeriod:   "720h"
-
 # {{- end }}
 
 ".tree-sitter-crystal":
