@@ -39,6 +39,7 @@ packages:
         - gnu_parallel
         - go
         - go-race
+        - govulncheck
         - govc
         - gzip
         - htop
@@ -151,6 +152,7 @@ packages:
       scoop:
         present:
           - age
+          - dasel
           - dos2unix
           - eza
           - fastfetch
@@ -215,19 +217,20 @@ packages:
           - 7zip
           - cwrsync
           - diffutils
+          - gawk
           - gh
+          - grep
           - iperf3
           - jq
+          - less
+          - make
           - mc
           - poppler
+          - sed
           - tea
           - yq
          #- findutils
-         #- gawk
          #- govc
-         #- grep
-         #- less
-         #- sed
     server:
 
   macos:
