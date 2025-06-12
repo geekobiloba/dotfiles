@@ -169,15 +169,58 @@ FoldColumn = {
 }
 
 --------------------------------------------------------------------------------
+-- LSP
+--------------------------------------------------------------------------------
+
+local lspconfig = require'lspconfig'
+
+-- Bash
+lspconfig.bashls.setup{}
+
+-- Markdown
+lspconfig.marksman.setup{}
+
+--------------------------------------------------------------------------------
+-- mini
+--------------------------------------------------------------------------------
+
+-- map
+local MiniMap = require('mini.map')
+require('mini.map').setup({
+  window = {
+    focusable = true,
+  },
+  symbols = {
+    encode = MiniMap.gen_encode_symbols.dot('3x2'),
+    --block = '2x2',
+  },
+})
+
+vim.keymap.set('n', '<Leader>mc', MiniMap.close)
+vim.keymap.set('n', '<Leader>mf', MiniMap.toggle_focus)
+vim.keymap.set('n', '<Leader>mo', MiniMap.open)
+vim.keymap.set('n', '<Leader>mr', MiniMap.refresh)
+vim.keymap.set('n', '<Leader>ms', MiniMap.toggle_side)
+vim.keymap.set('n', '<Leader>mt', MiniMap.toggle)
+
+-- Open mini.map by default
+-- MiniMap.open()
+
+--------------------------------------------------------------------------------
 -- Load .nvim.lua in current directory
 --------------------------------------------------------------------------------
 
 vim.o.exrc = true
 
 --------------------------------------------------------------------------------
--- LSP
+-- symbols-outline
 --------------------------------------------------------------------------------
 
--- bashls
-require'lspconfig'.bashls.setup{}
+-- require("outline").setup({
+--
+--         providers = {
+--           priority = { 'lsp', 'coc', 'markdown', 'norg', 'treesitter' },
+--   },
+-- })
+-- require('symbols-outline').setup()
 

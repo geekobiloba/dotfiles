@@ -184,6 +184,7 @@ packages:
           - GoLang.Go
           - Google.Chrome
           - Google.GoogleDrive
+          - ImageMagick.ImageMagick
           - JGraph.Draw
           - JetBrains.GoLand
           - LinuxContainers.Incus
