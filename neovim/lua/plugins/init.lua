@@ -13,8 +13,6 @@ return {
     end,
   },
 
-  -- { "neovim/nvim-lspconfig", },
-
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
@@ -144,6 +142,12 @@ return {
   ------------------------------------------------------------------------------
 
   { 'echasnovski/mini.map', version = '*' },
+  --   -- opts = {
+  --   --   config= function ()
+  --   --     require('mini.map').setup()
+  --   --   end
+  --   -- },
+  -- },
 
   ------------------------------------------------------------------------------
   -- symbols-outline
