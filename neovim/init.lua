@@ -172,13 +172,7 @@ FoldColumn = {
 -- LSP
 --------------------------------------------------------------------------------
 
-local lspconfig = require'lspconfig'
-
--- Bash
-lspconfig.bashls.setup{}
-
--- Markdown
-lspconfig.marksman.setup{}
+-- See: configs/lspconfig.lua
 
 --------------------------------------------------------------------------------
 -- mini

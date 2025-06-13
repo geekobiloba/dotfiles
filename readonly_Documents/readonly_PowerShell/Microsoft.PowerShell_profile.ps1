@@ -339,7 +339,7 @@ function ansible9 { wsl --shell-type login -- ansible9 @Args }
 # Functions
 ################################################################################
 
-Get-ChildItem $HOME\Documents\PowerShell\Includes\Functions | % {
+Get-ChildItem $HOME\Documents\PowerShell\Includes\Functions | ForEach-Object {
   Invoke-Expression (Get-Content -Raw $_.FullName)
 }
 
