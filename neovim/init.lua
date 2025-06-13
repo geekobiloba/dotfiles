@@ -196,12 +196,12 @@ require('mini.map').setup({
   },
 })
 
-vim.keymap.set('n', '<Leader>mc', MiniMap.close)
-vim.keymap.set('n', '<Leader>mf', MiniMap.toggle_focus)
-vim.keymap.set('n', '<Leader>mo', MiniMap.open)
-vim.keymap.set('n', '<Leader>mr', MiniMap.refresh)
-vim.keymap.set('n', '<Leader>ms', MiniMap.toggle_side)
-vim.keymap.set('n', '<Leader>mt', MiniMap.toggle)
+vim.keymap.set('n', '<Leader>mc', MiniMap.close,        { desc = "Close MiniMap"                })
+vim.keymap.set('n', '<Leader>mf', MiniMap.toggle_focus, { desc = "Toggle MiniMap focus"         })
+vim.keymap.set('n', '<Leader>mo', MiniMap.open,         { desc = "Open MiniMap"                 })
+vim.keymap.set('n', '<Leader>mr', MiniMap.refresh,      { desc = "Refresh MiniMap"              })
+vim.keymap.set('n', '<Leader>ms', MiniMap.toggle_side,  { desc = "Toggle MiniMap side position" })
+vim.keymap.set('n', '<Leader>mt', MiniMap.toggle,       { desc = "Toggle MiniMap"               })
 
 -- Open mini.map by default
 -- MiniMap.open()
@@ -216,11 +216,55 @@ vim.o.exrc = true
 -- symbols-outline
 --------------------------------------------------------------------------------
 
--- require("outline").setup({
---
---         providers = {
---           priority = { 'lsp', 'coc', 'markdown', 'norg', 'treesitter' },
---   },
--- })
--- require('symbols-outline').setup()
+require("outline").setup({
+  providers = {
+    priority = { 'lsp', 'coc', 'markdown', 'norg', 'treesitter' },
+  },
+
+  -- Using the default doesn't work somehow
+  symbols = {
+    filter = {
+      'Array',
+      'Boolean',
+      'Class',
+      'Component',
+      'Constant',
+      'Constructor',
+      'Enum',
+      'EnumMember',
+      'Event',
+      'Field',
+      'File',
+      'Fragment',
+      'Function',
+      'Interface',
+      'Key',
+      'Macro',
+      'Method',
+      'Module',
+      'Namespace',
+      'Null',
+      'Number',
+      'Object',
+      'Operator',
+      'Package',
+      'Parameter',
+      'Property',
+      'StaticMethod',
+      'String',
+      'Struct',
+      'TypeAlias',
+      'TypeParameter',
+      'Variable',
+    },
+  },
+  -- preview_window = {
+  --   auto_preview = true,
+  -- },
+
+  -- Enable mouse click, see: https://github.com/hedyhli/outline.nvim/issues/56
+  keymaps = {
+    goto_location = {"<CR>", "<LeftRelease>"},
+  },
+})
 
