@@ -172,13 +172,7 @@ FoldColumn = {
 -- LSP
 --------------------------------------------------------------------------------
 
-local lspconfig = require'lspconfig'
-
--- Bash
-lspconfig.bashls.setup{}
-
--- Markdown
-lspconfig.marksman.setup{}
+-- See lua/configs/lspconfig.lua
 
 --------------------------------------------------------------------------------
 -- mini
@@ -186,7 +180,8 @@ lspconfig.marksman.setup{}
 
 -- map
 local MiniMap = require('mini.map')
-require('mini.map').setup({
+-- require('mini.map').setup({
+MiniMap.setup({
   window = {
     focusable = true,
   },
