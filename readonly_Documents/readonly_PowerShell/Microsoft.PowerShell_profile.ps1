@@ -166,8 +166,8 @@ function   hide { (Get-Item -Force @Args).Attributes += "Hidden" }
 function unhide { (Get-Item -Force @Args).Attributes -= "Hidden" }
 
 # zip & unzip
-function   zip { Compresss-Archive @Args }
-function unzip { Compresss-Archive @Args }
+function   zip { Compress-Archive @Args }
+function unzip { Expand-Archive   @Args }
 
 # more is less
 if (Get-Command less.exe -ErrorAction SilentlyContinue) {
