@@ -28,9 +28,13 @@ if (Get-Command nvs -ErrorAction SilentlyContinue) {
 # Path
 #-------------------------------------------------------------------------------
 
-# VirtualBox
-if (Test-Path $env:ProgramFiles\Oracle\VirtualBox\VirtualBox.exe) {
-  $env:Path += ";" + "$env:ProgramFiles\Oracle\VirtualBox"
+# MINGW64 + MSYS2
+if (Test-Path C:\msys64\mingw64\bin) {
+  $env:Path += ";" + "C:\msys64\mingw64\bin"
+}
+
+if (Test-Path C:\msys64\usr\bin) {
+  $env:Path += ";" + "C:\msys64\usr\bin"
 }
 
 # Prioritize scoop paths
@@ -42,6 +46,11 @@ $env:Path = (
     $env:Path -split ";" | Select-String -NotMatch scoop
   )
 ) -join ";"
+
+# VirtualBox
+if (Test-Path $env:ProgramFiles\Oracle\VirtualBox\VirtualBox.exe) {
+  $env:Path += ";" + "$env:ProgramFiles\Oracle\VirtualBox"
+}
 
 # Ensure WinGet packages are included
 $env:Path = (
@@ -155,6 +164,10 @@ if (Get-Command Set-PsFzfOption -ErrorAction SilentlyContinue) {
 # hide & unhide files
 function   hide { (Get-Item -Force @Args).Attributes += "Hidden" }
 function unhide { (Get-Item -Force @Args).Attributes -= "Hidden" }
+
+# zip & unzip
+function   zip { Compresss-Archive @Args }
+function unzip { Compresss-Archive @Args }
 
 # more is less
 if (Get-Command less.exe -ErrorAction SilentlyContinue) {

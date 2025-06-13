@@ -261,7 +261,9 @@ require("outline").setup({
   -- preview_window = {
   --   auto_preview = true,
   -- },
-
+  outline_items = {
+    show_symbol_lineno = true,
+  },
   -- Enable mouse click, see: https://github.com/hedyhli/outline.nvim/issues/56
   keymaps = {
     goto_location = {"<CR>", "<LeftRelease>"},
